@@ -4,6 +4,7 @@ export default (sequelize, DataTypes) => {
     {
       name: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -13,6 +14,7 @@ export default (sequelize, DataTypes) => {
       },
       surname: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -22,6 +24,7 @@ export default (sequelize, DataTypes) => {
       },
       country: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -32,6 +35,7 @@ export default (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         unique: true,
+        allowNull: false,
         validate: {
           isEmail: {
             args: true,
@@ -41,7 +45,36 @@ export default (sequelize, DataTypes) => {
       },
       specialization: {
         type: DataTypes.STRING,
-        allowNull: true,
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: 'Invalid city name',
+          },
+        },
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: 'Invalid address',
+          },
+        },
+      },
+      postal: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          isInteger: {
+            args: true,
+            msg: 'Invalid postal code'
+          }
+        }
       },
     },
   );

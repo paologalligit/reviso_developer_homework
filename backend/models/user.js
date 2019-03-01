@@ -6,6 +6,7 @@ export default (sequelize, DataTypes) => {
     {
       name: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -15,6 +16,7 @@ export default (sequelize, DataTypes) => {
       },
       surname: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -24,6 +26,7 @@ export default (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
         validate: {
           isEmail: {
@@ -34,6 +37,7 @@ export default (sequelize, DataTypes) => {
       },
       birthdate: {
         type: DataTypes.DATEONLY,
+        allowNull: false,
         validate: {
           isDate: {
             args: true,
@@ -43,6 +47,7 @@ export default (sequelize, DataTypes) => {
       },
       country: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           isAlpha: {
             args: true,
@@ -52,12 +57,43 @@ export default (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           len: {
             args: [5, 100],
             msg: 'The password needs to be at least 5 characters long',
           },
         },
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: 'Invalid city name',
+          },
+        },
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isAlpha: {
+            args: true,
+            msg: 'Invalid address',
+          },
+        },
+      },
+      postal: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          isInteger: {
+            args: true,
+            msg: 'Invalid postal code'
+          }
+        }
       },
     },
     {

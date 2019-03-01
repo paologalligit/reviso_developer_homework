@@ -2,6 +2,7 @@ import express from 'express';
 import { makeExecutableSchema } from 'graphql-tools';
 import path from 'path';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
+import { ApolloServer, gql } from 'apollo-server-express';
 // import jwt from 'jsonwebtoken';
 
 import models from './models';
@@ -10,14 +11,12 @@ import models from './models';
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
-
+/*
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-const app = express();
- /*
 const SECRET = '4gh3923h23burn20HU97yg780GDsNkp';
 const SECRET2 = 'gfrtyujkHGTYUIL,MNY645678iujh';
 
@@ -42,9 +41,7 @@ const addUser = async (req, res, next) => {
 };
 
 app.use(addUser);
-*/
 
-/*
 const graphqlEndpoint = '/graphql';
 
 app.use(
@@ -64,10 +61,14 @@ app.use(
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 */
 
+const app = express();
+
+const schema = new ApolloServer({ typeDefs, resolvers });
+
 schema.applyMiddleware({
   app
 });
 
-models.sequelize.sync({ }).then(() => {
+models.sequelize.sync({ force: true }).then(() => {
   app.listen(8080);
 });

@@ -5,7 +5,7 @@ export default `
     name: String!
     surname: String!
     email: String!
-    birthdate: DateOnly!
+    birthdate: String!
     country: String!
   }
 
