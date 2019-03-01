@@ -2,7 +2,7 @@ import express from 'express';
 import { makeExecutableSchema } from 'graphql-tools';
 import path from 'path';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 // import jwt from 'jsonwebtoken';
 
 import models from './models';
@@ -65,10 +65,8 @@ const app = express();
 
 const schema = new ApolloServer({ typeDefs, resolvers });
 
-schema.applyMiddleware({
-  app
-});
+schema.applyMiddleware({ app });
 
-models.sequelize.sync({ force: true }).then(() => {
+models.sequelize.sync({ }).then(() => {
   app.listen(8080);
 });
