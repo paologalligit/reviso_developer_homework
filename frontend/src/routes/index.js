@@ -2,7 +2,11 @@ import React from 'react';
 import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
+
 import decode from 'jwt-decode';
+
+import Home from './Home';
+import Login from './Login';
 
 const isAuthenticated = () => {
   const token = localStorage.getItem('token');
@@ -32,14 +36,18 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+/*
+<Route path="/register" exact component={Register} />
+
+<PrivateRoute path="/view-team/:teamId?/:channelId?" exact component={ViewTeam} />
+<PrivateRoute path="/create-team" exact component={CreateTeam} />
+*/
+
 export default () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/register" exact component={Register} />
       <Route path="/login" exact component={Login} />
-      <PrivateRoute path="/view-team/:teamId?/:channelId?" exact component={ViewTeam} />
-      <PrivateRoute path="/create-team" exact component={CreateTeam} />
     </Switch>
   </BrowserRouter>
 );

@@ -8,7 +8,12 @@
     "apollo-link": "^1.2.8",
     "apollo-link-context": "^1.0.14",
     "apollo-link-http": "^1.5.11",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "jwt-decode": "^2.2.0",
+    "mobx": "^5.9.0",
+    "mobx-react": "^5.4.3",
+    "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
@@ -35,13 +40,12 @@
   "devDependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "babel-jest": "^24.1.0",
-    "eslint": "^5.12.0",
+    "eslint": "5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "jest": "^24.1.0",
+    "jest": "^23.6.0",
     "react-test-renderer": "^16.8.3"
   }
 }
