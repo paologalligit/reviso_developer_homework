@@ -87,27 +87,9 @@ export default (sequelize, DataTypes) => {
   );
 
   Collaboration.associate = (models) => {
-    Collaboration.hasMany(models.User);
-    Collaboration.hasMany(models.Customer);
+    Collaboration.belongsTo(models.User);
+    Collaboration.belongsTo(models.Customer);
   };
-/*
-  User.associate = (models) => {
-    User.belongsToMany(models.Team, {
-      through: models.Member,
-      foreignKey: {
-        name: 'userId',
-        field: 'user_id',
-      },
-    });
-    // N:M
-    User.belongsToMany(models.Channel, {
-      through: 'channel_member',
-      foreignKey: {
-        name: 'userId',
-        field: 'user_id',
-      },
-    });
-  };
-*/
+
   return Collaboration;
 };

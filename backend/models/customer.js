@@ -79,25 +79,10 @@ export default (sequelize, DataTypes) => {
     },
   );
 
-  /*
-  User.associate = (models) => {
-    User.belongsToMany(models.Team, {
-      through: models.Member,
-      foreignKey: {
-        name: 'userId',
-        field: 'user_id',
-      },
-    });
-    // N:M
-    User.belongsToMany(models.Channel, {
-      through: 'channel_member',
-      foreignKey: {
-        name: 'userId',
-        field: 'user_id',
-      },
-    });
+  Customer.associate = (models) => {
+    Customer.hasMany(models.Collaboration);
+    Customer.belongsTo(models.User);
   };
-  */
 
   return Customer;
 };
