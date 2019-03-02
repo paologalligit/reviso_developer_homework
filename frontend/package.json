@@ -8,6 +8,7 @@
     "apollo-link": "^1.2.8",
     "apollo-link-context": "^1.0.14",
     "apollo-link-http": "^1.5.11",
+    "jwt-decode": "^2.2.0",
     "react": "^16.8.3",
     "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
