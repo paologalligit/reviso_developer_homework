@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering matches snapshot 1`] = `
+<div
+  class="ui text container"
+>
+  <h2
+    class="ui header"
+  >
+    Login
+  </h2>
+  <form
+    class="ui form"
+  >
+    <div
+      class="field"
+    >
+      <div
+        class="ui fluid input"
+      >
+        <input
+          name="email"
+          placeholder="Email"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="field"
+    >
+      <div
+        class="ui fluid input"
+      >
+        <input
+          name="password"
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      class="ui button"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+`;

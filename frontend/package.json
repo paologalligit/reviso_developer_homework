@@ -8,6 +8,10 @@
     "apollo-link": "^1.2.8",
     "apollo-link-context": "^1.0.14",
     "apollo-link-http": "^1.5.11",
+    "babel": "^6.23.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme-to-json": "^3.3.5",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "jwt-decode": "^2.2.0",
@@ -17,6 +21,7 @@
     "react": "^16.8.3",
     "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
     "semantic-ui-css": "^2.4.1",
@@ -38,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "eslint": "5.12.0",
