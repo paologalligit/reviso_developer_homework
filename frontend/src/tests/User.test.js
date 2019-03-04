@@ -22,70 +22,48 @@ describe('user resolvers', () => {
       data: {
         allUsers: [
           {
-            id: 0,
-            name: 'Paolo',
-            surname: 'Galli',
-            username: 'paologio',
-            email: 'paolo@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 3,
+            id: 1,
             name: 'Claudio',
             surname: 'Lippi',
             username: 'Claudione',
-            email: 'ci3@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 4,
-            name: 'Gio',
-            surname: 'Bello',
-            username: 'GioBello',
-            email: 'bello@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 6,
-            name: 'Gio',
-            surname: 'Bello',
-            username: 'GioBeo',
-            email: 'be@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 10,
-            name: 'Gio',
-            surname: 'Bello',
-            username: 'GioBeoBeo',
-            email: 'beobeo@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 11,
-            name: 'Gio',
-            surname: 'Bello',
-            username: 'GioBeoDeBeo',
-            email: 'bebo@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 12,
-            name: 'Gio',
-            surname: 'Bello',
-            username: 'GioBeoBeo2',
-            email: 'beobeo2@email.com',
-            country: 'Italy',
-          },
-          {
-            id: 13,
-            name: 'Johnny',
-            surname: 'Bravo',
-            username: 'tooCool',
-            email: 'cool@email.com',
+            email: 'ci@email.com',
             country: 'Italy',
           },
         ],
+      },
+    });
+  });
+
+
+  test('error on create already existing user', async () => {
+    const response = await axios.post('http://localhost:8080/graphql', {
+      query: `
+        mutation {
+          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
+            email: "ci@email.com", birthdate: "2000-12-31", country: "Italy", 
+              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+              ok
+              errors {
+                path
+                message
+              }
+            }
+        }
+      `,
+    });
+
+    const { data } = response;
+    expect(data).toMatchObject({
+      data: {
+        registerUser: {
+          ok: false,
+          errors: [
+            {
+              path: 'username',
+              message: 'username must be unique',
+            },
+          ],
+        },
       },
     });
   });

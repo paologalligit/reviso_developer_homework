@@ -253,7 +253,7 @@ const registerMutation = gql`
         message
       }
     }
-}
+  }
 `;
 
 export default graphql(registerMutation)(Register);
