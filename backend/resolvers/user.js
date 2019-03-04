@@ -12,6 +12,7 @@ export default {
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
     registerUser: async (parent, args, { models }) => {
+      console.log('args in resolver: ', args);
       try {
         const user = await models.User.create(args);
 
@@ -20,6 +21,7 @@ export default {
           user,
         };
       } catch (err) {
+        console.log('catch in resolver: ', formatErrors(err, models));
         return {
           ok: false,
           errors: formatErrors(err, models),
