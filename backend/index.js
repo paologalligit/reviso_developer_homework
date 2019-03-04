@@ -4,6 +4,7 @@ import path from 'path';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { ApolloServer } from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
 
 import models from './models';
 import { refreshTokens } from './auth';
@@ -14,32 +15,9 @@ const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))
 
 const SECRET = '4gh3923h23burn20HU97yg780GDsNkp';
 const SECRET2 = 'gfrtyujkHGTYUIL,MNY645678iujh';
-/*
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
-
-const graphqlEndpoint = '/graphql';
-
-app.use(
-  graphqlEndpoint,
-  bodyParser.json(),
-  graphqlExpress(req => ({
-    schema,
-    context: {
-      models,
-      user: req.user,
-      SECRET,
-      SECRET2,
-    },
-  })),
-);
-
-app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
-*/
 
 const app = express();
+app.use(cors('*'));
 
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
