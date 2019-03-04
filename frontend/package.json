@@ -8,6 +8,7 @@
     "apollo-link": "^1.2.8",
     "apollo-link-context": "^1.0.14",
     "apollo-link-http": "^1.5.11",
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
