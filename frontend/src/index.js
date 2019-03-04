@@ -9,9 +9,9 @@ import { ApolloLink } from 'apollo-link';
 
 import 'semantic-ui-css/semantic.min.css';
 import Routes from './routes';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:3000' });
+const httpLink = createHttpLink({ uri: 'http://localhost:8080/graphql' });
 
 const middlewareLink = setContext(() => ({
   headers: {
@@ -52,4 +52,4 @@ const App = (
 );
 
 ReactDOM.render(App, document.getElementById('root'));
-serviceWorker();
+// serviceWorker();

@@ -18,7 +18,6 @@ class Login extends Component {
 
   onChange = (e) => {
     const { name, value } = e.target;
-
     this[name] = value;
   };
 
@@ -26,7 +25,7 @@ class Login extends Component {
     const { email, password } = this;
 
     const response = await this.props.mutate({
-      variables: { email, password },
+      variables: {email, password},
     });
 
     const {
@@ -36,8 +35,6 @@ class Login extends Component {
     if (ok) {
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
-
-      console.log('Entratooooooooo');
 
       this.props.history.push('/');
     } else {

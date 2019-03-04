@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47ec6047-b900-432a-ac72-69cfb3d5d9fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/Login.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/setupTests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/schema/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/schema/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sum.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/Login.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Login.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-432">
-              <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+            <state relative-caret-position="-18">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -44,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="47" />
+            <state relative-caret-position="411">
+              <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -56,19 +53,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="51" selection-start-line="3" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/tests/Login.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="129">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,6 +106,7 @@
       <find>eslint</find>
       <find>//</find>
       <find>li</find>
+      <find>web</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,15 +121,17 @@
         <option value="$PROJECT_DIR$/src/normalizeErrors.js" />
         <option value="$PROJECT_DIR$/src/routes/Home.js" />
         <option value="$PROJECT_DIR$/yarn.lock" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/routes/Login.js" />
         <option value="$PROJECT_DIR$/.eslintrc.js" />
         <option value="$PROJECT_DIR$/src/tests/Home.test.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/babel.config.js" />
         <option value="$PROJECT_DIR$/src/tests/setupTests.js" />
-        <option value="$PROJECT_DIR$/src/routes/index.js" />
+        <option value="$PROJECT_DIR$/src/tests/__snapshots__/Login.test.js.snap" />
         <option value="$PROJECT_DIR$/src/tests/Login.test.js" />
+        <option value="$PROJECT_DIR$/src/serviceWorker.js" />
+        <option value="$PROJECT_DIR$/src/routes/index.js" />
+        <option value="$PROJECT_DIR$/src/routes/Login.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
   </component>
@@ -154,10 +145,9 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
     <option name="y" value="25" />
-    <option name="width" value="1368" />
-    <option name="height" value="744" />
+    <option name="width" value="683" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -183,19 +173,6 @@
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="__snapshots__" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,8 +207,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.rendering (1)">
-    <configuration name="rendering (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.rendering.renders submit button">
+    <configuration name="rendering" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -244,7 +221,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="rendering.matches snapshot" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="rendering.initially should have flat state" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -254,7 +231,21 @@
       <test-file value="$PROJECT_DIR$/src/tests/Login.test.js" />
       <test-names>
         <test-name value="rendering" />
-        <test-name value="matches snapshot" />
+        <test-name value="initially should have flat state" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="rendering.renders email and password text-input" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/Login.test.js" />
+      <test-names>
+        <test-name value="rendering" />
+        <test-name value="renders email and password text-input" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -272,7 +263,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="rendering.should render an email text input (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="shallow wrapper instance should not be null" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -281,32 +272,24 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/src/tests/Login.test.js" />
       <test-names>
-        <test-name value="rendering" />
-        <test-name value="should render an email text input" />
+        <test-name value="shallow wrapper instance should not be null" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="rendering.should render an email text input" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/Home.test.js" />
-      <test-names>
-        <test-name value="rendering" />
-        <test-name value="should render an email text input" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+    <list>
+      <item itemvalue="Jest.rendering" />
+      <item itemvalue="Jest.rendering.renders email and password text-input" />
+      <item itemvalue="Jest.rendering.initially should have flat state" />
+      <item itemvalue="Jest.shallow wrapper instance should not be null" />
+      <item itemvalue="Jest.rendering.renders submit button" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.rendering (1)" />
-        <item itemvalue="Jest.rendering.matches snapshot" />
         <item itemvalue="Jest.rendering.renders submit button" />
-        <item itemvalue="Jest.rendering.should render an email text input (1)" />
-        <item itemvalue="Jest.rendering.should render an email text input" />
+        <item itemvalue="Jest.rendering.initially should have flat state" />
+        <item itemvalue="Jest.shallow wrapper instance should not be null" />
+        <item itemvalue="Jest.rendering" />
+        <item itemvalue="Jest.rendering.renders email and password text-input" />
       </list>
     </recent_temporary>
   </component>
@@ -325,44 +308,44 @@
       <workItem from="1551535854687" duration="1050000" />
       <workItem from="1551536927205" duration="15176000" />
       <workItem from="1551609715979" duration="700000" />
-      <workItem from="1551610590848" duration="1042000" />
+      <workItem from="1551610590848" duration="15911000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Update_snapshot_for_rendering_matches_snapshot - 2019.03.03 at 11h 48m 30s.xml">
-      <configuration name="Update snapshot for rendering.matches snapshot" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 20m 39s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 02m 13s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 21m 15s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 02m 19s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 21m 27s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 06m 16s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 21m 51s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 11m 58s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 23m 05s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Update_snapshot_for_rendering_matches_snapshot - 2019.03.03 at 12h 12m 06s.xml">
-      <configuration name="Update snapshot for rendering.matches snapshot" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 23m 33s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 13m 18s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 24m 42s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_matches_snapshot - 2019.03.03 at 12h 13m 38s.xml">
-      <configuration name="rendering.matches snapshot" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 24m 59s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="rendering_(1) - 2019.03.03 at 12h 14m 18s.xml">
-      <configuration name="rendering (1)" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 25m 23s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Update_snapshot_for_rendering_matches_snapshot - 2019.03.03 at 12h 14m 23s.xml">
-      <configuration name="Update snapshot for rendering.matches snapshot" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="rendering_renders_submit_button - 2019.03.04 at 09h 25m 41s.xml">
+      <configuration name="rendering.renders submit button" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19470000" />
+    <option name="totallyTimeSpent" value="34265000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -390,8 +373,8 @@
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2953451" />
-      <window_info anchor="bottom" id="Run" order="10" visible="true" weight="0.34189406" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2953451" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.3579454" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -404,15 +387,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.test.js" />
     <entry file="file://$PROJECT_DIR$/src/sum.js" />
@@ -439,13 +413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -480,34 +447,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="51" selection-start-line="3" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/__snapshots__/Login.test.js.snap">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="900">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/Login.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-432">
-          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        <state relative-caret-position="1278">
+          <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -516,8 +466,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="49" column="53" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="53" />
+        <state relative-caret-position="411">
+          <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serviceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
