@@ -5,6 +5,8 @@ import { Button, Input, Container, Header, Form, Message } from 'semantic-ui-rea
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import styles from './styles/LoginStyle';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +63,11 @@ class Login extends Component {
     }
 
     return (
-      <Container text>
+      <Container
+        text
+        textAlign={'center'}
+        style={styles.login}
+      >
         <Header as="h2">Login</Header>
         <Form>
           <Form.Field error={!!emailError}>

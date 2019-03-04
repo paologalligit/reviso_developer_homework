@@ -7,6 +7,7 @@ import decode from 'jwt-decode';
 
 import Home from './Home';
 import Login from './Login';
+import Register from './Register';
 
 const isAuthenticated = () => {
   const token = localStorage.getItem('token');
@@ -37,8 +38,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 /*
-<Route path="/register" exact component={Register} />
-
 <PrivateRoute path="/view-team/:teamId?/:channelId?" exact component={ViewTeam} />
 <PrivateRoute path="/create-team" exact component={CreateTeam} />
 */
@@ -46,8 +45,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Home} />
+      <PrivateRoute path="/" exact component={Home} />
       <Route path="/login" exact component={Login} />
+      <Route path="/register" exact component={Register} />
     </Switch>
   </BrowserRouter>
 );
