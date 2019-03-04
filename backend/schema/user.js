@@ -10,6 +10,9 @@ export default gql`
     email: String!
     birthdate: String!
     country: String!
+    city: String!
+    address: String!
+    postal: Int!
   }
 
   type Query {
@@ -31,7 +34,8 @@ export default gql`
   }
 
   type Mutation {
-    register(name: String!, surname: String!, email: String!, birthdate: DateOnly!, country: String!, password: String!): RegisterResponse!
+    registerUser(name: String!, surname: String!, email: String!, birthdate: String!, 
+      country: String!, password: String!, city: String!, address: String! postal: Int!): RegisterResponse!
     login(email: String!, password: String!): LoginResponse
   }
 

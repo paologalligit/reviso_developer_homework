@@ -11,7 +11,7 @@ export default {
   Mutation: {
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
-    register: async (parent, args, { models }) => {
+    registerUser: async (parent, args, { models }) => {
       try {
         const user = await models.User.create(args);
 

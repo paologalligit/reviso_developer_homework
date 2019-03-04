@@ -21,7 +21,7 @@ export default `
   }
 
   type Mutation {
-    register(name: String!, surname: String!, email: String!, country: String!, specialization: String): CustomerRegisterResponse!
+    registerCustomer(name: String!, surname: String!, email: String!, country: String!, specialization: String): CustomerRegisterResponse!
   }
 
 `;

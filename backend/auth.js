@@ -63,6 +63,9 @@ export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2
 
 export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
   const user = await models.User.findOne({ where: { email }, raw: true });
+
+  // console.log('inside trylogin with user: ', user, ', email and pass: ', email, password);
+
   if (!user) {
     // user with provided email not found
     return {
