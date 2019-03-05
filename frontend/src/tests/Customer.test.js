@@ -24,14 +24,31 @@ describe('customer resolvers', () => {
       },
     });
   });
-/*
-  test('register a new user', async () => {
+
+  test('register a new customer', async () => {
+    // register the new user to be associated with customer
+    await axios.post('http://localhost:8080/graphql', {
+      query: `
+        mutation {
+          registerUser(name: "Claudio", surname: "Lippi", username: "BigC",
+            email: "cibig@email.com", birthdate: "2000-12-31", country: "Italy", 
+              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+              ok
+              errors {
+                path
+                message
+              }
+            }
+        }
+      `,
+    });
+
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
-            email: "ci@email.com", birthdate: "2000-12-31", country: "Italy",
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+          registerCustomer(name: "Giorgio", surname: "Armani",
+            email: "gio@email.com", country: "Italy", city: "Milan", 
+              address: "Via Dei Rognosi", postal: 20100, user_id: 1, specialization: "Plumber") {
               ok
               errors {
                 path
@@ -45,14 +62,14 @@ describe('customer resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        registerUser: {
+        registerCustomer: {
           ok: true,
           errors: null,
         },
       },
     });
   });
-
+/*
   test('error on create already existing user', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
@@ -85,7 +102,7 @@ describe('customer resolvers', () => {
       },
     });
   });
-
+/*
   test('allUsers with not empty db', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
@@ -118,7 +135,7 @@ describe('customer resolvers', () => {
       },
     });
   });
-
+/*
   test('register a new user without not null fields', async () => {
     try {
       await axios.post('http://localhost:8080/graphql', {
@@ -140,7 +157,7 @@ describe('customer resolvers', () => {
       expect(err).toBeDefined();
     }
   });
-
+/*
   test('register a new user without nullable fields', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
