@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47ec6047-b900-432a-ac72-69cfb3d5d9fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/clear_test_db.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/User.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/User.test.js" afterDir="false" />
     </list>
@@ -61,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/User.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2034">
-              <caret line="113" column="14" lean-forward="true" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+            <state relative-caret-position="130">
+              <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -218,21 +213,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.user resolvers">
-    <configuration name="rendering.initially should have flat state" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/tests/Login.test.js" />
-      <test-names>
-        <test-name value="rendering" />
-        <test-name value="initially should have flat state" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Jest.user resolvers.register a new user without not null fields">
     <configuration name="rendering.renders submit button" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -288,20 +269,34 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="user resolvers.register a new user without not null fields" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/tests/User.test.js" />
+      <test-names>
+        <test-name value="user resolvers" />
+        <test-name value="register a new user without not null fields" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Jest.rendering.initially should have flat state" />
       <item itemvalue="Jest.rendering.renders submit button" />
       <item itemvalue="Jest.user resolvers.allUsers" />
       <item itemvalue="Jest.user resolvers" />
       <item itemvalue="Jest.user resolvers.create user" />
+      <item itemvalue="Jest.user resolvers.register a new user without not null fields" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.user resolvers.register a new user without not null fields" />
         <item itemvalue="Jest.user resolvers" />
         <item itemvalue="Jest.user resolvers.create user" />
         <item itemvalue="Jest.user resolvers.allUsers" />
         <item itemvalue="Jest.rendering.renders submit button" />
-        <item itemvalue="Jest.rendering.initially should have flat state" />
       </list>
     </recent_temporary>
   </component>
@@ -323,26 +318,11 @@
       <workItem from="1551610590848" duration="16224000" />
       <workItem from="1551706740155" duration="11983000" />
       <workItem from="1551728339258" duration="2775000" />
-      <workItem from="1551732958264" duration="264000" />
+      <workItem from="1551732958264" duration="2426000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="user_resolvers - 2019.03.04 at 19h 12m 10s.xml">
-      <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers_allUsers - 2019.03.04 at 21h 33m 59s.xml">
-      <configuration name="user resolvers.allUsers" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers - 2019.03.04 at 21h 34m 25s.xml">
-      <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers_create_user - 2019.03.04 at 21h 44m 22s.xml">
-      <configuration name="user resolvers.create user" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers - 2019.03.04 at 21h 45m 12s.xml">
-      <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
     <history-entry file="user_resolvers - 2019.03.04 at 21h 45m 49s.xml">
       <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
@@ -358,9 +338,24 @@
     <history-entry file="user_resolvers - 2019.03.04 at 21h 59m 26s.xml">
       <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
+    <history-entry file="user_resolvers - 2019.03.05 at 09h 03m 55s.xml">
+      <configuration name="user resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 05m 21s.xml">
+      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 06m 04s.xml">
+      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 06m 21s.xml">
+      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 08m 02s.xml">
+      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49600000" />
+    <option name="totallyTimeSpent" value="51762000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -373,7 +368,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4971591" visible="true" weight="0.12137007" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -389,7 +383,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.23113964" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.3563403" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.42696628" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -585,8 +579,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tests/User.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2034">
-          <caret line="113" column="14" lean-forward="true" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+        <state relative-caret-position="130">
+          <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
         </state>
       </provider>
     </entry>
