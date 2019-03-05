@@ -3,9 +3,12 @@ import _ from 'lodash';
 import bcrypt from 'bcrypt';
 
 export const createTokens = async (user, secret, secret2) => {
+  const userInfos = [
+    'id', 'name', 'surname', 'username', 'email', 'birthdate', 'country', 'city', 'address', 'postal'
+  ];
   const createToken = jwt.sign(
     {
-      user: _.pick(user, ['id', 'username']),
+      user: _.pick(user, userInfos),
     },
     secret,
     {
