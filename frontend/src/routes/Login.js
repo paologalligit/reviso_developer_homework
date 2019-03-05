@@ -6,6 +6,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import styles from './styles/LoginStyle';
+import isAuthenticated from '../utils/auth';
 
 class Login extends Component {
   constructor(props) {
@@ -16,7 +17,15 @@ class Login extends Component {
       password: '',
       errors: {},
     });
+
+    this.tryLogin();
   }
+
+  tryLogin = () => {
+    if (isAuthenticated()) {
+      this.props.history.push('/');
+    }
+  };
 
   onChange = (e) => {
     const { name, value } = e.target;

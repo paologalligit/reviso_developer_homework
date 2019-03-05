@@ -3,24 +3,10 @@ import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
 
-import decode from 'jwt-decode';
-
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
-
-const isAuthenticated = () => {
-  const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');
-  try {
-    decode(token);
-    decode(refreshToken);
-  } catch (err) {
-    return false;
-  }
-
-  return true;
-};
+import isAuthenticated from '../utils/auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
