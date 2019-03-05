@@ -120,8 +120,9 @@ describe('user resolvers', () => {
   });
 
   test('register a new user without not null fields', async () => {
+    let response;
     try {
-      await axios.post('http://localhost:8080/graphql', {
+      response = await axios.post('http://localhost:8080/graphql', {
         query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi",
@@ -136,41 +137,7 @@ describe('user resolvers', () => {
         }
       `,
       });
-    } catch (err) {
-      expect(err).toBeDefined();
-    }
-  });
-
-  test('register a new user without nullable fields', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
-      query: `
-        mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
-            email: "ci@email.com", birthdate: "2000-12-31", country: "Italy", 
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
-              ok
-              errors {
-                path
-                message
-              }
-            }
-        }
-      `,
-    });
-
-    const { data } = response;
-    expect(data).toMatchObject({
-      data: {
-        registerUser: {
-          ok: false,
-          errors: [
-            {
-              path: 'username',
-              message: 'username must be unique',
-            },
-          ],
-        },
-      },
-    });
+    } catch (err) {}
+    expect(response).toBeUndefined();
   });
 });

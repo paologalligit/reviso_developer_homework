@@ -8,8 +8,8 @@
       <change beforePath="$PROJECT_DIR$/../backend/resolvers/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/resolvers/customer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/resolvers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/resolvers/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/schema/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/schema/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/Customer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Customer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/User.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/User.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,20 +58,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tests/User.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="28" column="4" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="42" selection-end-column="7" />
+            <state relative-caret-position="-23">
+              <caret line="140" column="28" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tests/Customer.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
+            <state relative-caret-position="-125">
+              <caret line="169" column="25" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -138,8 +138,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/routes/Home.js" />
         <option value="$PROJECT_DIR$/src/routes/Register.js" />
-        <option value="$PROJECT_DIR$/src/tests/User.test.js" />
         <option value="$PROJECT_DIR$/src/tests/Customer.test.js" />
+        <option value="$PROJECT_DIR$/src/tests/User.test.js" />
       </list>
     </option>
   </component>
@@ -332,44 +332,44 @@
       <workItem from="1551610590848" duration="16224000" />
       <workItem from="1551706740155" duration="11983000" />
       <workItem from="1551728339258" duration="2775000" />
-      <workItem from="1551732958264" duration="4951000" />
+      <workItem from="1551732958264" duration="6357000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 08m 02s.xml">
-      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 08m 36s.xml">
-      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="user_resolvers_register_a_new_user_without_not_null_fields - 2019.03.05 at 09h 08m 46s.xml">
-      <configuration name="user resolvers.register a new user without not null fields" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="customer_resolvers_allCustomers_on_empty_db - 2019.03.05 at 09h 14m 22s.xml">
-      <configuration name="customer resolvers.allCustomers on empty db" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="customer_resolvers - 2019.03.05 at 09h 22m 00s.xml">
+    <history-entry file="customer_resolvers - 2019.03.05 at 09h 54m 07s.xml">
       <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="customer_resolvers_allCustomers_on_empty_db - 2019.03.05 at 09h 28m 43s.xml">
-      <configuration name="customer resolvers.allCustomers on empty db" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="customer_resolvers_allCustomers_on_empty_db - 2019.03.05 at 09h 31m 44s.xml">
-      <configuration name="customer resolvers.allCustomers on empty db" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="customer_resolvers - 2019.03.05 at 09h 31m 51s.xml">
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 24m 49s.xml">
       <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="customer_resolvers - 2019.03.05 at 09h 51m 39s.xml">
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 26m 43s.xml">
       <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="customer_resolvers - 2019.03.05 at 09h 51m 55s.xml">
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 27m 42s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 29m 34s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 29m 49s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 31m 05s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 31m 50s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 33m 22s.xml">
+      <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="customer_resolvers - 2019.03.05 at 15h 33m 53s.xml">
       <configuration name="customer resolvers" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54287000" />
+    <option name="totallyTimeSpent" value="55693000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -398,7 +398,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.23113964" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.26324236" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.28250402" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -592,17 +592,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/User.test.js">
+    <entry file="file://$PROJECT_DIR$/src/tests/Customer.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="28" column="4" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="42" selection-end-column="7" />
+        <state relative-caret-position="-125">
+          <caret line="169" column="25" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/Customer.test.js">
+    <entry file="file://$PROJECT_DIR$/src/tests/User.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
+        <state relative-caret-position="-23">
+          <caret line="140" column="28" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
         </state>
       </provider>
     </entry>

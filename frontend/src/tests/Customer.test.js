@@ -69,14 +69,14 @@ describe('customer resolvers', () => {
       },
     });
   });
-/*
-  test('error on create already existing user', async () => {
+
+  test('error on create already existing customer', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
-            email: "ci@email.com", birthdate: "2000-12-31", country: "Italy",
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+          registerCustomer(name: "Giorgio", surname: "Armani",
+            email: "gio@email.com", country: "Italy", city: "Milan", 
+              address: "Via Dei Rognosi", postal: 20100, user_id: 1, specialization: "Plumber") {
               ok
               errors {
                 path
@@ -90,30 +90,31 @@ describe('customer resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        registerUser: {
+        registerCustomer: {
           ok: false,
           errors: [
             {
-              path: 'username',
-              message: 'username must be unique',
+              path: 'email',
+              message: 'email must be unique',
             },
           ],
         },
       },
     });
   });
-/*
-  test('allUsers with not empty db', async () => {
+
+  test('allCustomers with not empty db', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
         query {
-          allUsers {
+          allCustomers {
             id,
             name,
             surname,
-            username,
             email,
-            country
+            country,
+            city,
+            user_id
           }
         }
       `,
@@ -122,28 +123,30 @@ describe('customer resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        allUsers: [
+        allCustomers: [
           {
             id: 1,
-            name: 'Claudio',
-            surname: 'Lippi',
-            username: 'Claudione',
-            email: 'ci@email.com',
+            name: 'Giorgio',
+            surname: 'Armani',
+            email: 'gio@email.com',
             country: 'Italy',
+            city: 'Milan',
+            user_id: 1,
           },
         ],
       },
     });
   });
-/*
+
   test('register a new user without not null fields', async () => {
+    let response;
     try {
-      await axios.post('http://localhost:8080/graphql', {
+      response = await axios.post('http://localhost:8080/graphql', {
         query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi",
-            email: "ci4@email.com", birthdate: "2000-12-31", country: "Italy",
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+          registerCustomer(name: "Giorgio", surname: "Armani",
+            email: "gio77@email.com", country: "Italy", city: "Milan", 
+              address: "Via Dei Rognosi", postal: 20100, specialization: "Plumber") {
               ok
               errors {
                 path
@@ -153,18 +156,19 @@ describe('customer resolvers', () => {
         }
       `,
       });
-    } catch (err) {
-      expect(err).toBeDefined();
-    }
+    } catch (err) {}
+
+    expect(response).toBeUndefined();
+
   });
-/*
+
   test('register a new user without nullable fields', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
-            email: "ci@email.com", birthdate: "2000-12-31", country: "Italy",
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+          registerCustomer(name: "Giorgio", surname: "Armani",
+            email: "gio22@email.com", country: "Italy", city: "Milan", 
+              address: "Via Dei Rognosi", postal: 20100, user_id: 1) {
               ok
               errors {
                 path
@@ -178,17 +182,11 @@ describe('customer resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        registerUser: {
-          ok: false,
-          errors: [
-            {
-              path: 'username',
-              message: 'username must be unique',
-            },
-          ],
+        registerCustomer: {
+          ok: true,
+          errors: null,
         },
       },
     });
   });
-  */
 });
