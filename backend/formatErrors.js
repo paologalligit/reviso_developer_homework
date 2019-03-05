@@ -5,5 +5,5 @@ export default (e, models) => {
     //  _.pick({a: 1, b: 2}, 'a') => {a: 1}
     return e.errors.map(x => _.pick(x, ['path', 'message']));
   }
-  return [{ path: 'name', message: 'something went wrong' }];
+  return [{ path: 'name', message: 'something wrong in format error' }];
 };

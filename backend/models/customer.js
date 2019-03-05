@@ -59,18 +59,12 @@ export default (sequelize, DataTypes) => {
       address: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isAlpha: {
-            args: true,
-            msg: 'Invalid address',
-          },
-        },
       },
       postal: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          isInteger: {
+          isInt: {
             args: true,
             msg: 'Invalid postal code'
           }

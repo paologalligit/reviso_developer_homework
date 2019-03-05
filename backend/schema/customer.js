@@ -6,6 +6,10 @@ export default `
     surname: String!
     email: String!
     country: String!
+    city: String!
+    address: String!
+    postal: Int!
+    user_id: Int!
     specialization: String
   }
 
@@ -21,7 +25,8 @@ export default `
   }
 
   type Mutation {
-    registerCustomer(name: String!, surname: String!, email: String!, country: String!, specialization: String): CustomerRegisterResponse!
+    registerCustomer(name: String!, surname: String!, email: String!, country: String!, 
+      city: String!, address: String!, postal: Int!, user_id: Int!, specialization: String): CustomerRegisterResponse!
   }
 
 `;
