@@ -4,6 +4,7 @@ import formatErrors from "../formatErrors";
 export default {
   Query: {
     getCustomer: (parent, { id }, { models }) => models.Customer.findOne({ where: { id } }),
+    getCustomersPerUser: (parent, { user_id }, { models }) => models.Customer.findAll( { where: { user_id }}),
     allCustomers: async (parent, args, { models }) => {
       return await models.Customer.findAll();
     },

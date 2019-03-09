@@ -15,6 +15,7 @@ export default `
 
   type Query {
     getCustomer(id: Int!): Customer!
+    getCustomersPerUser(user_id: Int!): [Customer!]!
     allCustomers: [Customer!]!
   }
 
