@@ -9,6 +9,9 @@ export default gql`
       email,
       country,
       city,
+      address,
+      postal,
+      specialization,
       user_id
     }
   }

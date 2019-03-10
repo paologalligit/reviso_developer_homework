@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-date-picker';
-import { Button, Input } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
+import CreateCustomer from './CreateCustomer';
 
 class RegisterWork extends Component {
   constructor(props) {
@@ -49,7 +50,9 @@ class RegisterWork extends Component {
 
         <DatePicker />
         <DatePicker />
-        <Button>Create New Customer</Button>
+        <CreateCustomer
+          userId={id}
+        />
       </div>
     );
   }
