@@ -8,20 +8,20 @@ import getCustomersPerUserQuery from '../graphql/customer';
 const MultiSelectCustomers = ({
   data: { loading, getCustomersPerUser },
   placeholder,
-}) => {
-  return (
-    loading ? null : (
-      <Dropdown
-        placeholder={placeholder}
-        fluid
-        search
-        selection
-        options={getCustomersPerUser
-          .map(c => ({ key: c.id, value: c.email, text: `${c.name} ${c.surname}` }))}
-      />
-    )
-  );
-};
+  onChange,
+}) => (
+  loading ? null : (
+    <Dropdown
+      placeholder={placeholder}
+      fluid
+      search
+      selection
+      onChange={onChange}
+      options={getCustomersPerUser
+        .map(c => ({ key: c.id, value: c.id, text: `${c.name} ${c.surname}` }))}
+    />
+  )
+);
 
 export default graphql(getCustomersPerUserQuery, {
   options: ({ userId }) => ({ variables: { user_id: userId } }),

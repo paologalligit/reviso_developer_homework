@@ -45,6 +45,7 @@ class Home extends Component {
         displayWelcomeMessage={this.displayWelcomeMessage}
         handleLogOut={this.handleLogOut}
         handleItemClick={this.handleItemClick}
+        navigator={this.props.history}
       />
     );
   }

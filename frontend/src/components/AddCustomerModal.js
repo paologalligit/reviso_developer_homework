@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { compose, graphql, withApollo } from 'react-apollo';
 
 import getCustomersPerUser from '../graphql/customer';
+import normalizeErrors from '../normalizeErrors';
 
 const AddCustomerModal = ({
   open,
@@ -18,7 +19,8 @@ const AddCustomerModal = ({
   handleSubmit,
   isSubmitting,
   resetForm,
-  setFieldValue,
+  errors,
+  touched,
 }) => (
   <Modal
     open={open}
@@ -31,7 +33,7 @@ const AddCustomerModal = ({
     <Modal.Content>
       <Form>
         <Form.Group unstackable widths={3}>
-          <Form.Field>
+          <Form.Field error={!!errors.name}>
             <Input
               value={values.name}
               onChange={handleChange}
@@ -40,8 +42,9 @@ const AddCustomerModal = ({
               fluid
               placeholder="Name"
             />
+            {touched.name && errors.name ? errors.name[0] : null}
           </Form.Field>
-          <Form.Field>
+          <Form.Field error={!!errors.surname}>
             <Input
               value={values.surname}
               onChange={handleChange}
@@ -50,23 +53,23 @@ const AddCustomerModal = ({
               fluid
               placeholder="Surname"
             />
+            {touched.surname && errors.surname ? errors.surname[0] : null}
           </Form.Field>
-          <Form.Field>
-            <Form.Field>
-              <Input
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="email"
-                fluid
-                placeholder="Email"
-              />
-            </Form.Field>
+          <Form.Field error={!!errors.email}>
+            <Input
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              name="email"
+              fluid
+              placeholder="Email"
+            />
+            {touched.email && errors.email ? errors.email[0] : null}
           </Form.Field>
         </Form.Group>
 
         <Form.Group unstackable widths={3}>
-          <Form.Field>
+          <Form.Field error={!!errors.country}>
             <Input
               value={values.country}
               onChange={handleChange}
@@ -75,8 +78,9 @@ const AddCustomerModal = ({
               fluid
               placeholder="Country"
             />
+            {touched.country && errors.country ? errors.country[0] : null}
           </Form.Field>
-          <Form.Field>
+          <Form.Field error={!!errors.city}>
             <Input
               value={values.city}
               onChange={handleChange}
@@ -85,8 +89,9 @@ const AddCustomerModal = ({
               fluid
               placeholder="City"
             />
+            {touched.city && errors.city ? errors.city[0] : null}
           </Form.Field>
-          <Form.Field>
+          <Form.Field error={!!errors.postal}>
             <Input
               value={values.postal}
               onChange={handleChange}
@@ -98,7 +103,7 @@ const AddCustomerModal = ({
         </Form.Group>
 
         <Form.Group unstackable widths={2}>
-          <Form.Field>
+          <Form.Field error={!!errors.address}>
             <Input
               value={values.address}
               onChange={handleChange}
@@ -107,6 +112,7 @@ const AddCustomerModal = ({
               fluid
               placeholder="Address"
             />
+            {touched.address && errors.address ? errors.address[0] : null}
           </Form.Field>
           <Form.Field>
             <Input
@@ -184,9 +190,8 @@ export default compose(
       address: '',
       postal: '',
     }),
-    handleSubmit: async (values, { props: { onClose, userId, mutate }, setSubmitting }) => {
-      console.log('the values: ', values);
-      await mutate({
+    handleSubmit: async (values, { props: { onClose, userId, mutate }, setSubmitting, setErrors }) => {
+      const response = await mutate({
         variables: {
           name: values.name,
           surname: values.surname,
@@ -220,7 +225,7 @@ export default compose(
           },
         },
         update: (store, { data: { registerCustomer } }) => {
-          const { ok, customer, errors } = registerCustomer;
+          const { ok, customer } = registerCustomer;
           // console.log('register customer: ', customer);
           if (!ok) {
             return;
@@ -246,7 +251,15 @@ export default compose(
           });
         },
       });
-      onClose();
+
+      const { ok, errors } = response.data.registerCustomer;
+      // console.log('guarda qui: ', response.data)
+      if (ok) {
+        onClose();
+      } else {
+        setErrors(normalizeErrors(errors));
+      }
+
       setSubmitting(false);
     },
   }),

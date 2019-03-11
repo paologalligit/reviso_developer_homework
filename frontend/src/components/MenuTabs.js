@@ -3,7 +3,7 @@ import getRegister from './RegisterWork';
 import getView from './ViewWorks';
 import getSettings from './Settings';
 
-const MenuTabs = (user) => {
+const MenuTabs = (user, navigator) => {
   const dispatchTable = {
     personal: getPersonal,
     register: getRegister,
@@ -11,7 +11,7 @@ const MenuTabs = (user) => {
     settings: getSettings,
   };
 
-  return dispatchTable[user.activeItem](user);
+  return dispatchTable[user.activeItem](user, navigator);
 };
 
 export default MenuTabs;

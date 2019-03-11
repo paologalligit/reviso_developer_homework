@@ -7,11 +7,13 @@ import PropTypes from 'prop-types';
 import styles from './styles/HomeStyle';
 import homeMenu from './MenuTabs';
 
+// TODO: change the menu.item in link
 const HomeView = ({
   user,
   displayWelcomeMessage,
   handleLogOut,
   handleItemClick,
+  navigator,
 }) => (
   <Container
     style={styles.home}
@@ -53,7 +55,7 @@ const HomeView = ({
       </Grid.Column>
 
       <Grid.Column stretched width={12}>
-        {homeMenu(user)}
+        {homeMenu(user, navigator)}
       </Grid.Column>
     </Grid>
   </Container>
@@ -64,6 +66,7 @@ HomeView.propTypes = {
   handleLogOut: PropTypes.func.isRequired,
   handleItemClick: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  navigator: PropTypes.object.isRequired,
 };
 
 export default HomeView;
