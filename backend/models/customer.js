@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid name'
+            msg: 'Invalid surname'
           },
         },
       },
@@ -34,7 +34,6 @@ export default (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
         validate: {
           isEmail: {

@@ -21,7 +21,7 @@ export default `
 
   type CustomerRegisterResponse {
     ok: Boolean!
-    user: Customer
+    customer: Customer
     errors: [Error!]
   }
 

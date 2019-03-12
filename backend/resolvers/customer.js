@@ -11,15 +11,17 @@ export default {
   },
   Mutation: {
     registerCustomer: async (parent, args, { models }) => {
+      console.log('the args in register customer: ', args);
       try {
         const customer = await models.Customer.create(args);
 
+        console.log('the customer: ', customer)
         return {
           ok: true,
           customer,
         };
       } catch (err) {
-        // console.log('catch in resolver: ', formatErrors(err, models));
+        console.log('catch in resolver: ', formatErrors(err, models));
         return {
           ok: false,
           errors: formatErrors(err, models),

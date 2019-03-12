@@ -2,38 +2,19 @@ export default (sequelize, DataTypes) => {
   const Collaboration = sequelize.define(
     'collaboration',
     {
-      date: {
-        type: DataTypes.DATE,
+      name: {
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isDate: {
+          notEmpty: {
             args: true,
-            msg: 'Invalid date format'
-          },
-        },
-      },
-      duration: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          isNumeric: {
-            args: true,
-            msg: 'Invalid number'
-          },
+            msg: 'Invalid Name'
+          }
         },
       },
       budget: {
         type: DataTypes.DECIMAL,
         allowNull: false,
-        validate: {
-          isDecimal: {
-            args: true,
-            msg: 'Invalid amount',
-          },
-        },
-      },
-      payment: {
-        type: DataTypes.DECIMAL,
         validate: {
           isDecimal: {
             args: true,
@@ -51,9 +32,43 @@ export default (sequelize, DataTypes) => {
           },
         },
       },
-      due_date: {
+      penalty: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+          isDecimal: {
+            args: true,
+            msg: 'Invalid amount'
+          }
+        }
+      },
+      date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          isDate: {
+            args: true,
+            msg: 'Invalid date format'
+          },
+        },
+      },
+      start_hour: {
+        type: DataTypes.TIME,
+      },
+      end_hour: {
+        type: DataTypes.TIME,
+      },
+      payment: {
+        type: DataTypes.DECIMAL,
+        validate: {
+          isDecimal: {
+            args: true,
+            msg: 'Invalid amount',
+          },
+        },
+      },
+      due_date: {
+        type: DataTypes.DATE,
         validate: {
           isDate: {
             args: true,
@@ -70,16 +85,6 @@ export default (sequelize, DataTypes) => {
           isInteger: {
             args: true,
             msg: 'Invalid period of time'
-          }
-        }
-      },
-      penalty_per_day: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-        validate: {
-          isDecimal: {
-            args: true,
-            msg: 'Invalid amount'
           }
         }
       },
