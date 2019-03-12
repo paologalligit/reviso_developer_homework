@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47ec6047-b900-432a-ac72-69cfb3d5d9fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/WorksModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/ViewWork.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ProjectListItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/convertingTools.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/formatErrors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/formatErrors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/models/collaboration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models/collaboration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/models/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/permissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/resolvers/collaboration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/resolvers/collaboration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/resolvers/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/resolvers/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/schema/collaboration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/schema/collaboration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/schema/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/schema/customer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomeView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ViewWorks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ViewWorks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/RegisterWork.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/RegisterWork.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WorksModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WorksModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ViewWork.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ViewWork.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/ViewWork.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+            <state relative-caret-position="-1457">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -44,14 +35,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/WorksModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            <state relative-caret-position="358">
+              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/ProjectListItem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/convertingTools.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -140,7 +152,9 @@
         <option value="$PROJECT_DIR$/src/components/FilterButton.js" />
         <option value="$PROJECT_DIR$/src/containers/FilterButton.js" />
         <option value="$PROJECT_DIR$/src/containers/ViewWork.js" />
+        <option value="$PROJECT_DIR$/src/components/ProjectListItem.js" />
         <option value="$PROJECT_DIR$/src/components/WorksModal.js" />
+        <option value="$PROJECT_DIR$/src/utils/convertingTools.js" />
       </list>
     </option>
   </component>
@@ -165,6 +179,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -202,11 +217,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +375,8 @@
       <workItem from="1552203039516" duration="6292000" />
       <workItem from="1552225531687" duration="3118000" />
       <workItem from="1552291984515" duration="10527000" />
-      <workItem from="1552323219533" duration="8310000" />
+      <workItem from="1552323219533" duration="9181000" />
+      <workItem from="1552405714162" duration="2483000" />
     </task>
     <servers />
   </component>
@@ -392,7 +413,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128988000" />
+    <option name="totallyTimeSpent" value="132342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,8 +426,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4971591" visible="true" weight="0.12137007" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4971591" visible="true" weight="0.12137007" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.50284094" side_tool="true" weight="0.14892033" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -419,7 +441,7 @@
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2295345" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2295345" />
       <window_info anchor="bottom" id="Run" order="10" weight="0.28250402" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -754,8 +776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/ViewWork.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+        <state relative-caret-position="-1457">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -764,8 +786,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/WorksModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state relative-caret-position="358">
+          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/convertingTools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ProjectListItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

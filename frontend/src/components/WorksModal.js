@@ -1,7 +1,11 @@
 import React from 'react';
-import { Button, Modal } from 'semantic-ui-react';
+import {
+  Button, Image, List, Modal,
+} from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+
+import ProjectListItem from './ProjectListItem';
 
 const WorksModal = ({
   data: {
@@ -21,24 +25,23 @@ const WorksModal = ({
   return (
     <Modal trigger={<Button>Filter</Button>}>
       <Modal.Header>Works List</Modal.Header>
-      {
-        collaborations.map(c => (
-          <Modal.Content
-            key={c.id}
-          >
-            <Modal.Description>
-              {`Name: ${c.name}`}
-              {`Budget: ${c.budget}`}
-              {`Vat: ${c.vat}`}
-            </Modal.Description>
-            <Modal.Actions>
-              <Button primary>
-                Send Invoice
-              </Button>
-            </Modal.Actions>
-          </Modal.Content>
-        ))
-      }
+      <List celled>
+        {
+          collaborations.map(c => (
+            <List.Item key={c.id}>
+              <ProjectListItem
+                budget={c.budget}
+                name={c.name}
+                vat={c.vat}
+                penalty={c.penalty}
+                date={c.date}
+                startHour={c.start_hour}
+                endHour={c.end_hour}
+              />
+            </List.Item>
+          ))
+        }
+      </List>
     </Modal>
   );
 };

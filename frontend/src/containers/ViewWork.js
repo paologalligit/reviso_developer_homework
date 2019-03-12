@@ -46,7 +46,6 @@ class ViewWork extends Component {
       budget, projectName, vat, penalty, startHour, endHour, date, customer
     } = this;
     const { id } = this.props.user;
-    const { filteredCollaborations, loading } = this.props.data;
 
     // console.log('filtered: ', filteredCollaborations);
     // console.log('the props: ', this.props);
@@ -153,27 +152,4 @@ class ViewWork extends Component {
   }
 }
 
-const collaborationsQuery = gql`
-  query (
-    $user_id: Int!, $customer_id: Int
-  ) {
-    filteredCollaborations (
-      user_id: $user_id, customer_id: $customer_id
-    ) {
-      id,
-      name,
-      budget,
-      vat,
-      penalty,
-      date,
-      start_hour,
-      end_hour,
-      user_id,
-      customer_id
-    }
-  }
-`;
-
-export default graphql(collaborationsQuery, {
-  options: ({ user }) => ({ variables: { user_id: user.id } })
-})(observer(ViewWork));
+export default observer(ViewWork);
