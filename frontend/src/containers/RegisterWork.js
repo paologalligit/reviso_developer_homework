@@ -84,7 +84,7 @@ class RegisterWork extends Component {
 
     if (ok) {
       console.log('just created new collaboration: ', collaboration);
-      this.props.navigator.push('/login');
+      this.props.navigator.go('/');
     } else {
       console.log('something went terribly wrong: ', errors)
     }

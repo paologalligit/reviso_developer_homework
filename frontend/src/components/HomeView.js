@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button, Container, Grid, Header, Icon, Menu,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import styles from './styles/HomeStyle';

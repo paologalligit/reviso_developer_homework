@@ -1,5 +1,7 @@
 import React from 'react';
 
-const getView = user => <div>I am get view</div>;
+import ViewWork from '../containers/ViewWork';
+
+const getView = (user, navigator) => <ViewWork user={user} />;
 
 export default getView;
