@@ -6,6 +6,7 @@ import { graphql, withApollo } from 'react-apollo';
 import fromMillisToDate from '../utils/convertingTools';
 import sendInvoiceMutation from '../graphql/invoice';
 import collaborationsQuery from '../graphql/collaboration';
+import SendInvoiceConfirmModal from './SendInvoiceConfirmModal';
 
 class ProjectListItem extends Component {
   constructor(props) {
@@ -51,9 +52,11 @@ class ProjectListItem extends Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Button disabled={sent} primary onClick={this.handleSendInvoice}>
-              Send Invoice
-            </Button>
+            <SendInvoiceConfirmModal 
+              label="Send Invoice"
+              disabled={sent}
+              onClick={this.handleSendInvoice}
+            />
           </Grid.Row>
         </Grid>
       </List.Content>
