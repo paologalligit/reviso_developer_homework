@@ -14,6 +14,7 @@ export default gql`
     end_hour: String!
     user_id: Int!
     customer_id: Int!
+    sent: Boolean!
   }
 
   type Query {
@@ -31,6 +32,7 @@ export default gql`
   type Mutation {
     registerCollaboration(name: String!, budget: Float!, vat: Float!, penalty: Float!, date: String!, 
       start_hour: String!, end_hour: String!, user_id: Int!, customer_id: Int!): CollaborationResponse!
+    sentInvoice(id: Int!, sent: Boolean!, user_id: Int!, customer_id: Int!): CollaborationResponse!
   }
 
 `;
