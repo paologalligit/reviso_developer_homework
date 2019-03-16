@@ -1,24 +1,28 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Button, Image, List, Modal,
+  Button, List, Modal,
 } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import ProjectListItem from './ProjectListItem';
+import collaborationsQuery from '../graphql/collaboration';
 
 const WorksModal = ({
   data: {
     filteredCollaborations,
     loading,
   },
+  handleSendInvoice,
+  /*
   budget,
   name,
   vat,
   penalty,
   date,
   startHour,
-  endHour,
+  endHour, */
 }) => {
   const collaborations = loading ? [] : filteredCollaborations;
 
@@ -30,6 +34,9 @@ const WorksModal = ({
           collaborations.map(c => (
             <List.Item key={c.id}>
               <ProjectListItem
+                id={c.id}
+                customerId={c.customer_id}
+                userId={c.user_id}
                 budget={c.budget}
                 name={c.name}
                 vat={c.vat}
@@ -37,6 +44,7 @@ const WorksModal = ({
                 date={c.date}
                 startHour={c.start_hour}
                 endHour={c.end_hour}
+                sent={c.sent}
               />
             </List.Item>
           ))
@@ -45,27 +53,6 @@ const WorksModal = ({
     </Modal>
   );
 };
-
-const collaborationsQuery = gql`
-  query (
-    $user_id: Int!, $customer_id: Int
-  ) {
-    filteredCollaborations (
-      user_id: $user_id, customer_id: $customer_id
-    ) {
-      id,
-      name,
-      budget,
-      vat,
-      penalty,
-      date,
-      start_hour,
-      end_hour,
-      user_id,
-      customer_id
-    }
-  }
-`;
 
 export default graphql(collaborationsQuery, {
   options: ({ userId, customerId }) => ({

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import { Button, Grid, Input } from 'semantic-ui-react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { Grid, Input } from 'semantic-ui-react';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 

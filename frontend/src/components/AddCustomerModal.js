@@ -1,10 +1,12 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Form, Input, Button, Modal,
 } from 'semantic-ui-react';
 import { withFormik } from 'formik';
 import gql from 'graphql-tag';
-import { compose, graphql, withApollo } from 'react-apollo';
+import { compose, graphql } from 'react-apollo';
 
 import getCustomersPerUser from '../graphql/customer';
 import normalizeErrors from '../normalizeErrors';
@@ -12,7 +14,7 @@ import normalizeErrors from '../normalizeErrors';
 const AddCustomerModal = ({
   open,
   onClose,
-  userId,
+  // userId,
   values,
   handleChange,
   handleBlur,
@@ -226,7 +228,6 @@ export default compose(
         },
         update: (store, { data: { registerCustomer } }) => {
           const { ok, customer } = registerCustomer;
-          // console.log('register customer: ', customer);
           if (!ok) {
             return;
           }
@@ -236,13 +237,7 @@ export default compose(
             variables: { user_id: values.userId },
           });
 
-          // console.log('only data: ', data);
-
-          // console.log('the data before: ', data.getCustomersPerUser);
-
           data.getCustomersPerUser.push(customer);
-
-          // console.log('the data after: ', data.getCustomersPerUser);
 
           store.writeQuery({
             query: getCustomersPerUser,
@@ -263,4 +258,4 @@ export default compose(
       setSubmitting(false);
     },
   }),
-)(withApollo(AddCustomerModal));
+)(AddCustomerModal);
