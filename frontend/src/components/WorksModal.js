@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-  Button, List, Modal,
-} from 'semantic-ui-react';
+import { Button, List, Modal } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -10,11 +8,8 @@ import ProjectListItem from './ProjectListItem';
 import collaborationsQuery from '../graphql/collaboration';
 
 const WorksModal = ({
-  data: {
-    filteredCollaborations,
-    loading,
-  },
-  handleSendInvoice,
+  data: { filteredCollaborations, loading },
+  showAll,
   /*
   budget,
   name,
@@ -25,13 +20,13 @@ const WorksModal = ({
   endHour, */
 }) => {
   const collaborations = loading ? [] : filteredCollaborations;
-
   return (
     <Modal trigger={<Button>Filter</Button>}>
       <Modal.Header>Works List</Modal.Header>
       <List celled>
-        {
-          collaborations.map(c => (
+        {collaborations
+          .filter(c => (showAll ? true : !c.sent))
+          .map(c => (
             <List.Item key={c.id}>
               <ProjectListItem
                 id={c.id}
@@ -47,8 +42,7 @@ const WorksModal = ({
                 sent={c.sent}
               />
             </List.Item>
-          ))
-        }
+          ))}
       </List>
     </Modal>
   );

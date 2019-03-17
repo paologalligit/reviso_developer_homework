@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import { Grid, Input } from 'semantic-ui-react';
+import { Grid, Input, Label, Radio } from 'semantic-ui-react';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 
@@ -17,10 +17,11 @@ class ViewWork extends Component {
       budget: '',
       vat: '',
       penalty: '',
-      startHour: (new Date()).toLocaleTimeString(),
-      endHour: (new Date()).toLocaleTimeString(),
+      startHour: new Date().toLocaleTimeString(),
+      endHour: new Date().toLocaleTimeString(),
       date: new Date(),
       customer: -1,
+      showAll: false,
     });
   }
 
@@ -36,17 +37,17 @@ class ViewWork extends Component {
   setMinTime = () => {
     const { startHour } = this;
 
-    return startHour ? startHour : (new Date()).toLocaleTimeString();
+    return startHour ? startHour : new Date().toLocaleTimeString();
+  };
+
+  onToggleFilterView = (e, { value }) => {
+    e.persist();
+    this.showAll = !value;
   };
 
   render() {
-    const {
-      budget, projectName, vat, penalty, startHour, endHour, date, customer
-    } = this;
+    const { budget, projectName, vat, penalty, startHour, endHour, date, customer, showAll } = this;
     const { id } = this.props.user;
-
-    // console.log('filtered: ', filteredCollaborations);
-    // console.log('the props: ', this.props);
 
     return (
       <Grid>
@@ -73,17 +74,9 @@ class ViewWork extends Component {
             />
           </Grid.Column>
           <Grid.Column>
-
-            <Input
-              name="vat"
-              value={vat}
-              placeholder="Vat"
-              fluid
-              onChange={this.onChange}
-            />
+            <Input name="vat" value={vat} placeholder="Vat" fluid onChange={this.onChange} />
           </Grid.Column>
           <Grid.Column>
-
             <Input
               name="penalty"
               value={penalty}
@@ -107,29 +100,23 @@ class ViewWork extends Component {
 
         <Grid.Row columns={3}>
           <Grid.Column>
-            <DatePicker
-              value={date}
-              onChange={e => this.date = e}
-            />
+            <DatePicker value={date} onChange={e => (this.date = e)} />
           </Grid.Column>
 
           <Grid.Column>
-            <TimePicker
-              value={startHour}
-              onChange={e => this.startHour = e}
-            />
+            <TimePicker value={startHour} onChange={e => (this.startHour = e)} />
           </Grid.Column>
 
           <Grid.Column>
             <TimePicker
               value={endHour}
-              onChange={e => this.endHour = e}
+              onChange={e => (this.endHour = e)}
               minTime={this.setMinTime()}
             />
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row columns={1}>
+        <Grid.Row columns={2}>
           <Grid.Column>
             <WorksModal
               budget={budget}
@@ -141,10 +128,18 @@ class ViewWork extends Component {
               date={date}
               userId={id}
               customerId={customer}
+              showAll={showAll}
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <Label>Show All</Label>
+            <Radio
+              value={showAll}
+              toggle
+              onChange={this.onToggleFilterView}
             />
           </Grid.Column>
         </Grid.Row>
-
       </Grid>
     );
   }
