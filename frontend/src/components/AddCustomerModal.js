@@ -7,10 +7,13 @@ import {
 import { withFormik } from 'formik';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
+import isDecimal from 'validator/lib/isDecimal';
 
 import getCustomersPerUser from '../graphql/customer';
 import normalizeErrors from '../normalizeErrors';
 
+// userId,
+// console.log('errors: ', touched);
 const AddCustomerModal = ({
   open,
   onClose,
@@ -101,6 +104,7 @@ const AddCustomerModal = ({
               name="postal"
               placeholder="Postal"
             />
+            {touched.postal && errors.postal ? errors.postal[0] : null}
           </Form.Field>
         </Form.Group>
 
@@ -137,26 +141,39 @@ const AddCustomerModal = ({
               onClose(e);
             }}
           >
-            Cancel
+              Cancel
           </Button>
           <Button disabled={isSubmitting} onClick={handleSubmit} fluid>
-            Create Customer
+              Create Customer
           </Button>
         </Form.Group>
       </Form>
     </Modal.Content>
   </Modal>
 );
-
 const createCustomerMutation = gql`
-  mutation ($name: String!, $surname: String!,
-    $email: String!, $country: String!, $city: String!, 
-      $address: String!, $postal: Int!, $specialization: String!, 
-       $user_id: Int!) {
-    registerCustomer(name: $name, surname: $surname,
-      email: $email, country: $country, city: $city, 
-       address: $address, postal: $postal, specialization: $specialization, 
-        user_id: $user_id) {
+  mutation(
+    $name: String!
+    $surname: String!
+    $email: String!
+    $country: String!
+    $city: String!
+    $address: String!
+    $postal: Int!
+    $specialization: String!
+    $user_id: Int!
+  ) {
+    registerCustomer(
+      name: $name
+      surname: $surname
+      email: $email
+      country: $country
+      city: $city
+      address: $address
+      postal: $postal
+      specialization: $specialization
+      user_id: $user_id
+    ) {
       ok
       customer {
         id
@@ -192,67 +209,75 @@ export default compose(
       address: '',
       postal: '',
     }),
-    handleSubmit: async (values, { props: { onClose, userId, mutate }, setSubmitting, setErrors }) => {
-      const response = await mutate({
-        variables: {
-          name: values.name,
-          surname: values.surname,
-          country: values.country,
-          email: values.email,
-          city: values.city,
-          specialization: values.specialization,
-          address: values.address,
-          postal: parseInt(values.postal, 10),
-          user_id: userId,
-        },
-        optimisticResponse: {
-          __typename: 'Mutation',
-          registerCustomer: {
+    handleSubmit: async (
+      values,
+      { props: { onClose, userId, mutate }, setSubmitting, setErrors },
+    ) => {
+      if (isDecimal(values.postal)) {
+        const response = await mutate({
+          variables: {
+            name: values.name,
+            surname: values.surname,
+            country: values.country,
+            email: values.email,
+            city: values.city,
+            specialization: values.specialization,
+            address: values.address,
+            postal: parseInt(values.postal, 10),
+            user_id: userId,
+          },
+          optimisticResponse: {
             __typename: 'Mutation',
-            ok: true,
-            errors: null,
-            customer: {
-              __typename: 'RegisterCustomer',
-              id: -1,
-              name: values.name,
-              surname: values.surname,
-              country: values.country,
-              email: values.email,
-              city: values.city,
-              specialization: values.specialization,
-              address: values.address,
-              postal: parseInt(values.postal, 10),
-              user_id: userId,
+            registerCustomer: {
+              __typename: 'Mutation',
+              ok: true,
+              errors: null,
+              customer: {
+                __typename: 'RegisterCustomer',
+                id: -1,
+                name: values.name,
+                surname: values.surname,
+                country: values.country,
+                email: values.email,
+                city: values.city,
+                specialization: values.specialization,
+                address: values.address,
+                postal: parseInt(values.postal, 10),
+                user_id: userId,
+              },
             },
           },
-        },
-        update: (store, { data: { registerCustomer } }) => {
-          const { ok, customer } = registerCustomer;
-          if (!ok) {
-            return;
-          }
+          update: (store, { data: { registerCustomer } }) => {
+            const { ok, customer } = registerCustomer;
+            if (!ok) {
+              return;
+            }
 
-          const data = store.readQuery({
-            query: getCustomersPerUser,
-            variables: { user_id: values.userId },
-          });
+            const data = store.readQuery({
+              query: getCustomersPerUser,
+              variables: { user_id: values.userId },
+            });
 
-          data.getCustomersPerUser.push(customer);
+            data.getCustomersPerUser.push(customer);
 
-          store.writeQuery({
-            query: getCustomersPerUser,
-            variables: { user_id: values.userId },
-            data,
-          });
-        },
-      });
+            store.writeQuery({
+              query: getCustomersPerUser,
+              variables: { user_id: values.userId },
+              data,
+            });
+          },
+        });
 
-      const { ok, errors } = response.data.registerCustomer;
-      // console.log('guarda qui: ', response.data)
-      if (ok) {
-        onClose();
+        const { ok, errors } = response.data.registerCustomer;
+        if (ok) {
+          onClose();
+        } else {
+          setErrors(normalizeErrors(errors));
+        }
       } else {
-        setErrors(normalizeErrors(errors));
+        setErrors({
+          postal: ['Postal number required'],
+        });
       }
 
       setSubmitting(false);
