@@ -1,13 +1,11 @@
 // fare query per prendere i customers per cliente
-import formatErrors from "../formatErrors";
+import formatErrors from '../formatErrors';
 
 export default {
   Query: {
     getCustomer: (parent, { id }, { models }) => models.Customer.findOne({ where: { id } }),
-    getCustomersPerUser: (parent, { user_id }, { models }) => models.Customer.findAll( { where: { user_id }}),
-    allCustomers: async (parent, args, { models }) => {
-      return await models.Customer.findAll();
-    },
+    getCustomersPerUser: (parent, { user_id }, { models }) => models.Customer.findAll({ where: { user_id } }),
+    allCustomers: async (parent, args, { models }) => await models.Customer.findAll(),
   },
   Mutation: {
     registerCustomer: async (parent, args, { models }) => {
@@ -15,7 +13,7 @@ export default {
       try {
         const customer = await models.Customer.create(args);
 
-        console.log('the customer: ', customer)
+        console.log('the customer: ', customer);
         return {
           ok: true,
           customer,

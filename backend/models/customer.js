@@ -62,12 +62,6 @@ export default (sequelize, DataTypes) => {
       postal: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-          isInt: {
-            args: true,
-            msg: 'Invalid postal code'
-          }
-        }
       },
     },
   );

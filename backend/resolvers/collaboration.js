@@ -27,7 +27,6 @@ export default {
         };
       }
     }),
-    // { id: 5, name: 'Cambio di nome', user_id: 18, customer_id: 82 }
     sentInvoice: async (parent, args, { models }) => {
       try {
         console.log('the args: ', args);
