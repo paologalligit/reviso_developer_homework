@@ -134,7 +134,7 @@ class ViewWork extends Component {
           <Grid.Column>
             <Label>Show All</Label>
             <Radio
-              value={showAll}
+              checked={showAll}
               toggle
               onChange={this.onToggleFilterView}
             />

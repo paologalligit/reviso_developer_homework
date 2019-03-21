@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import ProjectListItem from './ProjectListItem';
-import collaborationsQuery from '../graphql/collaboration';
+import collaborationsQuery from '../graphql/query/collaboration';
 
 const WorksModal = ({
   data: { filteredCollaborations, loading },

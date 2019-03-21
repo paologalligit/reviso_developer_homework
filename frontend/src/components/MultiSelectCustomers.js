@@ -3,7 +3,7 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 
-import getCustomersPerUserQuery from '../graphql/customer';
+import getCustomersPerUserQuery from '../graphql/query/customer';
 
 const MultiSelectCustomers = ({
   data: { loading, getCustomersPerUser },

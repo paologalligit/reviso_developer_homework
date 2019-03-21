@@ -5,12 +5,12 @@ import {
   Form, Input, Button, Modal,
 } from 'semantic-ui-react';
 import { withFormik } from 'formik';
-import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import isDecimal from 'validator/lib/isDecimal';
 
-import getCustomersPerUser from '../graphql/customer';
+import getCustomersPerUser from '../graphql/query/customer';
 import normalizeErrors from '../normalizeErrors';
+import createCustomerMutation from '../graphql/mutation/customer';
 
 // userId,
 // console.log('errors: ', touched);
@@ -151,49 +151,6 @@ const AddCustomerModal = ({
     </Modal.Content>
   </Modal>
 );
-const createCustomerMutation = gql`
-  mutation(
-    $name: String!
-    $surname: String!
-    $email: String!
-    $country: String!
-    $city: String!
-    $address: String!
-    $postal: Int!
-    $specialization: String!
-    $user_id: Int!
-  ) {
-    registerCustomer(
-      name: $name
-      surname: $surname
-      email: $email
-      country: $country
-      city: $city
-      address: $address
-      postal: $postal
-      specialization: $specialization
-      user_id: $user_id
-    ) {
-      ok
-      customer {
-        id
-        name
-        surname
-        email
-        country
-        city
-        address
-        postal
-        user_id
-        specialization
-      }
-      errors {
-        path
-        message
-      }
-    }
-  }
-`;
 
 export default compose(
   graphql(createCustomerMutation),

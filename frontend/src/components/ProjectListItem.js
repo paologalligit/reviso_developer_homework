@@ -4,8 +4,8 @@ import { Button, Grid, List, Label } from 'semantic-ui-react';
 import { graphql, withApollo } from 'react-apollo';
 
 import fromMillisToDate from '../utils/convertingTools';
-import sendInvoiceMutation from '../graphql/invoice';
-import collaborationsQuery from '../graphql/collaboration';
+import sendInvoiceMutation from '../graphql/mutation/invoice';
+import collaborationsQuery from '../graphql/query/collaboration';
 import SendInvoiceConfirmModal from './SendInvoiceConfirmModal';
 
 class ProjectListItem extends Component {

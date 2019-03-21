@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import sendInvoiceMutation from '../graphql/customer';
+import sendInvoiceMutation from '../graphql/query/customer';
 
 class SendInvoiceButton extends Component {
   constructor(props) {
