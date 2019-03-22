@@ -20,6 +20,7 @@ const WorksModal = ({
   endHour, */
 }) => {
   const collaborations = loading ? [] : filteredCollaborations;
+
   return (
     <Modal trigger={<Button>Filter</Button>}>
       <Modal.Header>Works List</Modal.Header>
@@ -49,7 +50,18 @@ const WorksModal = ({
 };
 
 export default graphql(collaborationsQuery, {
-  options: ({ userId, customerId }) => ({
-    variables: { user_id: userId, customer_id: customerId },
+  options: ({
+    userId, customerId, budget, vat, penalty, name, date, startHour,
+  }) => ({
+    variables: {
+      user_id: userId,
+      customer_id: customerId,
+      budget,
+      vat,
+      penalty,
+      name,
+      date,
+      start_hour: startHour,
+    },
   }),
 })(WorksModal);

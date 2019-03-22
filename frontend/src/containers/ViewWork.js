@@ -17,9 +17,9 @@ class ViewWork extends Component {
       budget: '',
       vat: '',
       penalty: '',
-      startHour: new Date().toLocaleTimeString(),
-      endHour: new Date().toLocaleTimeString(),
-      date: new Date(),
+      startHour: null,
+      endHour: null,
+      date: null,
       customer: -1,
       showAll: false,
     });
@@ -45,10 +45,12 @@ class ViewWork extends Component {
     this.showAll = !value;
   };
 
+  formatStringToNumber = n => n === '' ? 0.0 : parseFloat(n, 10);
+
   render() {
     const { budget, projectName, vat, penalty, startHour, endHour, date, customer, showAll } = this;
     const { id } = this.props.user;
-
+    
     return (
       <Grid>
         <Grid.Row columns={1}>
@@ -114,15 +116,16 @@ class ViewWork extends Component {
               minTime={this.setMinTime()}
             />
           </Grid.Column>
+          
         </Grid.Row>
 
         <Grid.Row columns={2}>
           <Grid.Column>
             <WorksModal
-              budget={budget}
+              budget={this.formatStringToNumber(budget)}
               name={projectName}
-              vat={vat}
-              penalty={penalty}
+              vat={this.formatStringToNumber(vat)}
+              penalty={this.formatStringToNumber(penalty)}
               startHour={startHour}
               endHour={endHour}
               date={date}
