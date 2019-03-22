@@ -10,6 +10,8 @@ import validator from 'validator';
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import CreateCustomer from './CreateCustomer';
 import collaborationMutation from '../graphql/mutation/collaboration';
+import isFormNotEmpty from '../utils/fieldChecker';
+import FormatInput from '../components/FormatInput';
 
 class RegisterWork extends Component {
   constructor(props) {
@@ -17,17 +19,14 @@ class RegisterWork extends Component {
 
     extendObservable(this, {
       projectName: '',
-      projectNameError: false,
       budget: '',
-      budgetError: false,
       vat: '',
-      vatError: false,
       penalty: '',
-      penaltyError: false,
       startHour: new Date().toLocaleTimeString(),
       endHour: new Date().toLocaleTimeString(),
       date: new Date(),
       customer: '',
+      isSubmitting: false,
     });
   }
 
@@ -52,155 +51,123 @@ class RegisterWork extends Component {
     return startHour ? startHour : new Date().toLocaleTimeString();
   };
 
-  checkErrors = () => {
-    const { projectName, budget, vat, penalty } = this;
-
-    let err = false;
-
-    if (validator.isAlpha(projectName)) {
-      this.projectNameError = false;
-    } else {
-      this.projectNameError = true;
-      err = true;
-    }
-
-    if (validator.isNumeric(budget)) {
-      this.budgetError = false;
-    } else {
-      this.budgetError = true;
-      err = true;
-    }
-
-    if (validator.isNumeric(vat)) {
-      this.vatError = false;
-    } else {
-      this.vatError = true;
-      err = true;
-    }
-
-    if (validator.isNumeric(penalty)) {
-      this.penaltyError = false;
-    } else {
-      this.penaltyError = true;
-      err = true;
-    }
-
-    return err;
-  };
-
   handleSubmit = async () => {
-    if (!this.checkErrors()) {
-      const { projectName, budget, vat, penalty, startHour, endHour, date, customer } = this;
+    const { projectName, budget, vat, penalty, startHour, endHour, date, customer } = this;
 
-      const { id } = this.props.user;
+    const { id } = this.props.user;
 
-      let response;
-      try {
-        response = await this.props.mutate({
-          variables: {
-            name: projectName,
-            budget: parseInt(budget, 10),
-            vat: parseInt(vat, 10),
-            penalty: parseInt(penalty, 10),
-            date: date,
-            start_hour: startHour,
-            end_hour: endHour,
-            user_id: id,
-            customer_id: customer,
-          },
-        });
-      } catch (err) {
-        console.log('the error: ', err);
-      }
+    try {
+      const response = await this.props.mutate({
+        variables: {
+          name: projectName,
+          budget: parseInt(budget, 10),
+          vat: parseInt(vat, 10),
+          penalty: parseInt(penalty, 10),
+          date: date,
+          start_hour: startHour,
+          end_hour: endHour,
+          user_id: id,
+          customer_id: customer,
+        },
+      });
 
       const { ok, collaboration, errors } = response.data.registerCollaboration;
 
       if (ok) {
         console.log('just created new collaboration: ', collaboration);
+        this.isSubmitting = false;
         this.props.navigator.go('/');
       } else {
         console.log('something went terribly wrong: ', errors);
+        this.isSubmitting = true;
       }
-    } else {
-      console.log('errore');
+
+    } catch (err) {
+      this.isSubmitting = true;
     }
   };
 
-  isFormNotEmpty = () => {
-    const { budget, projectName, vat, penalty, startHour, endHour, date, customer } = this;
-
-    const tobeChecked = [budget, projectName, vat, penalty, startHour, endHour, date, customer];
-
-    const res = tobeChecked.reduce((acc, field) => acc && field !== '', true);
-    return res;
-  };
-
+  // TODO: refactor also the isFormNotEmpty the way FormatInput works
   render() {
     const {
       budget,
-      budgetError,
       projectName,
-      projectNameError,
       vat,
-      vatError,
       penalty,
-      penaltyError,
       startHour,
       endHour,
       date,
+      customer,
+      isSubmitting,
     } = this;
 
     const { id } = this.props.user;
+
+    const toBeChecked = [budget, projectName, vat, penalty, startHour, endHour, date, customer];
+
+    const o = {};
 
     return (
       <Grid>
         <Grid.Row columns={1}>
           <Grid.Column>
-            <Input
-              error={projectNameError}
+            <FormatInput
               name="projectName"
               value={projectName}
               placeholder="Project Name"
-              fluid
               onChange={this.onChange}
+              type="alpha"
+              errorMessages={{
+                empty: 'Field required',
+                type: 'Field must be an alphabetic item',
+              }}
+              isSubmitting={isSubmitting}
             />
-            {projectNameError ? 'Field required' : null}
           </Grid.Column>
         </Grid.Row>
 
         <Grid.Row columns={3}>
           <Grid.Column>
-            <Input
-              error={budgetError}
+            <FormatInput
               name="budget"
               value={budget}
               placeholder="Budget"
-              fluid
               onChange={this.onChange}
+              type="numeric"
+              errorMessages={{
+                empty: 'Field required',
+                type: 'Numeric field required',
+              }}
+              isSubmitting={isSubmitting}
             />
-            {budgetError ? 'Numeric field required' : null}
           </Grid.Column>
           <Grid.Column>
-            <Input
-              error={vatError}
+            <FormatInput
               name="vat"
               value={vat}
               placeholder="Vat"
-              fluid
               onChange={this.onChange}
+              type="numeric"
+              errorMessages={{
+                empty: 'Field required',
+                type: 'Numeric field required',
+              }}
+              isSubmitting={isSubmitting}
             />
-            {vatError ? 'Numeric field required' : null}
           </Grid.Column>
           <Grid.Column>
-            <Input
-              error={penaltyError}
+            <FormatInput
               name="penalty"
               value={penalty}
               placeholder="Penalty per day"
-              fluid
               onChange={this.onChange}
+              type="numeric"
+              errorMessages={{
+                empty: 'Field required',
+                type: 'Numeric field required',
+              }}
+              isSubmitting={isSubmitting}
             />
-            {penaltyError ? 'Numeric field required' : null}
           </Grid.Column>
         </Grid.Row>
 
@@ -238,7 +205,7 @@ class RegisterWork extends Component {
 
         <Grid.Row columns={1}>
           <Grid.Column>
-            <Button onClick={this.handleSubmit} disabled={!this.isFormNotEmpty()}>
+            <Button onClick={this.handleSubmit}>
               Submit
             </Button>
           </Grid.Column>

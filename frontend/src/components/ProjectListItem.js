@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Button, Grid, List, Label } from 'semantic-ui-react';
-import { graphql, withApollo } from 'react-apollo';
+import { Grid, List } from 'semantic-ui-react';
+import { graphql } from 'react-apollo';
 
 import fromMillisToDate from '../utils/convertingTools';
 import sendInvoiceMutation from '../graphql/mutation/invoice';
