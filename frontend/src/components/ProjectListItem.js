@@ -9,10 +9,6 @@ import collaborationsQuery from '../graphql/query/collaboration';
 import SendInvoiceConfirmModal from './SendInvoiceConfirmModal';
 
 class ProjectListItem extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleSendInvoice = async () => {
     let response;
     try {
@@ -26,9 +22,9 @@ class ProjectListItem extends Component {
     const { ok, collaboration, errors } = response.data.sentInvoice;
 
     if (ok) {
-      console.log('bene, fatto');
+      return { collaboration };
     } else {
-      console.log('male, errore: ', errors);
+      return { errors };
     }
   };
 
@@ -52,7 +48,7 @@ class ProjectListItem extends Component {
           </Grid.Row>
 
           <Grid.Row>
-            <SendInvoiceConfirmModal 
+            <SendInvoiceConfirmModal
               label="Send Invoice"
               disabled={sent}
               onClick={this.handleSendInvoice}
@@ -68,31 +64,33 @@ export default graphql(sendInvoiceMutation, {
   options: ({ id, userId, customerId }) => ({
     variables: { id: id, user_id: userId, customer_id: customerId },
     update: (store, { data: { sentInvoice } }) => {
-      const { ok, collaboration, errors } = sentInvoice;
+      const { ok, collaboration } = sentInvoice;
 
-      const data = store.readQuery({
-        query: collaborationsQuery,
-        variables: {
-          user_id: collaboration.user_id,
-          customer_id: collaboration.customer_id,
-        },
-      });
+      if (ok) {
+        const data = store.readQuery({
+          query: collaborationsQuery,
+          variables: {
+            user_id: collaboration.user_id,
+            customer_id: collaboration.customer_id,
+          },
+        });
 
-      data.filteredCollaborations.forEach(c => {
-        if (c.id === collaboration.id) {
-          c['sent'] = true;
-        }
-      });
+        data.filteredCollaborations.forEach(c => {
+          if (c.id === collaboration.id) {
+            c['sent'] = true;
+          }
+        });
 
-      store.writeQuery({
-        query: collaborationsQuery,
-        variables: {
-          id: collaboration.id,
-          user_id: collaboration.user_id,
-          customer_id: collaboration.customer_id,
-        },
-        data,
-      });
+        store.writeQuery({
+          query: collaborationsQuery,
+          variables: {
+            id: collaboration.id,
+            user_id: collaboration.user_id,
+            customer_id: collaboration.customer_id,
+          },
+          data,
+        });
+      }
     },
   }),
 })(ProjectListItem);

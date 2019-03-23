@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Button, List, Modal } from 'semantic-ui-react';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import ProjectListItem from './ProjectListItem';
@@ -10,6 +9,7 @@ import collaborationsQuery from '../graphql/query/collaboration';
 const WorksModal = ({
   data: { filteredCollaborations, loading },
   showAll,
+  disabled,
   /*
   budget,
   name,
@@ -51,7 +51,7 @@ const WorksModal = ({
 
 export default graphql(collaborationsQuery, {
   options: ({
-    userId, customerId, budget, vat, penalty, name, date, startHour,
+    userId, customerId, budget, vat, penalty, name, date, startHour, endHour,
   }) => ({
     variables: {
       user_id: userId,
@@ -62,6 +62,7 @@ export default graphql(collaborationsQuery, {
       name,
       date,
       start_hour: startHour,
+      end_hour: endHour,
     },
   }),
 })(WorksModal);

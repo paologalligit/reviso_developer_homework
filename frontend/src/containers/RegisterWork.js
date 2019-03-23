@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import { Button, Grid, Input } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import validator from 'validator';
 
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import CreateCustomer from './CreateCustomer';
 import collaborationMutation from '../graphql/mutation/collaboration';
-import isFormNotEmpty from '../utils/fieldChecker';
 import FormatInput from '../components/FormatInput';
 
 class RegisterWork extends Component {
@@ -97,15 +95,10 @@ class RegisterWork extends Component {
       startHour,
       endHour,
       date,
-      customer,
       isSubmitting,
     } = this;
 
     const { id } = this.props.user;
-
-    const toBeChecked = [budget, projectName, vat, penalty, startHour, endHour, date, customer];
-
-    const o = {};
 
     return (
       <Grid>
@@ -122,6 +115,7 @@ class RegisterWork extends Component {
                 type: 'Field must be an alphabetic item',
               }}
               isSubmitting={isSubmitting}
+              notEmpty={true}
             />
           </Grid.Column>
         </Grid.Row>
@@ -139,6 +133,7 @@ class RegisterWork extends Component {
                 type: 'Numeric field required',
               }}
               isSubmitting={isSubmitting}
+              notEmpty={true}
             />
           </Grid.Column>
           <Grid.Column>
@@ -153,6 +148,7 @@ class RegisterWork extends Component {
                 type: 'Numeric field required',
               }}
               isSubmitting={isSubmitting}
+              notEmpty={true}
             />
           </Grid.Column>
           <Grid.Column>
@@ -167,6 +163,7 @@ class RegisterWork extends Component {
                 type: 'Numeric field required',
               }}
               isSubmitting={isSubmitting}
+              notEmpty={true}
             />
           </Grid.Column>
         </Grid.Row>

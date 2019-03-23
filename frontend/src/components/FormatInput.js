@@ -4,16 +4,29 @@ import { Input } from 'semantic-ui-react';
 import validator from 'validator';
 
 export default ({
-  name, value, placeholder, onChange, type, errorMessages, isSubmitting,
+  name,
+  value,
+  placeholder,
+  onChange,
+  type,
+  errorMessages,
+  isSubmitting,
+  notEmpty,
 }) => {
   let error;
   let errorMessage;
 
-  if (value === '') {
+  // not empty value check
+  if (value === '' && notEmpty) {
     error = true;
     errorMessage = errorMessages.empty;
   } else {
-    error = type === 'numeric' ? !validator.isDecimal(value) : !validator.isAlpha(value);
+    // type check
+    if (type === 'numeric') {
+      error = value === '' ? false : !validator.isDecimal(value);
+    } else {
+      error = !validator.isAlpha(value);
+    }
     errorMessage = errorMessages.type;
   }
 
