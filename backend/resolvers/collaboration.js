@@ -1,15 +1,35 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-return-await */
+import Sequelize from 'sequelize';
 import formatErrors from '../formatErrors';
 import requiresAuth from '../permissions';
+
+// eslint-disable-next-line prefer-destructuring
+const Op = Sequelize.Op;
 
 export default {
   Query: {
     filteredCollaborations: async (parent, args, { models }) => {
       console.log('the args in backend', args);
-      return await models.Collaboration.findAll({ where: args });
+      const {
+        user_id, customer_id, name, budget, vat, penalty, date, start_hour, end_hour,
+      } = args;
+      return await models.Collaboration.findAll({
+        where: {
+          user_id,
+          customer_id: customer_id < 0 ? { [Op.gt]: 0 } : customer_id,
+          name: {
+            [Op.iLike]: name || '%',
+          },
+          budget: budget ? { [Op.eq]: args.budget } : { [Op.gt]: 0 },
+          vat: vat ? { [Op.eq]: vat } : { [Op.gt]: 0 },
+          penalty: penalty ? { [Op.eq]: penalty } : { [Op.gt]: 0 },
+          date: { [Op.gte]: date || 0 },
+          start_hour: { [Op.gte]: start_hour || '00:00:00' },
+          end_hour: { [Op.lte]: end_hour || '23:59:59' },
+        },
+      });
     },
-    // allCollaborations: () => ,
   },
   Mutation: {
     registerCollaboration: requiresAuth.createResolver(async (parent, args, { models }) => {
@@ -27,7 +47,7 @@ export default {
         };
       }
     }),
-    sentInvoice: async (parent, args, { models }) => {
+    sentInvoice: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
         console.log('the args: ', args);
         const {
@@ -56,33 +76,6 @@ export default {
           errors: formatErrors(err, models),
         };
       }
-    },
+    }),
   },
 };
-
-/* 
-collaboration {
-  dataValues: 
-   { id: 5,
-     name: 'terzo',
-     budget: '8',
-     vat: '89',
-     penalty: '98',
-     date: 2019-01-01T00:00:00.000Z,
-     start_hour: '09:30:00',
-     end_hour: '10:30:00',
-     payment: null,
-     due_date: null,
-     settled: null,
-     delay: null,
-     created_at: 2019-03-11T10:13:09.805Z,
-     updated_at: 2019-03-11T10:13:09.805Z,
-     user_id: 18,
-     customer_id: 82 },
-  _previousDataValues: 
-   { id: 5,
-     name: 'terzo',
-     budget: '8',
-     vat: '89',
-     penalty: '98',
-*/

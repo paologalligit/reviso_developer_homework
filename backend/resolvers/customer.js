@@ -1,5 +1,6 @@
 // fare query per prendere i customers per cliente
 import formatErrors from '../formatErrors';
+import requiresAuth from '../permissions';
 
 export default {
   Query: {
@@ -8,23 +9,20 @@ export default {
     allCustomers: async (parent, args, { models }) => await models.Customer.findAll(),
   },
   Mutation: {
-    registerCustomer: async (parent, args, { models }) => {
-      console.log('the args in register customer: ', args);
+    registerCustomer: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
         const customer = await models.Customer.create(args);
 
-        console.log('the customer: ', customer);
         return {
           ok: true,
           customer,
         };
       } catch (err) {
-        console.log('catch in resolver: ', formatErrors(err, models));
         return {
           ok: false,
           errors: formatErrors(err, models),
         };
       }
-    },
+    }),
   },
 };
