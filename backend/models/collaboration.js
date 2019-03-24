@@ -14,6 +14,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
+        notNull(value) {
+          if (value < 0) {
+            throw new Error('Budget required');
+          }
+        },
         isDecimal: {
           args: true,
           msg: 'Invalid amount',
@@ -24,6 +29,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
+        notNull(value) {
+          if (value < 0) {
+            throw new Error('Vat required');
+          }
+        },
         isDecimal: {
           args: true,
           msg: 'Invalid amount',
@@ -34,6 +44,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
       validate: {
+        notNull(value) {
+          if (value < 0) {
+            throw new Error('Penalty required');
+          }
+        },
         isDecimal: {
           args: true,
           msg: 'Invalid amount',
@@ -52,9 +67,21 @@ export default (sequelize, DataTypes) => {
     },
     start_hour: {
       type: DataTypes.TIME,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Start hour required',
+        },
+      },
     },
     end_hour: {
       type: DataTypes.TIME,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Start hour required',
+        },
+      },
     },
     payment: {
       type: DataTypes.DECIMAL,
@@ -84,6 +111,16 @@ export default (sequelize, DataTypes) => {
         isInteger: {
           args: true,
           msg: 'Invalid period of time',
+        },
+      },
+    },
+    customer_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isValid(value) {
+          if (value < 0) {
+            throw new Error('Customer required');
+          }
         },
       },
     },

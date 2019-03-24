@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid name'
+            msg: 'Invalid name',
           },
         },
       },
@@ -20,7 +20,7 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid name'
+            msg: 'Invalid name',
           },
         },
       },
@@ -56,8 +56,8 @@ export default (sequelize, DataTypes) => {
         validate: {
           isDate: {
             args: true,
-            msg: 'Invalid date format'
-          }
+            msg: 'Invalid date format',
+          },
         },
       },
       country: {
@@ -66,9 +66,9 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid country'
-          }
-        }
+            msg: 'Invalid country',
+          },
+        },
       },
       password: {
         type: DataTypes.STRING,
@@ -93,16 +93,27 @@ export default (sequelize, DataTypes) => {
       address: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'Address field required',
+          },
+        },
       },
       postal: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
+          isNotZero(value) {
+            if (value <= 0) {
+              throw new Error('Postal field required');
+            }
+          },
           isInt: {
             args: true,
-            msg: 'Invalid postal code'
-          }
-        }
+            msg: 'Invalid postal code',
+          },
+        },
       },
     },
     {
