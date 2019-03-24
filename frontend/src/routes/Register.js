@@ -117,8 +117,6 @@ class Register extends React.Component {
       errorsList.add(errors[child]);
     }
 
-    console.log('the set: ', Array.from(errorsList));
-
     return (
       <Container text textAlign={'center'} style={style.register}>
         <Header as="h2">Register</Header>

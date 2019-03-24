@@ -9,9 +9,11 @@ const MultiSelectCustomers = ({
   data: { loading, getCustomersPerUser },
   placeholder,
   onChange,
+  error,
 }) => (
   loading ? null : (
     <Dropdown
+      error={error}
       placeholder={placeholder}
       fluid
       search

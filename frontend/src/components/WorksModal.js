@@ -9,7 +9,6 @@ import collaborationsQuery from '../graphql/query/collaboration';
 const WorksModal = ({
   data: { filteredCollaborations, loading },
   showAll,
-  disabled,
   /*
   budget,
   name,

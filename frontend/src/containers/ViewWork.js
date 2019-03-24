@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import WorksModal from '../components/WorksModal';
 import FormatInput from '../components/FormatInput';
+import tryParseInt from '../utils/parsingTools';
 
 class ViewWork extends Component {
   constructor(props) {
@@ -29,7 +30,6 @@ class ViewWork extends Component {
 
   onChange = e => {
     const { name, value } = e.target;
-    console.log('the name: ', name);
     if (name === 'vat' || name === 'budget' || name === 'penalty') {
       this.isSubmitting = true;
     } else {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Grid, Input } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import CreateCustomer from './CreateCustomer';
 import collaborationMutation from '../graphql/mutation/collaboration';
-import FormatInput from '../components/FormatInput';
+import tryParseInt from '../utils/parsingTools';
 
 class RegisterWork extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class RegisterWork extends Component {
       date: new Date(),
       customer: '',
       isSubmitting: false,
+      errors: {}
     });
   }
 
@@ -58,14 +59,14 @@ class RegisterWork extends Component {
       const response = await this.props.mutate({
         variables: {
           name: projectName,
-          budget: parseInt(budget, 10),
-          vat: parseInt(vat, 10),
-          penalty: parseInt(penalty, 10),
-          date: date,
-          start_hour: startHour,
-          end_hour: endHour,
+          budget: tryParseInt(budget, 10),
+          vat: tryParseInt(vat, 10),
+          penalty: tryParseInt(penalty, 10),
+          date: date || '',
+          start_hour: startHour || '',
+          end_hour: endHour || '',
           user_id: id,
-          customer_id: customer,
+          customer_id: tryParseInt(customer),
         },
       });
 
@@ -76,16 +77,22 @@ class RegisterWork extends Component {
         this.isSubmitting = false;
         this.props.navigator.go('/');
       } else {
-        console.log('something went terribly wrong: ', errors);
+        // console.log('something went terribly wrong: ', errors);
+        const err = {};
+        errors.forEach(({ path, message }) => {
+          err[`${path}Error`] = message;
+        });
+
+        this.errors = err;
         this.isSubmitting = true;
       }
 
     } catch (err) {
+      console.log('again')
       this.isSubmitting = true;
     }
   };
 
-  // TODO: refactor also the isFormNotEmpty the way FormatInput works
   render() {
     const {
       budget,
@@ -96,7 +103,16 @@ class RegisterWork extends Component {
       endHour,
       date,
       isSubmitting,
+      errors,
     } = this;
+
+    const {
+      nameError,
+      budgetError,
+      vatError,
+      customer_idError,
+      penaltyError,
+    } = errors;
 
     const { id } = this.props.user;
 
@@ -104,78 +120,63 @@ class RegisterWork extends Component {
       <Grid>
         <Grid.Row columns={1}>
           <Grid.Column>
-            <FormatInput
+            <Input
               name="projectName"
               value={projectName}
               placeholder="Project Name"
               onChange={this.onChange}
-              type="alpha"
-              errorMessages={{
-                empty: 'Field required',
-                type: 'Field must be an alphabetic item',
-              }}
-              isSubmitting={isSubmitting}
-              notEmpty={true}
+              fluid
+              error={!!nameError}
             />
+            {isSubmitting && nameError ? nameError : null}
           </Grid.Column>
         </Grid.Row>
 
         <Grid.Row columns={3}>
           <Grid.Column>
-            <FormatInput
+            <Input
               name="budget"
               value={budget}
               placeholder="Budget"
               onChange={this.onChange}
-              type="numeric"
-              errorMessages={{
-                empty: 'Field required',
-                type: 'Numeric field required',
-              }}
-              isSubmitting={isSubmitting}
-              notEmpty={true}
+              fluid
+              error={!!budgetError}
             />
+            {isSubmitting && budgetError ? budgetError : null}
           </Grid.Column>
           <Grid.Column>
-            <FormatInput
+            <Input
               name="vat"
               value={vat}
               placeholder="Vat"
               onChange={this.onChange}
-              type="numeric"
-              errorMessages={{
-                empty: 'Field required',
-                type: 'Numeric field required',
-              }}
-              isSubmitting={isSubmitting}
-              notEmpty={true}
+              fluid
+              error={!!vatError}
             />
+            {isSubmitting && vatError ? vatError : null}
           </Grid.Column>
           <Grid.Column>
-            <FormatInput
+            <Input
               name="penalty"
               value={penalty}
               placeholder="Penalty per day"
               onChange={this.onChange}
-              type="numeric"
-              errorMessages={{
-                empty: 'Field required',
-                type: 'Numeric field required',
-              }}
-              isSubmitting={isSubmitting}
-              notEmpty={true}
+              error={!!penaltyError}
             />
+            {isSubmitting && penaltyError ? penaltyError : null}
           </Grid.Column>
         </Grid.Row>
 
         <Grid.Row columns={2}>
           <Grid.Column>
             <MultiSelectCustomers
+              error={!!customer_idError}
               value="Customer"
               placeholder="Select Customer"
               userId={id}
               onChange={this.onDropdownChange}
             />
+            {isSubmitting && customer_idError ? customer_idError : null}
           </Grid.Column>
           <Grid.Column>
             <CreateCustomer userId={id} />
