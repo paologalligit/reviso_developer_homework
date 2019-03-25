@@ -64,6 +64,13 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
+    {
+      indexes: [{
+        unique: true,
+        fields: ['email', 'user_id'],
+      }]
+
+    },
   );
 
   Customer.associate = (models) => {

@@ -49,7 +49,6 @@ export default {
     }),
     sentInvoice: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
-        console.log('the args: ', args);
         const {
           id, sent, user_id, customer_id,
         } = args;

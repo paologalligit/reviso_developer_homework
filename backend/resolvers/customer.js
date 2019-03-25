@@ -1,4 +1,3 @@
-// fare query per prendere i customers per cliente
 import formatErrors from '../formatErrors';
 import requiresAuth from '../permissions';
 

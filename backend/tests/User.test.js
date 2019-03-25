@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 describe('user resolvers', () => {
   test('allUsers on empty db', async () => {
@@ -107,13 +107,13 @@ describe('user resolvers', () => {
       data: {
         allUsers: [
           {
-            id: 1,
-            name: 'Claudio',
-            surname: 'Lippi',
-            username: 'Claudione',
-            email: 'ci@email.com',
-            country: 'Italy',
-          },
+            "id": 1,
+            "name": "Claudio",
+            "surname": "Lippi",
+            "username": "Claudione",
+            "email": "ci@email.com",
+            "country": "Italy"
+          }
         ],
       },
     });
