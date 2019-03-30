@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Grid, List } from 'semantic-ui-react';
@@ -23,13 +25,14 @@ class ProjectListItem extends Component {
 
     if (ok) {
       return { collaboration };
-    } else {
-      return { errors };
     }
+    return { errors };
   };
 
   render() {
-    const { budget, name, vat, penalty, date, startHour, endHour, sent } = this.props;
+    const {
+      budget, name, vat, penalty, date, startHour, endHour, sent,
+    } = this.props;
 
     return (
       <List.Content>
@@ -62,7 +65,7 @@ class ProjectListItem extends Component {
 
 export default graphql(sendInvoiceMutation, {
   options: ({ id, userId, customerId }) => ({
-    variables: { id: id, user_id: userId, customer_id: customerId },
+    variables: { id, user_id: userId, customer_id: customerId },
     update: (store, { data: { sentInvoice } }) => {
       const { ok, collaboration } = sentInvoice;
 
@@ -75,9 +78,9 @@ export default graphql(sendInvoiceMutation, {
           },
         });
 
-        data.filteredCollaborations.forEach(c => {
+        data.filteredCollaborations.forEach((c) => {
           if (c.id === collaboration.id) {
-            c['sent'] = true;
+            c.sent = true;
           }
         });
 

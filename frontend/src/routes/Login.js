@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 import {
   Button, Container, Header, Form, Message,
 } from 'semantic-ui-react';
@@ -16,11 +14,11 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = observable({
+    this.state = {
       email: '',
       password: '',
       errors: {},
-    });
+    };
 
     this.tryLogin();
   }
@@ -50,7 +48,6 @@ class Login extends Component {
     if (ok) {
       localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
-
       this.props.history.push('/');
     } else {
       const err = {};
@@ -129,5 +126,4 @@ class Login extends Component {
   }
 }
 
-
-export default graphql(loginMutation)(observer(Login));
+export default graphql(loginMutation)(Login);

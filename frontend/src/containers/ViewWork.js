@@ -1,7 +1,12 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import { Grid, Input, Label, Radio } from 'semantic-ui-react';
+import {
+  Grid, Input, Label, Radio,
+} from 'semantic-ui-react';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 
@@ -27,7 +32,7 @@ class ViewWork extends Component {
     });
   }
 
-  onChange = e => {
+  onChange = (e) => {
     const { name, value } = e.target;
     if (name === 'vat' || name === 'budget' || name === 'penalty') {
       this.isSubmitting = true;
@@ -44,17 +49,17 @@ class ViewWork extends Component {
   setMinTime = () => {
     const { startHour } = this;
 
-    return startHour ? startHour : new Date().toLocaleTimeString();
+    return startHour || new Date().toLocaleTimeString();
   };
 
   onToggleFilterView = (e, { checked }) => {
     e.persist();
-    console.log('the e: ', e);
-    console.log('the value: ', checked);
+    // console.log('the e: ', e);
+    // console.log('the value: ', checked);
     this.showAll = checked;
   };
 
-  formatStringToNumber = n => n === '' ? 0.0 : parseFloat(n, 10);
+  formatStringToNumber = n => (n === '' ? 0.0 : parseFloat(n, 10));
 
   render() {
     const {

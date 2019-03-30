@@ -139,10 +139,10 @@ const AddCustomerModal = ({
               onClose(e);
             }}
           >
-              Cancel
+            Cancel
           </Button>
           <Button disabled={isSubmitting} onClick={handleSubmit} fluid>
-              Create Customer
+            Create Customer
           </Button>
         </Form.Group>
       </Form>
@@ -166,7 +166,9 @@ export default compose(
     }),
     handleSubmit: async (
       values,
-      { props: { onClose, userId, mutate }, setSubmitting, setErrors },
+      {
+        props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm
+      },
     ) => {
       if (isDecimal(values.postal)) {
         const response = await mutate({
@@ -226,6 +228,7 @@ export default compose(
         const { ok, errors } = response.data.registerCustomer;
         if (ok) {
           onClose();
+          resetForm({});
         } else {
           setErrors(normalizeErrors(errors));
         }
@@ -234,7 +237,6 @@ export default compose(
           postal: ['Postal number required'],
         });
       }
-
       setSubmitting(false);
     },
   }),
