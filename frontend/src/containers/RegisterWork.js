@@ -112,6 +112,9 @@ class RegisterWork extends Component {
       vatError,
       customer_idError,
       penaltyError,
+      dateError,
+      start_hourError,
+      end_hourError,
     } = errors;
 
     const { id } = this.props.user;
@@ -162,6 +165,7 @@ class RegisterWork extends Component {
               placeholder="Penalty per day"
               onChange={this.onChange}
               error={!!penaltyError}
+              fluid
             />
             {isSubmitting && penaltyError ? penaltyError : null}
           </Grid.Column>
@@ -186,10 +190,12 @@ class RegisterWork extends Component {
         <Grid.Row columns={3}>
           <Grid.Column>
             <DatePicker value={date} onChange={e => (this.date = e)} />
+            {isSubmitting && dateError ? dateError : null}
           </Grid.Column>
 
           <Grid.Column>
             <TimePicker value={startHour} onChange={e => (this.startHour = e)} />
+            {isSubmitting && start_hourError ? start_hourError : null}
           </Grid.Column>
 
           <Grid.Column>
@@ -198,6 +204,7 @@ class RegisterWork extends Component {
               onChange={e => (this.endHour = e)}
               minTime={this.setMinTime()}
             />
+            {isSubmitting && end_hourError ? end_hourError : null}
           </Grid.Column>
         </Grid.Row>
 

@@ -16,7 +16,11 @@ class SendInvoiceConfirmModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.closeConfigShow(false, false)} disabled={disabled} primary>
+        <Button
+          onClick={this.closeConfigShow(false, false)}
+          disabled={disabled}
+          primary
+        >
           {label}
         </Button>
 

@@ -12,8 +12,6 @@ import getCustomersPerUser from '../graphql/query/customer';
 import normalizeErrors from '../normalizeErrors';
 import createCustomerMutation from '../graphql/mutation/customer';
 
-// userId,
-// console.log('errors: ', touched);
 const AddCustomerModal = ({
   open,
   onClose,

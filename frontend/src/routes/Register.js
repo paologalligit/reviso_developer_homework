@@ -1,15 +1,23 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { Message, Button, Input, Container, Header, Form, Grid } from 'semantic-ui-react';
+import {
+  Message, Button, Input, Container, Header, Form, Grid,
+} from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import style from './styles/RegisterStyle';
+import registerMutation from '../graphql/mutation/register';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = observable({
       name: '',
       surname: '',
       username: '',
@@ -21,7 +29,7 @@ class Register extends React.Component {
       address: '',
       postal: '',
       errors: {},
-    };
+    });
   }
 
   onSubmit = async () => {
@@ -61,17 +69,15 @@ class Register extends React.Component {
       },
     });
 
-    // console.log(response);
 
     const { ok, errors } = response.data.registerUser;
 
     if (ok) {
       this.props.history.push('/');
     } else {
-      console.log('the errors, smthg went wrong: ', errors);
+      // console.log('the errors, smthg went wrong: ', errors);
       const err = {};
-      errors.forEach(({ path, message }, key) => {
-        // err['passwordError'] = 'too long..';
+      errors.forEach(({ path, message }) => {
         err[`${path}Error`] = message;
       });
 
@@ -79,7 +85,7 @@ class Register extends React.Component {
     }
   };
 
-  onChange = e => {
+  onChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -112,13 +118,13 @@ class Register extends React.Component {
       postalError,
     } = errors;
 
-    let errorsList = new Set();
-    for (let child in errors) {
+    const errorsList = new Set();
+    for (const child in errors) {
       errorsList.add(errors[child]);
     }
 
     return (
-      <Container text textAlign={'center'} style={style.register}>
+      <Container text textAlign="center" style={style.register}>
         <Header as="h2">Register</Header>
         <Form>
           <Grid>
@@ -264,38 +270,4 @@ class Register extends React.Component {
   }
 }
 
-const registerMutation = gql`
-  mutation(
-    $name: String!
-    $surname: String!
-    $username: String!
-    $email: String!
-    $password: String!
-    $birthdate: String!
-    $country: String!
-    $city: String!
-    $address: String!
-    $postal: Int!
-  ) {
-    registerUser(
-      name: $name
-      surname: $surname
-      username: $username
-      email: $email
-      password: $password
-      birthdate: $birthdate
-      country: $country
-      city: $city
-      address: $address
-      postal: $postal
-    ) {
-      ok
-      errors {
-        path
-        message
-      }
-    }
-  }
-`;
-
-export default graphql(registerMutation)(Register);
+export default graphql(registerMutation)(observer(Register));

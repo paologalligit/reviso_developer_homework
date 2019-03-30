@@ -1,13 +1,36 @@
+/* eslint-disable func-names */
+import 'jsdom-global/register';
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import { mount, shallow, render } from 'enzyme';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import Login from '../routes/Login';
-import './setupTests';
+import loginMutation from '../graphql/mutation/user';
 
-describe('rendering', () => {
-  const mocks = [];
+const waitForData = () => new Promise(res => setTimeout(res, 100));
+
+describe('login renders', () => {
+  const mocks = [
+    {
+      request: {
+        query: loginMutation,
+        variables: {
+          email: 'p.galli@email.com',
+          password: 'bobobo',
+        },
+      },
+      result: {
+        data: {
+          ok: true,
+          user: {
+            id: 1,
+          },
+          errors: null,
+        },
+      },
+    },
+  ];
   let wrapper;
 
   // initialization
@@ -44,7 +67,6 @@ describe('rendering', () => {
     expect(passw.attribs.placeholder).toBe('Password');
   });
 
-
   it('renders submit button', () => {
     const button = wrapper.find('button');
     expect(button).toHaveLength(1);
@@ -71,14 +93,148 @@ describe('rendering', () => {
       errors: {},
     });
   });
+});
 
-  /*
-  it('on click should call onSubmit and change state', () => {
-    const button = shallow(wrapper.find('button'));
-    const mockCallBack = jest.fn();
+describe('login interaction', () => {
+  const correctMockQuery = [
+    {
+      request: {
+        query: loginMutation,
+        variables: { email: 'p.galli@email.com', password: 'bobobo' },
+      },
+      result: {
+        data: {
+          login: {
+            ok: true,
+            token: 'aToken',
+            refreshToken: 'aRefreshToken',
+            errors: null,
+          },
+        },
+      },
+    },
+  ];
+  const wrongMockQueryPass = [
+    {
+      request: {
+        query: loginMutation,
+        variables: { email: 'p.galli@email.com', password: 'wrongPass' },
+      },
+      result: {
+        data: {
+          login: {
+            ok: false,
+            token: null,
+            refreshToken: null,
+            errors: [
+              {
+                path: 'password',
+                message: 'Wrong password',
+              },
+            ],
+          },
+        },
+      },
+    },
+  ];
+  const wrongMockQuery = [
+    {
+      request: {
+        query: loginMutation,
+        variables: { email: 'wrong@email.com', password: 'wrongPass' },
+      },
+      result: {
+        data: {
+          login: {
+            ok: false,
+            token: null,
+            refreshToken: null,
+            errors: [
+              {
+                path: 'email',
+                message: 'Wrong email',
+              },
+            ],
+          },
+        },
+      },
+    },
+  ];
+  const historyMock = { push: jest.fn(path => path) };
 
+  it('navigate to / with correct login', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={correctMockQuery} addTypename={false}>
+        <Login history={historyMock} />
+      </MockedProvider>,
+    );
+    expect(wrapper).toHaveLength(1);
+    const inputs = wrapper.find('Input');
+    const email = inputs.at(0).find('input');
+    const passw = inputs.at(1).find('input');
+    const button = wrapper.find('Button');
+
+    email.simulate('change', { target: { name: 'email', value: 'p.galli@email.com' } });
+    passw.simulate('change', { target: { name: 'password', value: 'bobobo' } });
     button.simulate('click');
-    expect(mockCallBack.mock.calls.length).toEqual(1);
+
+    await waitForData();
+
+    expect(historyMock.push).toHaveBeenCalledTimes(1);
+    expect(historyMock.push.mock.calls[0]).toEqual(['/']);
   });
-  */
+
+  it('login errors with wrong password', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={wrongMockQueryPass} addTypename={false}>
+        <Login history={historyMock} />
+      </MockedProvider>,
+    );
+    expect(wrapper).toHaveLength(1);
+    const inputs = wrapper.find('Input');
+    const email = inputs.at(0).find('input');
+    const passw = inputs.at(1).find('input');
+    const button = wrapper.find('Button');
+
+    email.simulate('change', { target: { name: 'email', value: 'p.galli@email.com' } });
+    passw.simulate('change', { target: { name: 'password', value: 'wrongPass' } });
+    button.simulate('click');
+
+    await waitForData();
+
+    const loginState = wrapper.find('Login').instance().state;
+    expect(historyMock.push).toHaveBeenCalledTimes(0);
+    expect(loginState).toEqual({
+      email: 'p.galli@email.com',
+      password: 'wrongPass',
+      errors: { passwordError: 'Wrong password' },
+    });
+  });
+
+  it('login errors with wrong email and password', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={wrongMockQuery} addTypename={false}>
+        <Login history={historyMock} />
+      </MockedProvider>,
+    );
+    expect(wrapper).toHaveLength(1);
+    const inputs = wrapper.find('Input');
+    const email = inputs.at(0).find('input');
+    const passw = inputs.at(1).find('input');
+    const button = wrapper.find('Button');
+
+    email.simulate('change', { target: { name: 'email', value: 'wrong@email.com' } });
+    passw.simulate('change', { target: { name: 'password', value: 'wrongPass' } });
+    button.simulate('click');
+
+    await waitForData();
+
+    const loginState = wrapper.find('Login').instance().state;
+    expect(historyMock.push).toHaveBeenCalledTimes(0);
+    expect(loginState).toEqual({
+      email: 'wrong@email.com',
+      password: 'wrongPass',
+      errors: { emailError: 'Wrong email' },
+    });
+  });
 });

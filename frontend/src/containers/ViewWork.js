@@ -8,7 +8,6 @@ import { observer } from 'mobx-react';
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import WorksModal from '../components/WorksModal';
 import FormatInput from '../components/FormatInput';
-import tryParseInt from '../utils/parsingTools';
 
 class ViewWork extends Component {
   constructor(props) {
@@ -48,9 +47,11 @@ class ViewWork extends Component {
     return startHour ? startHour : new Date().toLocaleTimeString();
   };
 
-  onToggleFilterView = (e, { value }) => {
+  onToggleFilterView = (e, { checked }) => {
     e.persist();
-    this.showAll = !value;
+    console.log('the e: ', e);
+    console.log('the value: ', checked);
+    this.showAll = checked;
   };
 
   formatStringToNumber = n => n === '' ? 0.0 : parseFloat(n, 10);
@@ -69,6 +70,8 @@ class ViewWork extends Component {
       isSubmitting,
     } = this;
     const { id } = this.props.user;
+
+    console.log('the state in render: ', showAll);
 
     return (
       <Grid>

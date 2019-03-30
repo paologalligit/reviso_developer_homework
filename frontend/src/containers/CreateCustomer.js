@@ -1,5 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Button } from "semantic-ui-react";
+import { Button } from 'semantic-ui-react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import AddCustomerModal from '../components/AddCustomerModal';
 
@@ -7,12 +10,12 @@ class CreateCustomer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = observable({
       openAddCustomerModal: false,
-    };
+    });
   }
 
-  toggleAddCustomerModal = e => {
+  toggleAddCustomerModal = (e) => {
     if (e) {
       e.preventDefault();
     }
@@ -25,10 +28,7 @@ class CreateCustomer extends Component {
     const { userId } = this.props;
 
     return [
-      <Button
-        key="create-customer-button"
-        onClick={this.toggleAddCustomerModal}
-      >
+      <Button key="create-customer-button" onClick={this.toggleAddCustomerModal}>
         Create Customer
       </Button>,
       <AddCustomerModal
@@ -36,9 +36,9 @@ class CreateCustomer extends Component {
         onClose={this.toggleAddCustomerModal}
         open={openAddCustomerModal}
         userId={userId}
-      />
+      />,
     ];
   }
 }
 
-export default CreateCustomer;
+export default observer(CreateCustomer);

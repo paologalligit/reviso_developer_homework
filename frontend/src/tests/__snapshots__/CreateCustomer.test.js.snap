@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders create customer matches snapshot 1`] = `
+<button
+  class="ui button"
+>
+  Create Customer
+</button>
+`;

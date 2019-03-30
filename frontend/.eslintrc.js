@@ -15,6 +15,7 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+    experimentalObjectRestSpread: true,
   },
   plugins: [
     'react',
@@ -24,4 +25,5 @@ module.exports = {
     "import/no-named-as-default-member": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
+  parser: "babel-eslint",
 };

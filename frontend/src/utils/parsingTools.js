@@ -1,4 +1,4 @@
 export default (value) => {
-  const n = parseInt(value, 10);
+  const n = parseFloat(value);
   return Number.isNaN(n) ? -1 : n;
 };

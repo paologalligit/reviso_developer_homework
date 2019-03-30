@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendering matches snapshot 1`] = `
+exports[`login renders matches snapshot 1`] = `
 <div
   class="ui text center aligned container"
   style="margin-top:50px"
@@ -17,35 +17,61 @@ exports[`rendering matches snapshot 1`] = `
       class="field"
     >
       <div
-        class="ui fluid input"
+        class="field"
       >
-        <input
-          name="email"
-          placeholder="Email"
-          type="text"
-          value=""
-        />
+        <div
+          class="ui fluid left icon input"
+        >
+          <input
+            name="email"
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            class="user icon"
+          />
+        </div>
       </div>
     </div>
     <div
       class="field"
     >
       <div
-        class="ui fluid input"
+        class="field"
       >
-        <input
-          name="password"
-          placeholder="Password"
-          type="password"
-          value=""
-        />
+        <div
+          class="ui fluid left icon input"
+        >
+          <input
+            name="password"
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+          <i
+            aria-hidden="true"
+            class="lock icon"
+          />
+        </div>
       </div>
     </div>
     <button
-      class="ui button"
+      class="ui huge primary button"
     >
       Submit
     </button>
   </form>
+  <div
+    class="ui message"
+  >
+    New to us? 
+    <a
+      href="/register"
+    >
+      Sign Up
+    </a>
+  </div>
 </div>
 `;
