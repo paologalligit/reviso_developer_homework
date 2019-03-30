@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0881d029-84f3-4d95-a442-722b60ee396a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/setupTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/permissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resolvers/collaboration.js" beforeDir="false" afterPath="$PROJECT_DIR$/resolvers/collaboration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resolvers/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/resolvers/customer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/user.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Collaboration.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/containers/RegisterWork.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/RegisterWork.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/containers/ViewWork.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/ViewWork.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/routes/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/routes/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/tests/Customer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Customer.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/tests/Login.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/tests/Login.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/tests/User.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/User.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/tests/__snapshots__/Login.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/tests/__snapshots__/Login.test.js.snap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/utils/parsingTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/utils/parsingTools.js" afterDir="false" />
     </list>
@@ -60,7 +42,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Collaboration.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
+            <state relative-caret-position="-75">
               <caret line="104" column="23" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
               <folding>
                 <element signature="e#212#1169#0" />
@@ -318,7 +300,7 @@
       <workItem from="1552405660726" duration="1297000" />
       <workItem from="1552477463580" duration="8000" />
       <workItem from="1552640271018" duration="2141000" />
-      <workItem from="1553509191646" duration="11739000" />
+      <workItem from="1553509191646" duration="11812000" />
     </task>
     <servers />
   </component>
@@ -355,7 +337,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102913000" />
+    <option name="totallyTimeSpent" value="102986000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -368,14 +350,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14370811" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905295" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32744783" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32744783" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -383,7 +364,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32905295" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.15088283" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.15088283" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -614,7 +595,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Collaboration.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
+        <state relative-caret-position="-75">
           <caret line="104" column="23" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
           <folding>
             <element signature="e#212#1169#0" />

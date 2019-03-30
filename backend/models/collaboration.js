@@ -79,7 +79,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Start hour required',
+          msg: 'End hour required',
         },
       },
     },

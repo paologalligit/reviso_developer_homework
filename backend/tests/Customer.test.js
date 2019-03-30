@@ -1,8 +1,11 @@
+// eslint-disable-next-line react/jsx-filename-extension
 const axios = require('axios');
+
+const server = 'http://localhost:8080/graphql';
 
 describe('customer resolvers', () => {
   test('allCustomers on empty db', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         query {
           allCustomers {
@@ -17,7 +20,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         allCustomers: [],
@@ -27,7 +30,7 @@ describe('customer resolvers', () => {
 
   test('register a new customer', async () => {
     // register the new user to be associated with customer
-    await axios.post('http://localhost:8080/graphql', {
+    await axios.post(server, {
       query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi", username: "BigC",
@@ -43,7 +46,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
@@ -59,7 +62,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         registerCustomer: {
@@ -71,7 +74,7 @@ describe('customer resolvers', () => {
   });
 
   test('error on create already existing customer', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
@@ -87,21 +90,20 @@ describe('customer resolvers', () => {
       `,
     });
 
-
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         registerCustomer: {
           ok: false,
           errors: [
             {
-              "path": "email",
-              "message": "email must be unique"
+              path: 'email',
+              message: 'email must be unique',
             },
             {
-              "path": "user_id",
-              "message": "user_id must be unique"
-            }
+              path: 'user_id',
+              message: 'user_id must be unique',
+            },
           ],
         },
       },
@@ -110,7 +112,7 @@ describe('customer resolvers', () => {
 
   test('register a new customer with the same email but for a different user', async () => {
     // register the new user to be associated with customer
-    await axios.post('http://localhost:8080/graphql', {
+    await axios.post(server, {
       query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi", username: "BigC2",
@@ -126,7 +128,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
@@ -142,7 +144,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         registerCustomer: {
@@ -156,7 +158,7 @@ describe('customer resolvers', () => {
   test('register a new customer without not null fields', async () => {
     let response;
     try {
-      response = await axios.post('http://localhost:8080/graphql', {
+      response = await axios.post(server, {
         query: `
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
@@ -171,15 +173,13 @@ describe('customer resolvers', () => {
         }
       `,
       });
-    } catch (err) {
-    }
+    } catch (err) {}
 
     expect(response).toBeUndefined();
-
   });
 
   test('register a new customer without nullable fields', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
@@ -195,7 +195,7 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         registerCustomer: {
@@ -207,7 +207,7 @@ describe('customer resolvers', () => {
   });
 
   test('allCustomers with not empty db', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         query {
           allCustomers {
@@ -222,33 +222,33 @@ describe('customer resolvers', () => {
       `,
     });
 
-    const {data} = response;
+    const { data } = response;
     expect(data).toMatchObject({
       data: {
         allCustomers: [
           {
-            name: "Giorgio",
-            surname: "Armani",
-            email: "gio@email.com",
-            country: "Italy",
-            city: "Milan",
-            user_id: 1
+            name: 'Giorgio',
+            surname: 'Armani',
+            email: 'gio@email.com',
+            country: 'Italy',
+            city: 'Milan',
+            user_id: 1,
           },
           {
-            name: "Giorgio",
-            surname: "Armani",
-            email: "gio@email.com",
-            country: "Italy",
-            city: "Milan",
-            user_id: 2
+            name: 'Giorgio',
+            surname: 'Armani',
+            email: 'gio@email.com',
+            country: 'Italy',
+            city: 'Milan',
+            user_id: 2,
           },
           {
-            name: "Giorgio",
-            surname: "Armani",
-            email: "gio22@email.com",
-            country: "Italy",
-            city: "Milan",
-            user_id: 1
+            name: 'Giorgio',
+            surname: 'Armani',
+            email: 'gio22@email.com',
+            country: 'Italy',
+            city: 'Milan',
+            user_id: 1,
           },
         ],
       },

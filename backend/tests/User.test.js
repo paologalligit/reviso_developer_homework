@@ -1,8 +1,10 @@
 const axios = require('axios');
 
+const server = 'http://localhost:8080/graphql';
+
 describe('user resolvers', () => {
   test('allUsers on empty db', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         query {
           allUsers {
@@ -26,7 +28,7 @@ describe('user resolvers', () => {
   });
 
   test('register a new user', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
@@ -54,7 +56,7 @@ describe('user resolvers', () => {
   });
 
   test('error on create already existing user', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
@@ -87,7 +89,7 @@ describe('user resolvers', () => {
   });
 
   test('allUsers with not empty db', async () => {
-    const response = await axios.post('http://localhost:8080/graphql', {
+    const response = await axios.post(server, {
       query: `
         query {
           allUsers {
@@ -107,13 +109,13 @@ describe('user resolvers', () => {
       data: {
         allUsers: [
           {
-            "id": 1,
-            "name": "Claudio",
-            "surname": "Lippi",
-            "username": "Claudione",
-            "email": "ci@email.com",
-            "country": "Italy"
-          }
+            id: 1,
+            name: 'Claudio',
+            surname: 'Lippi',
+            username: 'Claudione',
+            email: 'ci@email.com',
+            country: 'Italy',
+          },
         ],
       },
     });
@@ -122,7 +124,7 @@ describe('user resolvers', () => {
   test('register a new user without not null fields', async () => {
     let response;
     try {
-      response = await axios.post('http://localhost:8080/graphql', {
+      response = await axios.post(server, {
         query: `
         mutation {
           registerUser(name: "Claudio", surname: "Lippi",

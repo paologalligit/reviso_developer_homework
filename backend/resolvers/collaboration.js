@@ -34,6 +34,7 @@ export default {
   Mutation: {
     registerCollaboration: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
+        // console.log('the args: ', args);
         const collaboration = await models.Collaboration.create(args);
 
         return {
