@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`register renders matches snapshot 1`] = `
+<div
+  class="ui text center aligned container"
+  style="margin-top:50px;margin-bottom:50px"
+>
+  <h2
+    class="ui header"
+  >
+    Register
+  </h2>
+  <form
+    class="ui form"
+  >
+    <div
+      class="ui grid"
+    >
+      <div
+        class="three column row"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="name"
+                placeholder="Name"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="surname"
+                placeholder="Surname"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="username"
+                placeholder="Username"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="three column row"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="email"
+                placeholder="Email"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="birthdate"
+                placeholder="Birthdate"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="three column row"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="country"
+                placeholder="Country"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="city"
+                placeholder="City"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="address"
+                placeholder="Address"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="one column row"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="field"
+          >
+            <div
+              class="ui fluid input"
+            >
+              <input
+                name="postal"
+                placeholder="Postal"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="one column row"
+      >
+        <div
+          class="center aligned column"
+        >
+          <button
+            class="ui huge primary button"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;

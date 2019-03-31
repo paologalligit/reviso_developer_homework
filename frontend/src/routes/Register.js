@@ -7,8 +7,6 @@ import {
   Message, Button, Input, Container, Header, Form, Grid,
 } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 import style from './styles/RegisterStyle';
 import registerMutation from '../graphql/mutation/register';
@@ -17,7 +15,7 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = observable({
+    this.state = {
       name: '',
       surname: '',
       username: '',
@@ -29,7 +27,7 @@ class Register extends React.Component {
       address: '',
       postal: '',
       errors: {},
-    });
+    };
   }
 
   onSubmit = async () => {
@@ -270,4 +268,4 @@ class Register extends React.Component {
   }
 }
 
-export default graphql(registerMutation)(observer(Register));
+export default graphql(registerMutation)(Register);
