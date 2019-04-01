@@ -1,10 +1,12 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
 import { Button, Grid, Input } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
-import { extendObservable } from 'mobx';
-import { observer } from 'mobx-react';
 
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import CreateCustomer from './CreateCustomer';
@@ -15,7 +17,7 @@ class RegisterWork extends Component {
   constructor(props) {
     super(props);
 
-    extendObservable(this, {
+    this.state = {
       projectName: '',
       budget: '',
       vat: '',
@@ -25,21 +27,19 @@ class RegisterWork extends Component {
       date: new Date(),
       customer: '',
       isSubmitting: false,
-      errors: {}
-    });
+      errors: {},
+    };
   }
 
   onChange = (e, data) => {
     // console.log('on change function: ', e.target, ' and data: ', data);
     const { name, value } = data;
-    // this.setState({ [name]: value });
-    this[name] = value;
+    this.setState({ [name]: value });
   };
 
   onDropdownChange = (e, data) => {
     // console.log('in dd change: ', data.value);
-    // this.setState({ customer: data.value });
-    this.customer = data.value;
+    this.setState({ customer: data.value });
   };
 
   setMinTime = () => {
@@ -47,11 +47,13 @@ class RegisterWork extends Component {
 
     // console.log('the conversion: ', startHour.toLocaleTimeString());
 
-    return startHour ? startHour : new Date().toLocaleTimeString();
+    return startHour || new Date().toLocaleTimeString();
   };
 
   handleSubmit = async () => {
-    const { projectName, budget, vat, penalty, startHour, endHour, date, customer } = this;
+    const {
+      projectName, budget, vat, penalty, startHour, endHour, date, customer,
+    } = this.state;
 
     const { id } = this.props.user;
 
@@ -83,13 +85,14 @@ class RegisterWork extends Component {
           err[`${path}Error`] = message;
         });
 
-        this.errors = err;
-        this.isSubmitting = true;
+        this.setState({
+          errors: err,
+          isSubmitting: true,
+        });
       }
-
     } catch (err) {
-      console.log('again')
-      this.isSubmitting = true;
+      console.log('again');
+      this.setState({ isSubmitting: true });
     }
   };
 
@@ -104,7 +107,7 @@ class RegisterWork extends Component {
       date,
       isSubmitting,
       errors,
-    } = this;
+    } = this.state;
 
     const {
       nameError,
@@ -210,9 +213,7 @@ class RegisterWork extends Component {
 
         <Grid.Row columns={1}>
           <Grid.Column>
-            <Button onClick={this.handleSubmit}>
-              Submit
-            </Button>
+            <Button onClick={this.handleSubmit}>Submit</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -220,4 +221,4 @@ class RegisterWork extends Component {
   }
 }
 
-export default graphql(collaborationMutation)(observer(RegisterWork));
+export default graphql(collaborationMutation)(RegisterWork);

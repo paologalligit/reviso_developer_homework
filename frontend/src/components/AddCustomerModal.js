@@ -8,7 +8,7 @@ import { withFormik } from 'formik';
 import { compose, graphql } from 'react-apollo';
 import isDecimal from 'validator/lib/isDecimal';
 
-import getCustomersPerUser from '../graphql/query/customer';
+import { getCustomersPerUser } from '../graphql/query/customer';
 import normalizeErrors from '../normalizeErrors';
 import createCustomerMutation from '../graphql/mutation/customer';
 
@@ -167,7 +167,7 @@ export default compose(
     handleSubmit: async (
       values,
       {
-        props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm
+        props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm,
       },
     ) => {
       if (isDecimal(values.postal)) {

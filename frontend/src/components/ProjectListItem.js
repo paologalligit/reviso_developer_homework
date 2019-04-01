@@ -8,7 +8,8 @@ import { graphql } from 'react-apollo';
 import fromMillisToDate from '../utils/convertingTools';
 import sendInvoiceMutation from '../graphql/mutation/invoice';
 import collaborationsQuery from '../graphql/query/collaboration';
-import SendInvoiceConfirmModal from './SendInvoiceConfirmModal';
+import SendInvoiceConfirmModal from '../containers/SendInvoiceConfirmModal';
+import ShowCustomer from './ShowCustomer';
 
 class ProjectListItem extends Component {
   handleSendInvoice = async () => {
@@ -31,23 +32,26 @@ class ProjectListItem extends Component {
 
   render() {
     const {
-      budget, name, vat, penalty, date, startHour, endHour, sent,
+      budget, name, vat, penalty, date, startHour, endHour, sent, customerId,
     } = this.props;
 
     return (
       <List.Content>
         <List.Header>{`PROJECT: ${name}`}</List.Header>
-        <Grid columns={3} divided>
+        <Grid columns={4} divided>
           <Grid.Row>
             <Grid.Column>{`Budget: ${budget} €`}</Grid.Column>
             <Grid.Column>{`Vat: ${vat} €`}</Grid.Column>
             <Grid.Column>{`Penalty: ${penalty} €`}</Grid.Column>
+            <Grid.Column>{`Date: ${fromMillisToDate(date)}`}</Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column>{`Date: ${fromMillisToDate(date)}`}</Grid.Column>
             <Grid.Column>{`Start hour: ${startHour}`}</Grid.Column>
             <Grid.Column>{`End hour: ${endHour}`}</Grid.Column>
+            <Grid.Column>
+              <ShowCustomer customerId={customerId} />
+            </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>

@@ -7,8 +7,6 @@ import TimePicker from 'react-time-picker';
 import {
   Grid, Input, Label, Radio,
 } from 'semantic-ui-react';
-import { extendObservable } from 'mobx';
-import { observer } from 'mobx-react';
 
 import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import WorksModal from '../components/WorksModal';
@@ -18,7 +16,7 @@ class ViewWork extends Component {
   constructor(props) {
     super(props);
 
-    extendObservable(this, {
+    this.state = {
       projectName: '',
       budget: '',
       vat: '',
@@ -29,25 +27,25 @@ class ViewWork extends Component {
       customer: -1,
       showAll: false,
       isSubmitting: false,
-    });
+    };
   }
 
   onChange = (e) => {
     const { name, value } = e.target;
     if (name === 'vat' || name === 'budget' || name === 'penalty') {
-      this.isSubmitting = true;
+      this.setState({ isSubmitting: true });
     } else {
-      this.isSubmitting = false;
+      this.setState({ isSubmitting: false });
     }
-    this[name] = value;
+    this.setState({ [name]: value });
   };
 
   onDropdownChange = (e, data) => {
-    this.customer = data.value;
+    this.setState({ customer: data.value });
   };
 
   setMinTime = () => {
-    const { startHour } = this;
+    const { startHour } = this.state;
 
     return startHour || new Date().toLocaleTimeString();
   };
@@ -56,7 +54,7 @@ class ViewWork extends Component {
     e.persist();
     // console.log('the e: ', e);
     // console.log('the value: ', checked);
-    this.showAll = checked;
+    this.setState({ showAll: checked });
   };
 
   formatStringToNumber = n => (n === '' ? 0.0 : parseFloat(n, 10));
@@ -73,10 +71,10 @@ class ViewWork extends Component {
       customer,
       showAll,
       isSubmitting,
-    } = this;
+    } = this.state;
     const { id } = this.props.user;
 
-    console.log('the state in render: ', showAll);
+    // console.log('the state in render: ', showAll);
 
     return (
       <Grid>
@@ -188,4 +186,4 @@ class ViewWork extends Component {
   }
 }
 
-export default observer(ViewWork);
+export default ViewWork;

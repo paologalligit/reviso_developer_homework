@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`project list item suite renders correctly 1`] = `
+<div
+  class="content"
+>
+  <div
+    class="header"
+  >
+    PROJECT: undefined
+  </div>
+  <div
+    class="ui divided three column grid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="column"
+      >
+        Budget: undefined €
+      </div>
+      <div
+        class="column"
+      >
+        Vat: undefined €
+      </div>
+      <div
+        class="column"
+      >
+        Penalty: undefined €
+      </div>
+    </div>
+    <div
+      class="row"
+    >
+      <div
+        class="column"
+      >
+        Date: Invalid Date
+      </div>
+      <div
+        class="column"
+      >
+        Start hour: undefined
+      </div>
+      <div
+        class="column"
+      >
+        End hour: undefined
+      </div>
+    </div>
+    <div
+      class="row"
+    >
+      <div>
+        <button
+          class="ui primary button"
+        >
+          Send Invoice
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
