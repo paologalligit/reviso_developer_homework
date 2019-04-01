@@ -1,8 +1,10 @@
-/* eslint-disable camelcase */
 /* eslint-disable no-return-await */
+/* eslint-disable camelcase */
 import Sequelize from 'sequelize';
+
 import formatErrors from '../formatErrors';
 import requiresAuth from '../permissions';
+import HoursConstraintError from '../hours-constraint-error';
 
 // eslint-disable-next-line prefer-destructuring
 const Op = Sequelize.Op;
@@ -35,6 +37,15 @@ export default {
     registerCollaboration: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
         // console.log('the args: ', args);
+        const { start_hour, end_hour } = args;
+        console.log('start: ', start_hour, ' and end: ', end_hour);
+        if (start_hour > end_hour) {
+          throw new HoursConstraintError({
+            path: 'Register work',
+            message: 'Start hour cannot be greater than end hour',
+            fields: [start_hour, end_hour],
+          });
+        }
         const collaboration = await models.Collaboration.create(args);
 
         return {
@@ -42,6 +53,7 @@ export default {
           collaboration,
         };
       } catch (err) {
+        // console.log('the err: ', err);
         return {
           ok: false,
           errors: formatErrors(err, models),

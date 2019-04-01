@@ -256,4 +256,47 @@ describe('collaboration resolvers', () => {
     expect(penaltyError).toEqual('Expected type Float!, found "1f23".');
     expect(response).toBeUndefined();
   });
+
+  test('create a collaboration with start hour greater than end hour', async () => {
+    const response = await axios.post(server, {
+      query: `
+        mutation {
+          registerCollaboration(
+            name: "Clean pc"
+            budget: 100
+            vat: 22
+            penalty: 123
+            date: "2019-01-01"
+            start_hour: "19:00:00"
+            end_hour: "16:30:00"
+            user_id: 1
+            customer_id: 1
+          ) {
+            ok
+            collaboration {
+              name
+              budget
+              vat
+              user_id
+              customer_id
+            }
+            errors {
+              path
+              message
+            }
+          }
+        }`,
+    });
+
+    const { ok, collaboration, errors } = response.data.data.registerCollaboration;
+
+    expect(ok).toBeFalsy();
+    expect(errors).toEqual([
+      {
+        path: 'Register work',
+        message: 'Start hour cannot be greater than end hour',
+      },
+    ]);
+    expect(collaboration).toBeNull();
+  });
 });

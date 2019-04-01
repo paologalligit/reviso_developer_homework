@@ -1,10 +1,12 @@
 import _ from 'lodash';
+import HoursConstraintError from './hours-constraint-error';
 
 export default (e, models) => {
   if (e instanceof models.sequelize.ValidationError) {
-    //  _.pick({a: 1, b: 2}, 'a') => {a: 1}
     return e.errors.map(x => _.pick(x, ['path', 'message']));
   }
-  console.log('the error: ', e);
+  if (e.name === 'HoursConstraintError') {
+    return [{ path: e.message.path, message: e.message.message }];
+  }
   return [{ path: 'name', message: 'something wrong in format error' }];
 };

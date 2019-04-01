@@ -4,7 +4,16 @@ import bcrypt from 'bcrypt';
 
 export const createTokens = async (user, secret, secret2) => {
   const userInfos = [
-    'id', 'name', 'surname', 'username', 'email', 'birthdate', 'country', 'city', 'address', 'postal'
+    'id',
+    'name',
+    'surname',
+    'username',
+    'email',
+    'birthdate',
+    'country',
+    'city',
+    'address',
+    'postal',
   ];
   const createToken = jwt.sign(
     {
@@ -32,7 +41,9 @@ export const createTokens = async (user, secret, secret2) => {
 export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2) => {
   let userId = -1;
   try {
-    const { user: { id } } = jwt.decode(refreshToken);
+    const {
+      user: { id },
+    } = jwt.decode(refreshToken);
     userId = id;
   } catch (err) {
     return {};
