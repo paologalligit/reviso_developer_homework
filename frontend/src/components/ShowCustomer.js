@@ -9,7 +9,7 @@ import { getCustomerById } from '../graphql/query/customer';
 
 const ShowCustomer = ({ data: { loading, getCustomer } }) => {
   if (loading) {
-    return <div />;
+    return null;
   }
 
   const {

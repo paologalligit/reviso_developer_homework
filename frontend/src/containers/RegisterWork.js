@@ -12,6 +12,7 @@ import MultiSelectCustomers from '../components/MultiSelectCustomers';
 import CreateCustomer from './CreateCustomer';
 import collaborationMutation from '../graphql/mutation/collaboration';
 import tryParseInt from '../utils/parsingTools';
+import VatComponent from '../components/VatComponent';
 
 class RegisterWork extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class RegisterWork extends Component {
       projectName: '',
       budget: '',
       vat: '',
+      vatPercentage: '',
       penalty: '',
       startHour: new Date().toLocaleTimeString(),
       endHour: new Date().toLocaleTimeString(),
@@ -32,9 +34,15 @@ class RegisterWork extends Component {
   }
 
   onChange = (e, data) => {
-    // console.log('on change function: ', e.target, ' and data: ', data);
     const { name, value } = data;
-    this.setState({ [name]: value });
+    const { vat, vatPercentage } = this.state;
+    let newVat;
+    if (vatPercentage !== '' && name === 'budget') {
+      newVat = vatPercentage * value;
+    } else {
+      newVat = vat;
+    }
+    this.setState({ [name]: value, vat: newVat });
   };
 
   onDropdownChange = (e, data) => {
@@ -96,6 +104,15 @@ class RegisterWork extends Component {
     }
   };
 
+  recomputeBudget = () => {};
+
+  handleVatChange = (e, data) => {
+    const { value } = data;
+    const { budget } = this.state;
+    const vat = budget === '' ? '' : budget * value;
+    this.setState({ vat, vatPercentage: value });
+  };
+
   render() {
     const {
       budget,
@@ -150,17 +167,29 @@ class RegisterWork extends Component {
             />
             {isSubmitting && budgetError ? budgetError : null}
           </Grid.Column>
-          <Grid.Column>
-            <Input
-              name="vat"
-              value={vat}
-              placeholder="Vat"
-              onChange={this.onChange}
-              fluid
-              error={!!vatError}
-            />
-            {isSubmitting && vatError ? vatError : null}
-          </Grid.Column>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Input
+                name="vat"
+                value={vat}
+                placeholder="Vat"
+                onChange={this.onChange}
+                fluid
+                error={!!vatError}
+              />
+              {isSubmitting && vatError ? vatError : null}
+            </Grid.Column>
+            <Grid.Column>
+              <VatComponent
+                options={[
+                  { key: 1, text: '4%', value: 0.04 },
+                  { key: 2, text: '10%', value: 0.1 },
+                  { key: 3, text: '20%', value: 0.2 },
+                ]}
+                onChange={this.handleVatChange}
+              />
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Column>
             <Input
               name="penalty"

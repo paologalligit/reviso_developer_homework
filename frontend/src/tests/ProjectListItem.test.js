@@ -6,6 +6,7 @@ import { mount, render } from 'enzyme';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import ProjectListItem from '../components/ProjectListItem';
+import { getCustomerById } from '../graphql/query/customer';
 
 describe('project list item suite', () => {
   it('renders correctly', () => {
@@ -20,9 +21,33 @@ describe('project list item suite', () => {
 });
 
 describe('pli interaction', () => {
-  it('cannot click button if invoice already sent', () => {
+  const mock = [
+    {
+      request: {
+        query: getCustomerById,
+        variables: { id: 1 },
+      },
+      result: {
+        data: {
+          getCustomer: {
+            name: 'Prova',
+            surname: 'Uno',
+            email: 'primo@email.com',
+            country: 'Italy',
+            city: 'Cirili',
+            address: 'Via di qui, 98',
+            postal: 90998,
+            specialization: 'None',
+            user_id: 1,
+          },
+        },
+      },
+    },
+  ];
+
+  it('cannot click button if invoice already sent', async () => {
     const wrapper = mount(
-      <MockedProvider mocks={[]}>
+      <MockedProvider mocks={mock}>
         <ProjectListItem
           budget={1000}
           name="Test project"
@@ -32,6 +57,7 @@ describe('pli interaction', () => {
           startHour="09:30:00"
           endHour="10:30:00"
           sent
+          customerId={1}
         />
       </MockedProvider>,
     );

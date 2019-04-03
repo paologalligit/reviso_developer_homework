@@ -10,7 +10,7 @@ exports[`project list item suite renders correctly 1`] = `
     PROJECT: undefined
   </div>
   <div
-    class="ui divided three column grid"
+    class="ui divided four column grid"
   >
     <div
       class="row"
@@ -30,15 +30,15 @@ exports[`project list item suite renders correctly 1`] = `
       >
         Penalty: undefined €
       </div>
-    </div>
-    <div
-      class="row"
-    >
       <div
         class="column"
       >
         Date: Invalid Date
       </div>
+    </div>
+    <div
+      class="row"
+    >
       <div
         class="column"
       >
@@ -49,6 +49,9 @@ exports[`project list item suite renders correctly 1`] = `
       >
         End hour: undefined
       </div>
+      <div
+        class="column"
+      />
     </div>
     <div
       class="row"
