@@ -59,6 +59,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^9.0.0",
+    "codecov": "^3.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -69,5 +70,9 @@
     "jsdom": "14.0.0",
     "jsdom-global": "3.0.2",
     "react-test-renderer": "^16.8.3"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
