@@ -7,6 +7,8 @@ install:
   - cd frontend/ && npm install -g codecov
   - yarn install
 script:
-  - yarn jest --coverage --maxWorkers=15 && codecov
-after_success:
+  - yarn jest --coverage --maxWorkers=15
   - codecov
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t token
+  - bash <(curl -s https://codecov.io/bash)
