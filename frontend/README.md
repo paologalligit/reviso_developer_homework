@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/paologalligit/reviso_developer_homework.svg?token=5s8wP7aszQ7NbGhn4qdu&branch=master)](https://travis-ci.com/paologalligit/reviso_developer_homework)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
