@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/paologalligit/reviso_developer_homework/branch/master/graph/badge.svg?token=GnQ2L3YAKL)](https://codecov.io/gh/paologalligit/reviso_developer_homework)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
