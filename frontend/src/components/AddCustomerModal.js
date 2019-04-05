@@ -230,6 +230,7 @@ export default compose(
           onClose();
           resetForm({});
         } else {
+          console.log('the errors: ', errors)
           setErrors(normalizeErrors(errors));
         }
       } else {
