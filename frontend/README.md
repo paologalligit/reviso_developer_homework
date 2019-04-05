@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.com/paologalligit/reviso_developer_homework.svg?token=5s8wP7aszQ7NbGhn4qdu&branch=master)](https://travis-ci.com/paologalligit/reviso_developer_homework)
-
-[![codecov](https://codecov.io/gh/paologalligit/reviso_developer_homework/branch/master/graph/badge.svg?token=GnQ2L3YAKL)](https://codecov.io/gh/paologalligit/reviso_developer_homework)
+[![Build Status](https://travis-ci.com/paologalligit/reviso_developer_homework.svg?token=5s8wP7aszQ7NbGhn4qdu&branch=master)](https://travis-ci.com/paologalligit/reviso_developer_homework) [![codecov](https://codecov.io/gh/paologalligit/reviso_developer_homework/branch/master/graph/badge.svg?token=GnQ2L3YAKL)](https://codecov.io/gh/paologalligit/reviso_developer_homework)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
