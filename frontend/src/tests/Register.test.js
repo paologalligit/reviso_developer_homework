@@ -119,9 +119,41 @@ describe('register interaction', () => {
       },
     },
   ];
+  const wrongMockEmptyPostal = [
+    {
+      request: {
+        query: registerMutation,
+        variables: {
+          name: 'paolo',
+          surname: 'galli',
+          username: 'pgalli',
+          email: 'p.galli@email.com',
+          password: 'bobobo',
+          birthdate: '1991-12-31',
+          country: 'Italy',
+          city: 'Milan',
+          address: 'Via ciancichi, 98',
+          postal: -1,
+        },
+      },
+      result: {
+        data: {
+          registerUser: {
+            ok: false,
+            errors: [
+              {
+                path: 'postal',
+                message: 'Postal field required',
+              },
+            ],
+          },
+        },
+      },
+    },
+  ];
   const historyMock = { push: jest.fn(path => path) };
 
-  it('navigate to / with correct login', async () => {
+  it('navigate to / with correct registration', async () => {
     const wrapper = mount(
       <MockedProvider mocks={correctMockQuery} addTypename={false}>
         <Register history={historyMock} />
@@ -160,7 +192,7 @@ describe('register interaction', () => {
     expect(historyMock.push.mock.calls[0]).toEqual(['/']);
   });
 
-  it('login errors with wrong fields', async () => {
+  it('register errors with wrong fields', async () => {
     const wrapper = mount(
       <MockedProvider mocks={wrongMockQuery} addTypename={false}>
         <Register history={historyMock} />
@@ -195,9 +227,9 @@ describe('register interaction', () => {
 
     await waitForData();
 
-    const loginState = wrapper.find('Register').instance().state;
+    const registerState = wrapper.find('Register').instance().state;
     expect(historyMock.push).toHaveBeenCalledTimes(0);
-    expect(loginState).toEqual({
+    expect(registerState).toEqual({
       address: 'Via ciancichi, 98',
       birthdate: '1991-12-31',
       city: 'Milan',
@@ -209,6 +241,58 @@ describe('register interaction', () => {
       postal: 20100,
       surname: 'galli',
       username: 'pgalli',
+    });
+  });
+
+  it('register with empty string postal', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={wrongMockEmptyPostal} addTypename={false}>
+        <Register history={historyMock} />
+      </MockedProvider>,
+    );
+    expect(wrapper).toHaveLength(1);
+    const inputs = wrapper.find('Input');
+    const name = inputs.at(0).find('input');
+    const surname = inputs.at(1).find('input');
+    const username = inputs.at(2).find('input');
+    const email = inputs.at(3).find('input');
+    const password = inputs.at(4).find('input');
+    const birthdate = inputs.at(5).find('input');
+    const country = inputs.at(6).find('input');
+    const city = inputs.at(7).find('input');
+    const address = inputs.at(8).find('input');
+    const postal = inputs.at(9).find('input');
+    const button = wrapper.find('Button');
+
+    name.simulate('change', { target: { name: 'name', value: 'paolo' } });
+    surname.simulate('change', { target: { name: 'surname', value: 'galli' } });
+    username.simulate('change', { target: { name: 'username', value: 'pgalli' } });
+    email.simulate('change', { target: { name: 'email', value: 'p.galli@email.com' } });
+    password.simulate('change', { target: { name: 'password', value: 'bobobo' } });
+    birthdate.simulate('change', { target: { name: 'birthdate', value: '1991-12-31' } });
+    country.simulate('change', { target: { name: 'country', value: 'Italy' } });
+    city.simulate('change', { target: { name: 'city', value: 'Milan' } });
+    address.simulate('change', { target: { name: 'address', value: 'Via ciancichi, 98' } });
+    postal.simulate('change', { target: { name: 'postal', value: '' } });
+
+    button.simulate('click');
+
+    await waitForData();
+
+    const registerState = wrapper.find('Register').instance().state;
+    expect(historyMock.push).toHaveBeenCalledTimes(0);
+    expect(registerState).toEqual({
+      name: 'paolo',
+      surname: 'galli',
+      username: 'pgalli',
+      email: 'p.galli@email.com',
+      password: 'bobobo',
+      birthdate: '1991-12-31',
+      country: 'Italy',
+      city: 'Milan',
+      address: 'Via ciancichi, 98',
+      postal: '',
+      errors: { postalError: 'Postal field required' },
     });
   });
 });

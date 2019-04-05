@@ -7,6 +7,7 @@ import { MockedProvider } from 'react-apollo/test-utils';
 
 import Login from '../routes/Login';
 import loginMutation from '../graphql/mutation/user';
+import LocalStorageMock from './LocalStorageMock';
 
 const waitForData = () => new Promise(res => setTimeout(res, 100));
 
@@ -161,6 +162,8 @@ describe('login interaction', () => {
     },
   ];
   const historyMock = { push: jest.fn(path => path) };
+  const mockToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJuYW1lIjoiTG9yZW56byIsInN1cm5hbWUiOiJVcHBvbG8iLCJ1c2VybmFtZSI6InVwcG9sbyIsImVtYWlsIjoidXBwb0BlbWFpbC5jb20iLCJiaXJ0aGRhdGUiOiIyMDE5LTAxLTAxIiwiY291bnRyeSI6Ikl0YWx5IiwiY2l0eSI6IkZsb3JlbmNlIiwiYWRkcmVzcyI6InZpYSBjaWFvIiwicG9zdGFsIjoxMjAwfSwiaWF0IjoxNTU0MTI0NDA5LCJleHAiOjE1NTQxMjgwMDl9.ThE2zh4KoddORyNdU8nlJHi-IPTyJRgqZx23OMkV0xQ';
+  const mockRefToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozfSwiaWF0IjoxNTU0MTI0NDA5LCJleHAiOjE1NTQ3MjkyMDl9.xY0S9hL_olrC-dkn6HBUndUYVz-uYvigwF2q5jo_wNY';
 
   it('navigate to / with correct login', async () => {
     const wrapper = mount(
@@ -236,5 +239,19 @@ describe('login interaction', () => {
       password: 'wrongPass',
       errors: { emailError: 'Wrong email' },
     });
+  });
+
+  it('trys login if tokens are consistent', () => {
+    localStorage.setItem('token', mockToken);
+    localStorage.setItem('refreshToken', mockRefToken);
+
+    mount(
+      <MockedProvider mocks={wrongMockQuery} addTypename={false}>
+        <Login history={historyMock} />
+      </MockedProvider>,
+    );
+
+    expect(historyMock.push).toHaveBeenCalledTimes(1);
+    localStorage.clear();
   });
 });
