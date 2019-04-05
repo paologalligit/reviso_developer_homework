@@ -51,7 +51,25 @@ exports[`project list item suite renders correctly 1`] = `
       </div>
       <div
         class="column"
-      />
+      >
+        <div
+          class="ui segment"
+        >
+          <div
+            class="ui active transition visible dimmer"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="ui medium text loader"
+              >
+                Loading
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="row"

@@ -7,6 +7,11 @@ import { MockedProvider } from 'react-apollo/test-utils';
 
 import ProjectListItem from '../components/ProjectListItem';
 import { getCustomerById } from '../graphql/query/customer';
+// import sendInvoiceMutation from '../graphql/mutation/invoice';
+
+// TODO: test for update the data
+
+const waitForData = () => new Promise(res => setTimeout(res, 3000));
 
 describe('project list item suite', () => {
   it('renders correctly', () => {
@@ -19,7 +24,7 @@ describe('project list item suite', () => {
     expect(wrapper).toHaveLength(1);
   });
 });
-/*
+
 describe('pli interaction', () => {
   const mock = [
     {
@@ -30,13 +35,13 @@ describe('pli interaction', () => {
       result: {
         data: {
           getCustomer: {
-            name: 'Prova',
-            surname: 'Uno',
-            email: 'primo@email.com',
+            name: 'Gio',
+            surname: 'Fossile',
+            email: 'foss@email.com',
             country: 'Italy',
-            city: 'Cirili',
-            address: 'Via di qui, 98',
-            postal: 90998,
+            city: 'Milan',
+            address: 'Gross street',
+            postal: 9088,
             specialization: 'None',
             user_id: 1,
           },
@@ -44,10 +49,9 @@ describe('pli interaction', () => {
       },
     },
   ];
-
   it('cannot click button if invoice already sent', async () => {
     const wrapper = mount(
-      <MockedProvider mocks={mock}>
+      <MockedProvider mocks={mock} addTypename={false}>
         <ProjectListItem
           budget={1000}
           name="Test project"
@@ -62,8 +66,42 @@ describe('pli interaction', () => {
       </MockedProvider>,
     );
 
-    const button = wrapper.find('Button');
+
+    await waitForData();
+    wrapper.update();
+
+
+    const button = wrapper.find('Button').at(1);
     expect(button.instance().props.disabled).toBeTruthy();
   });
 });
+
+/*
+const mock = [
+    {
+      request: {
+        query: sendInvoiceMutation,
+        variables: {
+          id: 1,
+          sent: false,
+          user_id: 1,
+          customer_id: 1,
+        },
+      },
+      result: {
+        data: {
+          sentInvoice: {
+            ok: true,
+            collaboration: {
+              sent: true,
+              user_id: 1,
+              customer_id: 1,
+            },
+            errors: null,
+          },
+        },
+      },
+    },
+  ];
+
 */

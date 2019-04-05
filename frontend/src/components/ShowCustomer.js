@@ -1,20 +1,23 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { graphql } from 'react-apollo';
 import {
-  Button, Grid, Header, Modal,
+  Button, Dimmer, Grid, Header, Loader, Modal, Segment,
 } from 'semantic-ui-react';
 
-import { getCustomerById } from '../graphql/query/customer';
-
-const ShowCustomer = ({ data: { loading, getCustomer } }) => {
+const ShowCustomer = ({ loading, customer }) => {
   if (loading) {
-    return null;
+    return (
+      <Segment>
+        <Dimmer active>
+          <Loader size="medium">Loading</Loader>
+        </Dimmer>
+      </Segment>
+    );
   }
 
   const {
     name, surname, email, country, city, address, postal, specialization,
-  } = getCustomer;
+  } = customer;
 
   return (
     <Modal trigger={<Button basic loading={loading}>{`${name} ${surname}`}</Button>} size="large">
@@ -43,6 +46,4 @@ const ShowCustomer = ({ data: { loading, getCustomer } }) => {
   );
 };
 
-export default graphql(getCustomerById, {
-  options: ({ customerId }) => ({ variables: { id: customerId } }),
-})(ShowCustomer);
+export default ShowCustomer;

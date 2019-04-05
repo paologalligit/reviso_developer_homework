@@ -3,13 +3,14 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { Grid, List } from 'semantic-ui-react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 
 import fromMillisToDate from '../utils/convertingTools';
 import sendInvoiceMutation from '../graphql/mutation/invoice';
 import collaborationsQuery from '../graphql/query/collaboration';
 import SendInvoiceConfirmModal from '../containers/SendInvoiceConfirmModal';
 import ShowCustomer from './ShowCustomer';
+import { getCustomerById } from '../graphql/query/customer';
 
 class ProjectListItem extends Component {
   handleSendInvoice = async () => {
@@ -32,7 +33,15 @@ class ProjectListItem extends Component {
 
   render() {
     const {
-      budget, name, vat, penalty, date, startHour, endHour, sent, customerId,
+      budget,
+      name,
+      vat,
+      penalty,
+      date,
+      startHour,
+      endHour,
+      sent,
+      data: { loading, getCustomer },
     } = this.props;
 
     return (
@@ -50,7 +59,7 @@ class ProjectListItem extends Component {
             <Grid.Column>{`Start hour: ${startHour}`}</Grid.Column>
             <Grid.Column>{`End hour: ${endHour}`}</Grid.Column>
             <Grid.Column>
-              <ShowCustomer customerId={customerId} />
+              <ShowCustomer customer={getCustomer} loading={loading} />
             </Grid.Column>
           </Grid.Row>
 
@@ -67,37 +76,42 @@ class ProjectListItem extends Component {
   }
 }
 
-export default graphql(sendInvoiceMutation, {
-  options: ({ id, userId, customerId }) => ({
-    variables: { id, user_id: userId, customer_id: customerId },
-    update: (store, { data: { sentInvoice } }) => {
-      const { ok, collaboration } = sentInvoice;
+export default compose(
+  graphql(sendInvoiceMutation, {
+    options: ({ id, userId, customerId }) => ({
+      variables: { id, user_id: userId, customer_id: customerId },
+      update: (store, { data: { sentInvoice } }) => {
+        const { ok, collaboration } = sentInvoice;
 
-      if (ok) {
-        const data = store.readQuery({
-          query: collaborationsQuery,
-          variables: {
-            user_id: collaboration.user_id,
-            customer_id: collaboration.customer_id,
-          },
-        });
+        if (ok) {
+          const data = store.readQuery({
+            query: collaborationsQuery,
+            variables: {
+              user_id: collaboration.user_id,
+              customer_id: collaboration.customer_id,
+            },
+          });
 
-        data.filteredCollaborations.forEach((c) => {
-          if (c.id === collaboration.id) {
-            c.sent = true;
-          }
-        });
+          data.filteredCollaborations.forEach((c) => {
+            if (c.id === collaboration.id) {
+              c.sent = true;
+            }
+          });
 
-        store.writeQuery({
-          query: collaborationsQuery,
-          variables: {
-            id: collaboration.id,
-            user_id: collaboration.user_id,
-            customer_id: collaboration.customer_id,
-          },
-          data,
-        });
-      }
-    },
+          store.writeQuery({
+            query: collaborationsQuery,
+            variables: {
+              id: collaboration.id,
+              user_id: collaboration.user_id,
+              customer_id: collaboration.customer_id,
+            },
+            data,
+          });
+        }
+      },
+    }),
   }),
-})(ProjectListItem);
+  graphql(getCustomerById, {
+    options: ({ customerId }) => ({ variables: { id: customerId } }),
+  }),
+)(ProjectListItem);
