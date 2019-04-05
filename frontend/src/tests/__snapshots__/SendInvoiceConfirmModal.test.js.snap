@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`project list item suite renders correctly 1`] = `
+<div>
+  <button
+    class="ui primary button"
+  />
+</div>
+`;

@@ -49,6 +49,7 @@ describe('pli interaction', () => {
       },
     },
   ];
+
   it('cannot click button if invoice already sent', async () => {
     const wrapper = mount(
       <MockedProvider mocks={mock} addTypename={false}>
@@ -66,10 +67,8 @@ describe('pli interaction', () => {
       </MockedProvider>,
     );
 
-
     await waitForData();
     wrapper.update();
-
 
     const button = wrapper.find('Button').at(1);
     expect(button.instance().props.disabled).toBeTruthy();
