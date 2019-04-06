@@ -16,8 +16,14 @@ class ProjectListItem extends Component {
   handleSendInvoice = async () => {
     let response;
     try {
+      const { id, userId, customerId } = this.props;
       response = await this.props.mutate({
-        variables: { sent: true },
+        variables: {
+          id,
+          sent: true,
+          user_id: userId,
+          customer_id: customerId,
+        },
       });
     } catch (err) {
       console.log('the error: ', err);
@@ -84,29 +90,34 @@ export default compose(
         const { ok, collaboration } = sentInvoice;
 
         if (ok) {
-          const data = store.readQuery({
-            query: collaborationsQuery,
-            variables: {
-              user_id: collaboration.user_id,
-              customer_id: collaboration.customer_id,
-            },
-          });
+          try {
+            const data = store.readQuery({
+              query: collaborationsQuery,
+              variables: {
+                user_id: collaboration.user_id,
+                customer_id: collaboration.customer_id,
+              },
+            });
 
-          data.filteredCollaborations.forEach((c) => {
-            if (c.id === collaboration.id) {
-              c.sent = true;
-            }
-          });
+            console.log('the data: ', data);
+            data.filteredCollaborations.forEach((c) => {
+              if (c.id === collaboration.id) {
+                c.sent = true;
+              }
+            });
 
-          store.writeQuery({
-            query: collaborationsQuery,
-            variables: {
-              id: collaboration.id,
-              user_id: collaboration.user_id,
-              customer_id: collaboration.customer_id,
-            },
-            data,
-          });
+            store.writeQuery({
+              query: collaborationsQuery,
+              variables: {
+                id: collaboration.id,
+                user_id: collaboration.user_id,
+                customer_id: collaboration.customer_id,
+              },
+              data,
+            });
+          } catch (err) {
+            console.log('the error: ', err);
+          }
         }
       },
     }),
