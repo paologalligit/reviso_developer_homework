@@ -8,6 +8,7 @@ import { MockedProvider } from 'react-apollo/test-utils';
 import ProjectListItem from '../components/ProjectListItem';
 import { getCustomerById } from '../graphql/query/customer';
 import sendInvoiceMutation from '../graphql/mutation/invoice';
+// import collaborationsQuery from '../graphql/query/collaboration';
 
 // TODO: test for update the data
 
@@ -51,6 +52,7 @@ describe('pli interaction', () => {
   ];
 
   const mockInvoice = [
+    // customer query
     {
       request: {
         query: getCustomerById,
@@ -72,12 +74,12 @@ describe('pli interaction', () => {
         },
       },
     },
+    // send query
     {
       request: {
         query: sendInvoiceMutation,
         variables: {
           id: 1,
-          sent: false,
           user_id: 1,
           customer_id: 1,
         },
@@ -87,11 +89,62 @@ describe('pli interaction', () => {
           sentInvoice: {
             ok: true,
             collaboration: {
+              id: 1,
               sent: true,
               user_id: 1,
               customer_id: 1,
             },
             errors: null,
+          },
+        },
+      },
+    },
+  ];
+
+  const mockAlreadySentInvoice = [
+    // customer query
+    {
+      request: {
+        query: getCustomerById,
+        variables: { id: 1 },
+      },
+      result: {
+        data: {
+          getCustomer: {
+            name: 'Gio',
+            surname: 'Fossile',
+            email: 'foss@email.com',
+            country: 'Italy',
+            city: 'Milan',
+            address: 'Gross street',
+            postal: 9088,
+            specialization: 'None',
+            user_id: 1,
+          },
+        },
+      },
+    },
+    // error on already sent invoice query
+    {
+      request: {
+        query: sendInvoiceMutation,
+        variables: {
+          id: 1,
+          user_id: 1,
+          customer_id: 1,
+        },
+      },
+      result: {
+        data: {
+          sentInvoice: {
+            ok: false,
+            collaboration: null,
+            errors: [
+              {
+                path: 'Sent invoice',
+                message: 'Invoice already sent',
+              },
+            ],
           },
         },
       },
@@ -122,11 +175,11 @@ describe('pli interaction', () => {
     expect(button.instance().props.disabled).toBeTruthy();
   });
 
-  /*
-  it('button experiment', async () => {
+  it('marking invoice as sent', async () => {
     const wrapper = mount(
       <MockedProvider mocks={mockInvoice} addTypename={false}>
         <ProjectListItem
+          id={1}
           budget={1000}
           name="Test project"
           vat={100}
@@ -136,6 +189,7 @@ describe('pli interaction', () => {
           endHour="10:30:00"
           sent={false}
           customerId={1}
+          userId={1}
         />
       </MockedProvider>,
     );
@@ -143,28 +197,53 @@ describe('pli interaction', () => {
     await waitForData();
     wrapper.update();
 
-    // const handleSendInvoice = wrapper.find('');
-    // console.log(wrapper.find('Button').debug());
-    // console.log(wrapper.debug());
+    const projectListItem = wrapper.find('ProjectListItem');
 
-    const button = wrapper.find('Button').at(1);
-    expect(button.instance().props.disabled).toBeFalsy();
-    button.simulate('click');
+    const { handleSendInvoice } = projectListItem.instance();
+    const response = await handleSendInvoice();
 
-    await waitForData();
-    wrapper.update();
-
-    // console.log(wrapper.find('Button').debug());
-    const confirmButton = wrapper.find('Button').at(3);
-    confirmButton.simulate('click');
-
-    await waitForData();
-    wrapper.update();
-
-    // console.log(confirmButton.debug());
-    expect(button.instance().props.disabled).toBeTruthy();
+    expect(response).toEqual({
+      collaboration: {
+        customer_id: 1, id: 1, sent: true, user_id: 1,
+      },
+      errors: null,
+      ok: true,
+    });
   });
-  */
+
+  it('cannot mark an already sent invoice as sent', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={mockAlreadySentInvoice} addTypename={false}>
+        <ProjectListItem
+          id={1}
+          budget={1000}
+          name="Test project"
+          vat={100}
+          penalty={120}
+          date="2019-01-01"
+          startHour="09:30:00"
+          endHour="10:30:00"
+          sent
+          customerId={1}
+          userId={1}
+        />
+      </MockedProvider>,
+    );
+
+    await waitForData();
+    wrapper.update();
+
+    const projectListItem = wrapper.find('ProjectListItem');
+
+    const { handleSendInvoice } = projectListItem.instance();
+    const response = await handleSendInvoice();
+
+    expect(response).toEqual({
+      collaboration: null,
+      errors: [{ message: 'Invoice already sent', path: 'Sent invoice' }],
+      ok: false,
+    });
+  });
 });
 
 /*
@@ -194,5 +273,35 @@ const mock = [
       },
     },
   ];
+
+  // collaboration query
+    {
+      request: {
+        query: collaborationsQuery,
+        variables: {
+          user_id: 1,
+          customer_id: 1,
+        },
+      },
+      result: {
+        data: {
+          filteredCollaborations: [
+            {
+              id: 1,
+              name: 'Vediamo un po',
+              budget: 9999,
+              vat: 9,
+              penalty: '9',
+              date: '1554126667489',
+              start_hour: '15:51:07',
+              end_hour: '15:51:07',
+              user_id: 3,
+              customer_id: 4,
+              sent: false,
+            },
+          ],
+        },
+      },
+    },
 
 */

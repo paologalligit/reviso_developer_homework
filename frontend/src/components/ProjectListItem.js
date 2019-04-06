@@ -20,7 +20,6 @@ class ProjectListItem extends Component {
       response = await this.props.mutate({
         variables: {
           id,
-          sent: true,
           user_id: userId,
           customer_id: customerId,
         },
@@ -29,12 +28,9 @@ class ProjectListItem extends Component {
       console.log('the error: ', err);
     }
 
-    const { ok, collaboration, errors } = response.data.sentInvoice;
-
-    if (ok) {
-      return { collaboration };
-    }
-    return { errors };
+    const { sentInvoice } = response.data;
+    
+    return sentInvoice;
   };
 
   render() {
@@ -94,12 +90,12 @@ export default compose(
             const data = store.readQuery({
               query: collaborationsQuery,
               variables: {
+                id,
                 user_id: collaboration.user_id,
                 customer_id: collaboration.customer_id,
               },
             });
 
-            console.log('the data: ', data);
             data.filteredCollaborations.forEach((c) => {
               if (c.id === collaboration.id) {
                 c.sent = true;
