@@ -29,7 +29,7 @@ class ProjectListItem extends Component {
     }
 
     const { sentInvoice } = response.data;
-    
+
     return sentInvoice;
   };
 
@@ -82,7 +82,7 @@ export default compose(
   graphql(sendInvoiceMutation, {
     options: ({ id, userId, customerId }) => ({
       variables: { id, user_id: userId, customer_id: customerId },
-      update: (store, { data: { sentInvoice } }) => {
+      /* update: (store, { data: { sentInvoice } }) => {
         const { ok, collaboration } = sentInvoice;
 
         if (ok) {
@@ -115,7 +115,7 @@ export default compose(
             console.log('the error: ', err);
           }
         }
-      },
+    }, */
     }),
   }),
   graphql(getCustomerById, {
