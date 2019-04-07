@@ -82,40 +82,6 @@ export default compose(
   graphql(sendInvoiceMutation, {
     options: ({ id, userId, customerId }) => ({
       variables: { id, user_id: userId, customer_id: customerId },
-      /* update: (store, { data: { sentInvoice } }) => {
-        const { ok, collaboration } = sentInvoice;
-
-        if (ok) {
-          try {
-            const data = store.readQuery({
-              query: collaborationsQuery,
-              variables: {
-                id,
-                user_id: collaboration.user_id,
-                customer_id: collaboration.customer_id,
-              },
-            });
-
-            data.filteredCollaborations.forEach((c) => {
-              if (c.id === collaboration.id) {
-                c.sent = true;
-              }
-            });
-
-            store.writeQuery({
-              query: collaborationsQuery,
-              variables: {
-                id: collaboration.id,
-                user_id: collaboration.user_id,
-                customer_id: collaboration.customer_id,
-              },
-              data,
-            });
-          } catch (err) {
-            console.log('the error: ', err);
-          }
-        }
-    }, */
     }),
   }),
   graphql(getCustomerById, {

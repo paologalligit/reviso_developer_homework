@@ -16,10 +16,6 @@ class CreateCustomer extends Component {
   }
 
   toggleAddCustomerModal = () => {
-    // if (e) {
-    //   e.preventDefault();
-    // }
-
     this.setState(state => ({ openAddCustomerModal: !state.openAddCustomerModal }));
   };
 
