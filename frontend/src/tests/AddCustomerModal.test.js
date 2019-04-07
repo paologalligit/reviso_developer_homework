@@ -106,4 +106,19 @@ describe('add customer modal interaction', () => {
 
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });
+
+  it('closes form correctly if clicked outside the form or esc', () => {
+    const wrapper = mount(
+      <MockedProvider mocks={correctMock} addTypename={false}>
+        <AddCustomerModal open onClose={onCloseMock} />
+      </MockedProvider>,
+    );
+
+    const modal = wrapper.find('Modal');
+
+    const { onClose } = modal.instance().props;
+    onClose();
+
+    expect(onCloseMock).toHaveBeenCalledTimes(1);
+  });
 });
