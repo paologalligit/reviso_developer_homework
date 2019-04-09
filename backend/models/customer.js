@@ -8,7 +8,7 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid name'
+            msg: 'Invalid name',
           },
         },
       },
@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid surname'
+            msg: 'Invalid surname',
           },
         },
       },
@@ -28,9 +28,9 @@ export default (sequelize, DataTypes) => {
         validate: {
           isAlpha: {
             args: true,
-            msg: 'Invalid country'
-          }
-        }
+            msg: 'Invalid country',
+          },
+        },
       },
       email: {
         type: DataTypes.STRING,
@@ -58,18 +58,33 @@ export default (sequelize, DataTypes) => {
       address: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNegative(value) {
+            if (value === '') {
+              throw new Error('Address required');
+            }
+          },
+        },
       },
       postal: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNegative(value) {
+            if (value < 0) {
+              throw new Error('Postal number required');
+            }
+          },
+        },
       },
     },
     {
-      indexes: [{
-        unique: true,
-        fields: ['email', 'user_id'],
-      }]
-
+      indexes: [
+        {
+          unique: true,
+          fields: ['email', 'user_id'],
+        },
+      ],
     },
   );
 
