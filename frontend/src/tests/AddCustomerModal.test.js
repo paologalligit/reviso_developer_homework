@@ -178,7 +178,11 @@ describe('add customer modal interaction', () => {
     button.simulate('click');
 
     await waitForData();
+    wrapper.update();
 
+    const { errors } = wrapper.find('AddCustomerModal').props();
+    
     expect(onCloseMock).toHaveBeenCalledTimes(0);
+    expect(errors).toEqual({ postal: ['Postal number required'] });
   });
 });
