@@ -58,6 +58,34 @@ describe('add customer modal interaction', () => {
       },
     },
   ];
+  const wrongMock = [
+    {
+      request: {
+        query: createCustomerMutation,
+        variables: {
+          name: 'Gio',
+          surname: 'Polpo',
+          country: 'Test',
+          email: 'test@email.com',
+          city: 'Testino',
+          specialization: 'None',
+          address: 'Test Street',
+          postal: -1,
+          user_id: 1,
+        },
+      },
+      result: {
+        data: {
+          registerCustomer: {
+            ok: false,
+            customer: null,
+            errors: [{ path: 'postal', message: 'Postal number required' }],
+          },
+        },
+      },
+    },
+  ];
+
   const onCloseMock = jest.fn();
 
   it('register a new customer', async () => {
@@ -120,5 +148,37 @@ describe('add customer modal interaction', () => {
     onClose();
 
     expect(onCloseMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('try to register a new customer with invalid postal', async () => {
+    const wrapper = mount(
+      <MockedProvider mocks={wrongMock} addTypename={false}>
+        <AddCustomerModal
+          open
+          onClose={onCloseMock}
+          userId={1}
+          name="Gio"
+          surname="Polpo"
+          country="Test"
+          email="test@email.com"
+          city="Testino"
+          specialization="None"
+          address="Test Street"
+          postal="wrong"
+        />
+      </MockedProvider>,
+    );
+    console.error = jest.fn();
+
+    const modal = wrapper.find('Modal');
+
+    const button = modal.find('Button').at(1);
+
+    expect(onCloseMock).toHaveBeenCalledTimes(0);
+    button.simulate('click');
+
+    await waitForData();
+
+    expect(onCloseMock).toHaveBeenCalledTimes(0);
   });
 });
