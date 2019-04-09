@@ -153,16 +153,26 @@ const AddCustomerModal = ({
 export default compose(
   graphql(createCustomerMutation),
   withFormik({
-    mapPropsToValues: ({ userId }) => ({
+    mapPropsToValues: ({
       userId,
-      name: '',
-      surname: '',
-      country: '',
-      email: '',
-      city: '',
-      specialization: '',
-      address: '',
-      postal: '',
+      name,
+      surname,
+      country,
+      email,
+      city,
+      specialization,
+      address,
+      postal,
+    }) => ({
+      userId,
+      name: name || '',
+      surname: surname || '',
+      country: country || '',
+      email: email || '',
+      city: city || '',
+      specialization: specialization || '',
+      address: address || '',
+      postal: postal || '',
     }),
     handleSubmit: async (
       values,
@@ -170,7 +180,8 @@ export default compose(
         props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm,
       },
     ) => {
-      if (isDecimal(values.postal)) {
+      if (Number.isInteger(values.postal) || isDecimal(values.postal)) {
+        // console.log('the values: ', values);
         const response = await mutate({
           variables: {
             name: values.name,
@@ -230,6 +241,7 @@ export default compose(
           onClose();
           resetForm({});
         } else {
+          console.log('the errors: ', errors);
           setErrors(normalizeErrors(errors));
         }
       } else {

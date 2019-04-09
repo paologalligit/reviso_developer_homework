@@ -6,9 +6,6 @@ import { mount, shallow } from 'enzyme';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import ShowCustomer from '../components/ShowCustomer';
-import { getCustomerById } from '../graphql/query/customer';
-
-const waitForData = () => new Promise(res => setTimeout(res, 100));
 
 describe('show customer renders', () => {
   it('renders correctly', () => {
@@ -23,46 +20,47 @@ describe('show customer renders', () => {
 });
 
 describe('show customer interaction', () => {
-  const mock = [
-    {
-      request: {
-        query: getCustomerById,
-        variables: { id: 1 },
-      },
-      result: {
-        data: {
-          getCustomer: {
-            name: 'Prova',
-            surname: 'Uno',
-            email: 'primo@email.com',
-            country: 'Italy',
-            city: 'Cirili',
-            address: 'Via di qui, 98',
-            postal: 90998,
-            specialization: 'None',
-            user_id: 1,
-          },
-        },
-      },
-    },
-  ];
+  const mockCustomer = {
+    name: 'Prova',
+    surname: 'Uno',
+    email: 'primo@email.com',
+    country: 'Italy',
+    city: 'Cirili',
+    address: 'Via di qui, 98',
+    postal: 90998,
+    specialization: 'None',
+    user_id: 1,
+  };
 
-  it('to be fixed', async () => {
+  it('shows loading state if waiting data', () => {
     const wrapper = mount(
-      <MockedProvider mocks={mock} addTypename={false}>
-        <ShowCustomer customerId={1} />
+      <MockedProvider mocks={[]} addTypename={false}>
+        <ShowCustomer customer={mockCustomer} loading />
       </MockedProvider>,
     );
 
-    await waitForData();
-    wrapper.update();
+    const showCustomer = wrapper.find('ShowCustomer');
+
+    const data = showCustomer.props();
+    const loader = showCustomer.find('Loader');
+
+    expect(data.loading).toBeTruthy();
+    expect(loader).toHaveLength(1);
+  });
+
+  it("shows customer's infos correctly", () => {
+    const wrapper = mount(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <ShowCustomer customer={mockCustomer} loading={false} />
+      </MockedProvider>,
+    );
 
     const showCustomer = wrapper.find('ShowCustomer');
 
     const data = showCustomer.props();
 
-    expect(data.data.loading).toBeFalsy();
-    expect(data.data.getCustomer).toEqual({
+    expect(data.loading).toBeFalsy();
+    expect(data.customer).toEqual({
       name: 'Prova',
       surname: 'Uno',
       email: 'primo@email.com',

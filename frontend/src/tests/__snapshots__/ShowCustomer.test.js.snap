@@ -132,6 +132,6 @@ exports[`show customer renders renders correctly 1`] = `
     }
   }
 >
-  <Apollo(ShowCustomer) />
+  <ShowCustomer />
 </ApolloProvider>
 `;

@@ -17,8 +17,8 @@ describe('renders create customer', () => {
   });
 });
 
-describe('open and close modal', () => {
-  it('', () => {
+describe('open and close create customer modal', () => {
+  it('opens anc closes the modal correctly', () => {
     const wrapper = mount(
       <MockedProvider mocks={[]}>
         <CreateCustomer />

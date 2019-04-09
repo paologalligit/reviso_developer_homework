@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation($id: Int!, $sent: Boolean!, $user_id: Int!, $customer_id: Int!) {
-    sentInvoice(id: $id, sent: $sent, user_id: $user_id, customer_id: $customer_id) {
+  mutation($id: Int!, $user_id: Int!, $customer_id: Int!) {
+    sentInvoice(id: $id, user_id: $user_id, customer_id: $customer_id) {
       ok
       collaboration {
         id
