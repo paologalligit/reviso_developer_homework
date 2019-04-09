@@ -180,74 +180,71 @@ export default compose(
         props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm,
       },
     ) => {
-      if (Number.isInteger(values.postal) || isDecimal(values.postal)) {
-        // console.log('the values: ', values);
-        const response = await mutate({
-          variables: {
-            name: values.name,
-            surname: values.surname,
-            country: values.country,
-            email: values.email,
-            city: values.city,
-            specialization: values.specialization,
-            address: values.address,
-            postal: parseInt(values.postal, 10),
-            user_id: userId,
-          },
-          optimisticResponse: {
+      // console.log('the values: ', values);
+      const response = await mutate({
+        variables: {
+          name: values.name,
+          surname: values.surname,
+          country: values.country,
+          email: values.email,
+          city: values.city,
+          specialization: values.specialization,
+          address: values.address,
+          postal:
+            Number.isInteger(values.postal) || isDecimal(values.postal)
+              ? parseInt(values.postal, 10)
+              : -1,
+          user_id: userId,
+        },
+        optimisticResponse: {
+          __typename: 'Mutation',
+          registerCustomer: {
             __typename: 'Mutation',
-            registerCustomer: {
-              __typename: 'Mutation',
-              ok: true,
-              errors: null,
-              customer: {
-                __typename: 'RegisterCustomer',
-                id: -1,
-                name: values.name,
-                surname: values.surname,
-                country: values.country,
-                email: values.email,
-                city: values.city,
-                specialization: values.specialization,
-                address: values.address,
-                postal: parseInt(values.postal, 10),
-                user_id: userId,
-              },
+            ok: true,
+            errors: null,
+            customer: {
+              __typename: 'RegisterCustomer',
+              id: -1,
+              name: values.name,
+              surname: values.surname,
+              country: values.country,
+              email: values.email,
+              city: values.city,
+              specialization: values.specialization,
+              address: values.address,
+              postal: parseInt(values.postal, 10),
+              user_id: userId,
             },
           },
-          update: (store, { data: { registerCustomer } }) => {
-            const { ok, customer } = registerCustomer;
-            if (!ok) {
-              return;
-            }
+        },
+        update: (store, { data: { registerCustomer } }) => {
+          const { ok, customer } = registerCustomer;
+          if (!ok) {
+            return;
+          }
 
-            const data = store.readQuery({
-              query: getCustomersPerUser,
-              variables: { user_id: values.userId },
-            });
+          const data = store.readQuery({
+            query: getCustomersPerUser,
+            variables: { user_id: values.userId },
+          });
 
-            data.getCustomersPerUser.push(customer);
+          data.getCustomersPerUser.push(customer);
 
-            store.writeQuery({
-              query: getCustomersPerUser,
-              variables: { user_id: values.userId },
-              data,
-            });
-          },
-        });
+          store.writeQuery({
+            query: getCustomersPerUser,
+            variables: { user_id: values.userId },
+            data,
+          });
+        },
+      });
 
-        const { ok, errors } = response.data.registerCustomer;
-        if (ok) {
-          onClose();
-          resetForm({});
-        } else {
-          console.log('the errors: ', errors);
-          setErrors(normalizeErrors(errors));
-        }
+      const { ok, errors } = response.data.registerCustomer;
+      if (ok) {
+        onClose();
+        resetForm({});
       } else {
-        setErrors({
-          postal: ['Postal number required'],
-        });
+        console.log('the errors: ', errors);
+        setErrors(normalizeErrors(errors));
       }
       setSubmitting(false);
     },
