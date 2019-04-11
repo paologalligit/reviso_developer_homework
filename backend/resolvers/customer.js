@@ -11,6 +11,7 @@ export default {
     registerCustomer: requiresAuth.createResolver(async (parent, args, { models }) => {
       try {
         const customer = await models.Customer.create(args);
+        console.log('the customer: ', customer);
 
         return {
           ok: true,

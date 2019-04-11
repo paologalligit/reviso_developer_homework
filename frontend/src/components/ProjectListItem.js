@@ -14,19 +14,14 @@ import { getCustomerById } from '../graphql/query/customer';
 
 class ProjectListItem extends Component {
   handleSendInvoice = async () => {
-    let response;
-    try {
-      const { id, userId, customerId } = this.props;
-      response = await this.props.mutate({
-        variables: {
-          id,
-          user_id: userId,
-          customer_id: customerId,
-        },
-      });
-    } catch (err) {
-      console.log('the error: ', err);
-    }
+    const { id, userId, customerId } = this.props;
+    const response = await this.props.mutate({
+      variables: {
+        id,
+        user_id: userId,
+        customer_id: customerId,
+      },
+    });
 
     const { sentInvoice } = response.data;
 

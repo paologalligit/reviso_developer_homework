@@ -41,7 +41,7 @@ export default {
         console.log('start: ', start_hour, ' and end: ', end_hour);
         if (start_hour > end_hour) {
           throw new HoursConstraintError({
-            path: 'Register work',
+            path: 'registerWork',
             message: 'Start hour cannot be greater than end hour',
             fields: [start_hour, end_hour],
           });

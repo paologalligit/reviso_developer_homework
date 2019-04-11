@@ -292,10 +292,7 @@ describe('collaboration resolvers', () => {
 
     expect(ok).toBeFalsy();
     expect(errors).toEqual([
-      {
-        path: 'Register work',
-        message: 'Start hour cannot be greater than end hour',
-      },
+      { message: 'Start hour cannot be greater than end hour', path: 'registerWork' },
     ]);
     expect(collaboration).toBeNull();
   });

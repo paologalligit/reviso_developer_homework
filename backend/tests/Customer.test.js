@@ -4,7 +4,7 @@ const axios = require('axios');
 const server = 'http://localhost:8080/graphql';
 
 describe('customer resolvers', () => {
-  test('allCustomers on empty db', async () => {
+  test('allCustomers on db populated only with user.test', async () => {
     const response = await axios.post(server, {
       query: `
         query {
@@ -33,8 +33,8 @@ describe('customer resolvers', () => {
     await axios.post(server, {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "BigC",
-            email: "cibig@email.com", birthdate: "2000-12-31", country: "Italy", 
+          registerUser(name: "Claudio", surname: "Lippi", username: "BigC2",
+            email: "ci112@email.com", birthdate: "2000-12-31", country: "Italy", 
               password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
               ok
               errors {
@@ -63,14 +63,7 @@ describe('customer resolvers', () => {
     });
 
     const { data } = response;
-    expect(data).toMatchObject({
-      data: {
-        registerCustomer: {
-          ok: true,
-          errors: null,
-        },
-      },
-    });
+    expect(data).toMatchObject({ data: { registerCustomer: { errors: null, ok: true } } });
   });
 
   test('error on create already existing customer', async () => {
@@ -115,8 +108,8 @@ describe('customer resolvers', () => {
     await axios.post(server, {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "BigC2",
-            email: "cibig2@email.com", birthdate: "2000-12-31", country: "Italy", 
+          registerUser(name: "Claudio", surname: "Lippi", username: "BigC3",
+            email: "ci1174@email.com", birthdate: "2000-12-31", country: "Italy", 
               password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
               ok
               errors {
@@ -133,7 +126,7 @@ describe('customer resolvers', () => {
         mutation {
           registerCustomer(name: "Giorgio", surname: "Armani",
             email: "gio@email.com", country: "Italy", city: "Milan", 
-              address: "Via Dei Rognosi", postal: 20100, user_id: 2, specialization: "Plumber") {
+              address: "Via Dei Rognosi", postal: 20100, user_id: 4, specialization: "Plumber") {
               ok
               errors {
                 path
@@ -240,7 +233,7 @@ describe('customer resolvers', () => {
             email: 'gio@email.com',
             country: 'Italy',
             city: 'Milan',
-            user_id: 2,
+            user_id: 4,
           },
           {
             name: 'Giorgio',

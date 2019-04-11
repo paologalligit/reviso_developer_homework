@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node --presets env index.js",
-    "test": "jest",
+    "test-in-order": "jest -t \"user resolvers\" && jest -t \"customer resolvers\" && jest -t \"collaboration resolvers\"",
     "test-server": "./clear_test_db.sh && TEST_DB=testfreelancerdb nodemon --exec babel-node --presets env index.js"
   },
   "keywords": [],
