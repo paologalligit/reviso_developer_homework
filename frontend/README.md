@@ -3,6 +3,7 @@
 # Instructions for the frontend
 
 # Starting the client
+- `cd frontend/`
 - `yarn start` or `npm start` (*the client starts at port 3000*)
 
 # Running the tests
