@@ -42,6 +42,7 @@ class RegisterWork extends Component {
     } else {
       newVat = vat;
     }
+    console.log('the name: ', name, ' and the value: ', value);
     this.setState({ [name]: value, vat: newVat });
   };
 
@@ -87,7 +88,7 @@ class RegisterWork extends Component {
         this.isSubmitting = false;
         this.props.navigator.go('/');
       } else {
-        // console.log('something went terribly wrong: ', errors);
+        console.log('something went terribly wrong: ', errors);
         const err = {};
         errors.forEach(({ path, message }) => {
           err[`${path}Error`] = message;
@@ -99,12 +100,9 @@ class RegisterWork extends Component {
         });
       }
     } catch (err) {
-      console.log('again');
       this.setState({ isSubmitting: true });
     }
   };
-
-  recomputeBudget = () => {};
 
   handleVatChange = (e, data) => {
     const { value } = data;
@@ -135,9 +133,12 @@ class RegisterWork extends Component {
       dateError,
       start_hourError,
       end_hourError,
+      registerWorkError,
     } = errors;
 
     const { id } = this.props.user;
+
+    console.log('errors: ', errors);
 
     return (
       <Grid>
@@ -221,19 +222,20 @@ class RegisterWork extends Component {
 
         <Grid.Row columns={3}>
           <Grid.Column>
-            <DatePicker value={date} onChange={e => (this.date = e)} />
+            <DatePicker value={date} onChange={e => this.setState({ date: e })} />
             {isSubmitting && dateError ? dateError : null}
           </Grid.Column>
 
           <Grid.Column>
-            <TimePicker value={startHour} onChange={e => (this.startHour = e)} />
+            <TimePicker value={startHour} onChange={e => this.setState({ startHour: e })} />
             {isSubmitting && start_hourError ? start_hourError : null}
+            {isSubmitting && registerWorkError ? registerWorkError : null}
           </Grid.Column>
 
           <Grid.Column>
             <TimePicker
               value={endHour}
-              onChange={e => (this.endHour = e)}
+              onChange={e => this.setState({ endHour: e })}
               minTime={this.setMinTime()}
             />
             {isSubmitting && end_hourError ? end_hourError : null}
