@@ -227,5 +227,15 @@ exports[`register renders matches snapshot 1`] = `
       </div>
     </div>
   </form>
+  <div
+    class="ui message"
+  >
+    Already registered? 
+    <a
+      href="/login"
+    >
+      Sign In
+    </a>
+  </div>
 </div>
 `;
