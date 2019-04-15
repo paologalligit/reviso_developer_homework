@@ -140,8 +140,6 @@ class RegisterWork extends Component {
 
     const { id } = this.props.user;
 
-    console.log('errors: ', errors);
-
     return (
       <Grid>
         <Grid.Row columns={1}>
@@ -175,8 +173,7 @@ class RegisterWork extends Component {
               <Input
                 name="vat"
                 value={vat}
-                placeholder="Vat"
-                onChange={this.onChange}
+                disabled
                 fluid
                 error={!!vatError}
               />
