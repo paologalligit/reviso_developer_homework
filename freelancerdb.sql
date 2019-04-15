@@ -34,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: collaborations; Type: TABLE; Schema: public; Owner: paologio
+-- Name: collaborations; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.collaborations (
@@ -57,10 +57,10 @@ CREATE TABLE public.collaborations (
 );
 
 
-ALTER TABLE public.collaborations OWNER TO paologio;
+ALTER TABLE public.collaborations OWNER TO postgres;
 
 --
--- Name: collaborations_id_seq; Type: SEQUENCE; Schema: public; Owner: paologio
+-- Name: collaborations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.collaborations_id_seq
@@ -71,17 +71,17 @@ CREATE SEQUENCE public.collaborations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.collaborations_id_seq OWNER TO paologio;
+ALTER TABLE public.collaborations_id_seq OWNER TO postgres;
 
 --
--- Name: collaborations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: paologio
+-- Name: collaborations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.collaborations_id_seq OWNED BY public.collaborations.id;
 
 
 --
--- Name: customers; Type: TABLE; Schema: public; Owner: paologio
+-- Name: customers; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.customers (
@@ -100,10 +100,10 @@ CREATE TABLE public.customers (
 );
 
 
-ALTER TABLE public.customers OWNER TO paologio;
+ALTER TABLE public.customers OWNER TO postgres;
 
 --
--- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: paologio
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.customers_id_seq
@@ -114,17 +114,17 @@ CREATE SEQUENCE public.customers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.customers_id_seq OWNER TO paologio;
+ALTER TABLE public.customers_id_seq OWNER TO postgres;
 
 --
--- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: paologio
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: paologio
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
@@ -144,10 +144,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO paologio;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: paologio
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -158,38 +158,38 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO paologio;
+ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: paologio
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: collaborations id; Type: DEFAULT; Schema: public; Owner: paologio
+-- Name: collaborations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.collaborations ALTER COLUMN id SET DEFAULT nextval('public.collaborations_id_seq'::regclass);
 
 
 --
--- Name: customers id; Type: DEFAULT; Schema: public; Owner: paologio
+-- Name: customers id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: paologio
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: collaborations; Type: TABLE DATA; Schema: public; Owner: paologio
+-- Data for Name: collaborations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.collaborations (id, name, budget, vat, penalty, date, start_hour, end_hour, payment, due_date, sent, delay, customer_id, created_at, updated_at, user_id) FROM stdin;
@@ -208,14 +208,14 @@ COPY public.collaborations (id, name, budget, vat, penalty, date, start_hour, en
 
 
 --
--- Name: collaborations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: paologio
+-- Name: collaborations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.collaborations_id_seq', 21, true);
 
 
 --
--- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: paologio
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.customers (id, name, surname, country, email, specialization, city, address, postal, created_at, updated_at, user_id) FROM stdin;
@@ -243,14 +243,14 @@ COPY public.customers (id, name, surname, country, email, specialization, city, 
 
 
 --
--- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: paologio
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.customers_id_seq', 27, true);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: paologio
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (id, name, surname, username, email, birthdate, country, password, city, address, postal, created_at, updated_at) FROM stdin;
@@ -264,14 +264,14 @@ COPY public.users (id, name, surname, username, email, birthdate, country, passw
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: paologio
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 10, true);
 
 
 --
--- Name: collaborations collaborations_pkey; Type: CONSTRAINT; Schema: public; Owner: paologio
+-- Name: collaborations collaborations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.collaborations
@@ -279,7 +279,7 @@ ALTER TABLE ONLY public.collaborations
 
 
 --
--- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: paologio
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.customers
@@ -287,7 +287,7 @@ ALTER TABLE ONLY public.customers
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: paologio
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -295,7 +295,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: paologio
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -303,7 +303,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: paologio
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -311,14 +311,14 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: customers_email_user_id; Type: INDEX; Schema: public; Owner: paologio
+-- Name: customers_email_user_id; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX customers_email_user_id ON public.customers USING btree (email, user_id);
 
 
 --
--- Name: collaborations collaborations_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paologio
+-- Name: collaborations collaborations_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.collaborations
@@ -326,7 +326,7 @@ ALTER TABLE ONLY public.collaborations
 
 
 --
--- Name: collaborations collaborations_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paologio
+-- Name: collaborations collaborations_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.collaborations
@@ -334,7 +334,7 @@ ALTER TABLE ONLY public.collaborations
 
 
 --
--- Name: customers customers_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paologio
+-- Name: customers customers_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.customers
