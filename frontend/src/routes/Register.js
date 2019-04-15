@@ -63,10 +63,9 @@ class Register extends React.Component {
         country,
         city,
         address,
-        postal: intPostal,
+        postal: intPostal || -1,
       },
     });
-
 
     const { ok, errors } = response.data.registerUser;
 
@@ -263,6 +262,11 @@ class Register extends React.Component {
             list={Array.from(errorsList)}
           />
         ) : null}
+        <Message>
+          Already registered?
+          {' '}
+          <a href="/login">Sign In</a>
+        </Message>
       </Container>
     );
   }
