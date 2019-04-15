@@ -183,8 +183,8 @@ export default compose(
       // console.log('the values: ', values);
       const response = await mutate({
         variables: {
-          name: values.name,
-          surname: values.surname,
+          name: values.name.trim(),
+          surname: values.surname.trim(),
           country: values.country,
           email: values.email,
           city: values.city,
