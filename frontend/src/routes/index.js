@@ -8,6 +8,9 @@ import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 import isAuthenticated from '../utils/auth';
+// import getPersonal from '../components/PersonalInfos';
+// import getRegister from '../components/RegisterWork';
+// import getView from '../components/ViewWorks';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -20,13 +23,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           pathname: '/login',
         }}
       />
-    ))}
+    ))
+    }
   />
 );
 
 /*
 <PrivateRoute path="/view-team/:teamId?/:channelId?" exact component={ViewTeam} />
 <PrivateRoute path="/create-team" exact component={CreateTeam} />
+<PrivateRoute path="/#personal" exact component={getPersonal} />
+<PrivateRoute path="/#register" exact component={getRegister} />
+<PrivateRoute path="/#view" exact component={getView} />
 */
 
 export default () => (

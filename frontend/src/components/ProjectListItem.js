@@ -5,9 +5,8 @@ import React, { Component } from 'react';
 import { Grid, List } from 'semantic-ui-react';
 import { graphql, compose } from 'react-apollo';
 
-import fromMillisToDate from '../utils/convertingTools';
+import { fromMillisToDate } from '../utils/convertingTools';
 import sendInvoiceMutation from '../graphql/mutation/invoice';
-import collaborationsQuery from '../graphql/query/collaboration';
 import SendInvoiceConfirmModal from '../containers/SendInvoiceConfirmModal';
 import ShowCustomer from './ShowCustomer';
 import { getCustomerById } from '../graphql/query/customer';
@@ -18,6 +17,7 @@ class ProjectListItem extends Component {
     const response = await this.props.mutate({
       variables: {
         id,
+        sent: false,
         user_id: userId,
         customer_id: customerId,
       },
@@ -75,8 +75,15 @@ class ProjectListItem extends Component {
 
 export default compose(
   graphql(sendInvoiceMutation, {
-    options: ({ id, userId, customerId }) => ({
-      variables: { id, user_id: userId, customer_id: customerId },
+    options: ({
+      id, sent, userId, customerId,
+    }) => ({
+      variables: {
+        id,
+        sent,
+        user_id: userId,
+        customer_id: customerId,
+      },
     }),
   }),
   graphql(getCustomerById, {

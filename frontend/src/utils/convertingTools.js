@@ -4,4 +4,6 @@ const fromMillisToDate = (d) => {
   return date.toDateString();
 };
 
-export default fromMillisToDate;
+const roundDecimal = (amount, precision) => Number(amount.toFixed(precision));
+
+export { fromMillisToDate, roundDecimal };

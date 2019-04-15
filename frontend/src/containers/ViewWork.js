@@ -145,17 +145,17 @@ class ViewWork extends Component {
 
         <Grid.Row columns={3}>
           <Grid.Column>
-            <DatePicker value={date} onChange={e => (this.date = e)} />
+            <DatePicker value={date} onChange={e => this.setState({ date: e })} />
           </Grid.Column>
 
           <Grid.Column>
-            <TimePicker value={startHour} onChange={e => (this.startHour = e)} />
+            <TimePicker value={startHour} onChange={e => this.setState({ startHour: e })} />
           </Grid.Column>
 
           <Grid.Column>
             <TimePicker
               value={endHour}
-              onChange={e => (this.endHour = e)}
+              onChange={e => this.setState({ endHour: e })}
               minTime={this.setMinTime()}
             />
           </Grid.Column>

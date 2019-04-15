@@ -34,7 +34,6 @@ describe('sicm interaction', () => {
   it('shows the send invoice modal if the invoice is not sent', () => {
     const sendInvoiceConfirmModal = wrapper.find('SendInvoiceConfirmModal');
     const openModalButton = wrapper.find('Button');
-    // console.log(sendInvoiceConfirmModal.debug());
     expect(sendInvoiceConfirmModal.instance().state.open).toBeFalsy();
     openModalButton.simulate('click');
     expect(sendInvoiceConfirmModal.instance().state.open).toBeTruthy();

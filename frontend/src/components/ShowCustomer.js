@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Button, Dimmer, Grid, Header, Loader, Modal, Segment,
+  Button, Dimmer, Grid, Header, Icon, Loader, Modal, Segment,
 } from 'semantic-ui-react';
 
 const ShowCustomer = ({ loading, customer }) => {
@@ -21,10 +21,12 @@ const ShowCustomer = ({ loading, customer }) => {
 
   return (
     <Modal trigger={<Button basic loading={loading}>{`${name} ${surname}`}</Button>} size="large">
-      <Modal.Header>{`${name} ${surname} details`}</Modal.Header>
+      <Modal.Header>
+        <Icon name="address book outline" />
+        {`${name} ${surname} details`}
+      </Modal.Header>
       <Modal.Content image>
         <Modal.Description>
-          <Header>Default Profile Image</Header>
           <Grid columns={4} divided>
             <Grid.Row>
               <Grid.Column>{`Name: ${name}`}</Grid.Column>

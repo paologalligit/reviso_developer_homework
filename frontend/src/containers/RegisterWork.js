@@ -13,6 +13,7 @@ import CreateCustomer from './CreateCustomer';
 import collaborationMutation from '../graphql/mutation/collaboration';
 import tryParseInt from '../utils/parsingTools';
 import VatComponent from '../components/VatComponent';
+import { roundDecimal } from '../utils/convertingTools';
 
 class RegisterWork extends Component {
   constructor(props) {
@@ -38,12 +39,13 @@ class RegisterWork extends Component {
     const { vat, vatPercentage } = this.state;
     let newVat;
     if (vatPercentage !== '' && name === 'budget') {
-      newVat = vatPercentage * value;
+      newVat = roundDecimal(vatPercentage * value, 2); // Number((vatPercentage * value).toFixed(2));
     } else {
       newVat = vat;
     }
     console.log('the name: ', name, ' and the value: ', value);
     this.setState({ [name]: value, vat: newVat });
+    // this.setState({ [name]: value, vat: newVat });
   };
 
   onDropdownChange = (e, data) => {
@@ -107,7 +109,7 @@ class RegisterWork extends Component {
   handleVatChange = (e, data) => {
     const { value } = data;
     const { budget } = this.state;
-    const vat = budget === '' ? '' : budget * value;
+    const vat = budget === '' ? '' : roundDecimal(budget * value, 2); // Number((budget * value).toFixed(2));
     this.setState({ vat, vatPercentage: value });
   };
 

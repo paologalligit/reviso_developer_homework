@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import decode from 'jwt-decode';
 
 import HomeView from '../components/HomeView';
@@ -8,13 +8,13 @@ class Home extends Component {
     super(props);
 
     const userInfos = this.decodeToken();
-    this.state = {...userInfos, ...{activeItem: 'personal'}}
+    this.state = { ...userInfos, ...{ activeItem: 'personal' } };
   }
 
   decodeToken = () => {
     try {
       const token = localStorage.getItem('token');
-      const {user} = decode(token);
+      const { user } = decode(token);
 
       return user;
     } catch (err) {
@@ -24,11 +24,11 @@ class Home extends Component {
     return {};
   };
 
-  handleItemClick = (e, {name}) => this.setState({activeItem: name});
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   displayWelcomeMessage = () => {
-    const {name, surname} = this.state;
-    return 'Welcome ' + name + ' ' + surname;
+    const { name, surname } = this.state;
+    return `Welcome ${name} ${surname}`;
   };
 
   handleLogOut = () => {
@@ -50,6 +50,5 @@ class Home extends Component {
     );
   }
 }
-
 
 export default Home;

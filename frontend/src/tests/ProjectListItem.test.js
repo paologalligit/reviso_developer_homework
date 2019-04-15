@@ -80,6 +80,7 @@ describe('pli interaction', () => {
         query: sendInvoiceMutation,
         variables: {
           id: 1,
+          sent: false,
           user_id: 1,
           customer_id: 1,
         },
@@ -130,6 +131,7 @@ describe('pli interaction', () => {
         query: sendInvoiceMutation,
         variables: {
           id: 1,
+          sent: false,
           user_id: 1,
           customer_id: 1,
         },
