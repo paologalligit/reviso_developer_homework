@@ -2,10 +2,16 @@
 
 # Instructions for the frontend
 
-# Starting the client
+# :computer: Starting the client
 - `cd frontend/`
 - `yarn start` or `npm start` (*the client starts at port 3000*)
 
-# Running the tests
+# :zap: Running the tests
 - `cd frontend/`
 - `yarn jest` or `yarn jest --coverage` for the coverage table
+
+# :alien: User
+There is an already create user in the db you can use:
+  - email: user@email.com
+  - password: bobobo
+He already has a couple of customer and project associated
