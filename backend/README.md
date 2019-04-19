@@ -7,10 +7,12 @@
 
 ## :muscle: Starting the server
 - `cd backend/`
+- `yarn install` or `npm install`
 - `yarn start` or `npm start` (*the server starts at port 8080*)
 
 ## :zap: Testing
 1. `cd backend/`
-2. Run the test db with `yarn test-server`
-3. Run the tests `yarn test-in-order`
-4. **Whenever running new tests always close and re-run the test-server**
+2. `createdb testfreelancerdb`
+3. Run the test db with `yarn test-server`
+4. Run the tests `yarn test-in-order`
+5. **Whenever running new tests always close and re-run the test-server**
