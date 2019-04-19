@@ -12,7 +12,7 @@ const Op = Sequelize.Op;
 export default {
   Query: {
     filteredCollaborations: async (parent, args, { models }) => {
-      console.log('the args in backend', args);
+      // console.log('the args in backend', args);
       const {
         user_id, customer_id, name, budget, vat, penalty, date, start_hour, end_hour,
       } = args;
@@ -21,7 +21,7 @@ export default {
           user_id,
           customer_id: customer_id < 0 ? { [Op.gt]: 0 } : customer_id,
           name: {
-            [Op.iLike]: name || '%',
+            [Op.iRegexp]: name || '.*',
           },
           budget: budget ? { [Op.eq]: args.budget } : { [Op.gt]: 0 },
           vat: vat ? { [Op.eq]: vat } : { [Op.gt]: 0 },
@@ -74,8 +74,15 @@ export default {
           },
         });
 
+        if (response.dataValues.sent) {
+          return {
+            ok: false,
+            errors: [{ message: 'Invoice already sent', path: 'Sent invoice' }],
+          };
+        }
+
         const collaboration = await response.update({
-          sent,
+          sent: true,
         });
 
         return {

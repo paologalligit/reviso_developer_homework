@@ -84,8 +84,8 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isAlpha: {
-            args: true,
+          is: {
+            args: ['^[a-z ]+$', 'i'],
             msg: 'Invalid city name',
           },
         },

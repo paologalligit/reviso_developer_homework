@@ -56,6 +56,6 @@ const schema = new ApolloServer({
 
 schema.applyMiddleware({ app });
 
-models.sequelize.sync({  }).then(() => {
+models.sequelize.sync({ force: false }).then(() => {
   app.listen(8080);
 });

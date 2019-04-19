@@ -31,9 +31,9 @@ describe('user resolvers', () => {
     const response = await axios.post(server, {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
+          registerUser(name: "Claudio", surname: "Test", username: "Claudione",
             email: "ci@email.com", birthdate: "2000-12-31", country: "Italy", 
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+              password: "pwdtest123", city: "Milan", address: "Via Test, 20", postal: 20100) {
               ok
               errors {
                 path
@@ -59,9 +59,9 @@ describe('user resolvers', () => {
     const response = await axios.post(server, {
       query: `
         mutation {
-          registerUser(name: "Claudio", surname: "Lippi", username: "Claudione",
+          registerUser(name: "Claudio", surname: "Test", username: "Claudione",
             email: "ci@email.com", birthdate: "2000-12-31", country: "Italy", 
-              password: "bobobo", city: "Milan", address: "Via Dei Rognosi", postal: 20100) {
+              password: "pwdtest123", city: "Milan", address: "Via Test, 20", postal: 20100) {
               ok
               errors {
                 path
@@ -109,12 +109,12 @@ describe('user resolvers', () => {
       data: {
         allUsers: [
           {
+            country: 'Italy',
+            email: 'ci@email.com',
             id: 1,
             name: 'Claudio',
-            surname: 'Lippi',
+            surname: 'Test',
             username: 'Claudione',
-            email: 'ci@email.com',
-            country: 'Italy',
           },
         ],
       },

@@ -1882,7 +1882,11 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
-bluebird@^3.4.6, bluebird@^3.5.0:
+bluebird@^3.4.6:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.4.tgz#d6cc661595de30d5b3af5fcedd3c0b3ef6ec5714"
+
+bluebird@^3.5.0:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
 
@@ -2395,7 +2399,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cors@^2.8.4:
+cors@^2.8.4, cors@latest:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   dependencies:
@@ -6766,8 +6770,8 @@ send@0.16.2:
     statuses "~1.4.0"
 
 sequelize@^4.42.1:
-  version "4.42.1"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.42.1.tgz#352eeb632dffd52db82446378bd57997a6f9fd35"
+  version "4.43.2"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.43.2.tgz#688e2579c64eb7e8de348941544ff2893db8eed6"
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"
