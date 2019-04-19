@@ -72,7 +72,6 @@ class Register extends React.Component {
     if (ok) {
       this.props.history.push('/');
     } else {
-      // console.log('the errors, smthg went wrong: ', errors);
       const err = {};
       errors.forEach(({ path, message }) => {
         err[`${path}Error`] = message;

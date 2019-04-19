@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import styles from './styles/HomeStyle';
 import homeMenu from './MenuTabs';
 
-// TODO: change the menu.item in link
 const HomeView = ({
   user,
   displayWelcomeMessage,

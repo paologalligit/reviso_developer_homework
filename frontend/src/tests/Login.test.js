@@ -7,7 +7,6 @@ import { MockedProvider } from 'react-apollo/test-utils';
 
 import Login from '../routes/Login';
 import loginMutation from '../graphql/mutation/user';
-import LocalStorageMock from './LocalStorageMock';
 
 const waitForData = () => new Promise(res => setTimeout(res, 100));
 

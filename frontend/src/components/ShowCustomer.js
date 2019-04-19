@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Button, Dimmer, Grid, Header, Icon, Loader, Modal, Segment,
+  Button, Dimmer, Grid, Icon, Loader, Modal, Segment,
 } from 'semantic-ui-react';
 
 const ShowCustomer = ({ loading, customer }) => {

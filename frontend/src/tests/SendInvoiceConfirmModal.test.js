@@ -34,6 +34,7 @@ describe('sicm interaction', () => {
   it('shows the send invoice modal if the invoice is not sent', () => {
     const sendInvoiceConfirmModal = wrapper.find('SendInvoiceConfirmModal');
     const openModalButton = wrapper.find('Button');
+
     expect(sendInvoiceConfirmModal.instance().state.open).toBeFalsy();
     openModalButton.simulate('click');
     expect(sendInvoiceConfirmModal.instance().state.open).toBeTruthy();
@@ -62,33 +63,3 @@ describe('sicm interaction', () => {
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 });
-
-/*
-const mock = [
-    {
-      request: {
-        query: sendInvoiceMutation,
-        variables: {
-          id: 1,
-          sent: false,
-          user_id: 1,
-          customer_id: 1,
-        },
-      },
-      result: {
-        data: {
-          sentInvoice: {
-            ok: true,
-            collaboration: {
-              sent: true,
-              user_id: 1,
-              customer_id: 1,
-            },
-            errors: null,
-          },
-        },
-      },
-    },
-  ];
-
-*/

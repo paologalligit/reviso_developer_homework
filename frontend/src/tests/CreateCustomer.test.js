@@ -27,7 +27,6 @@ describe('open and close create customer modal', () => {
     expect(wrapper).toHaveLength(1);
     const createCustomer = wrapper.find('CreateCustomer');
     const button = wrapper.find('Button').first();
-    // console.log(button.debug());
 
     expect(createCustomer.instance().state.openAddCustomerModal).toBeFalsy();
     button.simulate('click');

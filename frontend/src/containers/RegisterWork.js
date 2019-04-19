@@ -39,24 +39,19 @@ class RegisterWork extends Component {
     const { vat, vatPercentage } = this.state;
     let newVat;
     if (vatPercentage !== '' && name === 'budget') {
-      newVat = roundDecimal(vatPercentage * value, 2); // Number((vatPercentage * value).toFixed(2));
+      newVat = roundDecimal(vatPercentage * value, 2);
     } else {
       newVat = vat;
     }
-    console.log('the name: ', name, ' and the value: ', value);
     this.setState({ [name]: value, vat: newVat });
-    // this.setState({ [name]: value, vat: newVat });
   };
 
   onDropdownChange = (e, data) => {
-    // console.log('in dd change: ', data.value);
     this.setState({ customer: data.value });
   };
 
   setMinTime = () => {
     const { startHour } = this;
-
-    // console.log('the conversion: ', startHour.toLocaleTimeString());
 
     return startHour || new Date().toLocaleTimeString();
   };
@@ -83,14 +78,12 @@ class RegisterWork extends Component {
         },
       });
 
-      const { ok, collaboration, errors } = response.data.registerCollaboration;
+      const { ok, errors } = response.data.registerCollaboration;
 
       if (ok) {
-        console.log('just created new collaboration: ', collaboration);
         this.isSubmitting = false;
         this.props.navigator.go('/');
       } else {
-        console.log('something went terribly wrong: ', errors);
         const err = {};
         errors.forEach(({ path, message }) => {
           err[`${path}Error`] = message;
@@ -109,7 +102,7 @@ class RegisterWork extends Component {
   handleVatChange = (e, data) => {
     const { value } = data;
     const { budget } = this.state;
-    const vat = budget === '' ? '' : roundDecimal(budget * value, 2); // Number((budget * value).toFixed(2));
+    const vat = budget === '' ? '' : roundDecimal(budget * value, 2);
     this.setState({ vat, vatPercentage: value });
   };
 
@@ -170,13 +163,7 @@ class RegisterWork extends Component {
           </Grid.Column>
           <Grid.Row columns={2}>
             <Grid.Column>
-              <Input
-                name="vat"
-                value={vat}
-                disabled
-                fluid
-                error={!!vatError}
-              />
+              <Input name="vat" value={vat} disabled fluid error={!!vatError} />
               {isSubmitting && vatError ? vatError : null}
             </Grid.Column>
             <Grid.Column>

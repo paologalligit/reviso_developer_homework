@@ -72,6 +72,4 @@ describe('show customer interaction', () => {
       user_id: 1,
     });
   });
-
-  // TODO: test when clicked
 });

@@ -8,9 +8,6 @@ import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 import isAuthenticated from '../utils/auth';
-// import getPersonal from '../components/PersonalInfos';
-// import getRegister from '../components/RegisterWork';
-// import getView from '../components/ViewWorks';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

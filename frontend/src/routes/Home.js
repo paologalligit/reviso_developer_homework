@@ -17,9 +17,7 @@ class Home extends Component {
       const { user } = decode(token);
 
       return user;
-    } catch (err) {
-      console.log('Error decoding the token');
-    }
+    } catch (err) {}
 
     return {};
   };

@@ -52,8 +52,6 @@ class ViewWork extends Component {
 
   onToggleFilterView = (e, { checked }) => {
     e.persist();
-    // console.log('the e: ', e);
-    // console.log('the value: ', checked);
     this.setState({ showAll: checked });
   };
 
@@ -73,8 +71,6 @@ class ViewWork extends Component {
       isSubmitting,
     } = this.state;
     const { id } = this.props.user;
-
-    // console.log('the state in render: ', showAll);
 
     return (
       <Grid>

@@ -15,7 +15,6 @@ import createCustomerMutation from '../graphql/mutation/customer';
 const AddCustomerModal = ({
   open,
   onClose,
-  // userId,
   values,
   handleChange,
   handleBlur,
@@ -180,7 +179,6 @@ export default compose(
         props: { onClose, userId, mutate }, setSubmitting, setErrors, resetForm,
       },
     ) => {
-      // console.log('the values: ', values);
       const response = await mutate({
         variables: {
           name: values.name.trim(),
@@ -243,7 +241,6 @@ export default compose(
         onClose();
         resetForm({});
       } else {
-        // console.log('the errors: ', errors);
         setErrors(normalizeErrors(errors));
       }
       setSubmitting(false);
