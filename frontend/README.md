@@ -4,6 +4,7 @@
 
 # :computer: Starting the client
 - `cd frontend/`
+- `yarn install` or `npm install`
 - `yarn start` or `npm start` (*the client starts at port 3000*)
 
 # :zap: Running the tests
