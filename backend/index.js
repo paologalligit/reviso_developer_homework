@@ -44,14 +44,12 @@ app.use(addUser);
 const schema = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
-    return {
-      models,
-      user: req.user,
-      SECRET,
-      SECRET2,
-    }
-  }
+  context: ({ req }) => ({
+    models,
+    user: req.user,
+    SECRET,
+    SECRET2,
+  }),
 });
 
 schema.applyMiddleware({ app });
