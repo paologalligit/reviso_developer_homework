@@ -3,7 +3,7 @@
 ## :computer: Importing the database
 - `createdb freelancerdb`
 - `psql -U user_name freelancerdb < freelancerdb.sql`
-- if a user other than postgres is used, go to **backend/models/index.js** and change the third row with the correct user and password
+- if a user other than postgres is used, go to **backend/models/index.js** and change the third row with the correct user and password, and also the db owner in freelancerdb.sql file
 
 ## :muscle: Starting the server
 - `cd backend/`
