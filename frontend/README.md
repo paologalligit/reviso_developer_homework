@@ -15,4 +15,5 @@
 There is an already create user in the db you can use:
   - email: user@email.com
   - password: bobobo
+
 He already has a couple of customer and project associated
